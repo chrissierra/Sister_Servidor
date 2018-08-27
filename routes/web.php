@@ -57,14 +57,7 @@ Route::get('/LiberarTurnos/{mes}/{anio}/{id}', function ($mes, $anio, $id) {
 });
 
 
-Route::get('/asdfasdfasdfasdfasdsdfasdf/{mes}/{anio}/{id}', function ($mes, $anio, $id) {
 
-    $turnos = \App\turnos::where([ ['trabajador_id', $id], ['mes',  $mes], ['anio', $anio] ]);
-
-    echo  $turnos->get()->toJson() ;
-
-
-});
 
 
 

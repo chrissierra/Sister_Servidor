@@ -42,4 +42,26 @@ Route::post('ActualizarTurnosVariables', function(Request $request){
                 }
     }
 
+    \App\Turnos::where( 'trabajador_id', $post['id'] )->where(  'mes', $post['mes'] )->update(['liberado' => NULL]);
+
 });
+
+
+/*
+Route::post('LiberarDefinitivoTurnos', function(Request $request){
+
+    $post = $request->json()->all();
+
+    foreach ($post as $key => $value) {
+        # code...
+                if(strcmp( $key, 'id' ) !== 0 && strcmp( $key, 'check' ) !== 0 && strcmp( $key, 'mes' ) !== 0){
+
+                     \App\Turnos::where( 'trabajador_id', $post['id'] )->where(  'mes', $post['mes'] )->update([$key => $value]);
+                }
+    }
+
+    \App\Turnos::where( 'trabajador_id', $post['id'] )->where(  'mes', $post['mes'] )->update(['liberado' => true]);
+
+});
+*/
+
