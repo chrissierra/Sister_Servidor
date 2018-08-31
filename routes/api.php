@@ -47,7 +47,7 @@ Route::post('ActualizarTurnosVariables', function(Request $request){
 });
 
 
-/*
+
 Route::post('LiberarDefinitivoTurnos', function(Request $request){
 
     $post = $request->json()->all();
@@ -63,5 +63,7 @@ Route::post('LiberarDefinitivoTurnos', function(Request $request){
     \App\Turnos::where( 'trabajador_id', $post['id'] )->where(  'mes', $post['mes'] )->update(['liberado' => true]);
 
 });
-*/
 
+Route::post('GuardarSucursal', 'SucursalController@ingreso_sucursal');
+
+Route::post('SituacionMarcaje', 'MarcajeController@SituacionMarcajeActual');
