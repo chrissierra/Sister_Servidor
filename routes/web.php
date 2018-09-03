@@ -58,6 +58,16 @@ Route::get('/LiberarTurnos/{mes}/{anio}/{id}', function ($mes, $anio, $id) {
 
 
 
+Route::get('/ComisionAfp/{afp}', function ($afp) {
+
+    $afp_comision = \App\afp::where('nombre', $afp);
+
+    echo  $afp_comision->get()->toJson() ;
+
+
+});
+
+
 
 
 
