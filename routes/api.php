@@ -67,3 +67,7 @@ Route::post('LiberarDefinitivoTurnos', function(Request $request){
 Route::post('GuardarSucursal', 'SucursalController@ingreso_sucursal');
 
 Route::post('SituacionMarcaje', 'MarcajeController@SituacionMarcajeActual');
+
+Route::post('MarcarMovimiento', 'MarcajeController@MarcarMovimiento');
+
+

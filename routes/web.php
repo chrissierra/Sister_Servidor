@@ -39,7 +39,7 @@ Route::get('/TurnosSinLiberar/{id}', function ($id) {
 
      $turnos = \App\turnos::where([ ['trabajador_id', $id], ['liberado', '=' , null]]);
 
-     echo  $turnos->get()->toJson() ;
+     echo  $turnos->get()->toJson();
 
 
 });
