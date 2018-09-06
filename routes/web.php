@@ -69,6 +69,31 @@ Route::get('/ComisionAfp/{afp}', function ($afp) {
 
 
 
+Route::get('/DiasLaboralesCalendarizados/{id}/{mes}/{anio}', function ($id, $mes, $anio) {
+
+    $result = \App\turnos::where('trabajador_id', $id)->where('mes', $mes)->where('anio', $anio)->get();
+   
+    $resultado_array = json_decode($result[0], true);
+
+    
+$contador=1;
+$contador_Dias=0;
+
+foreach ($resultado_array as $key => $value) {
+
+$contador++;
+
+  if(strpos($key, 'e') && strpos($value, ':') && $contador> 8){
+    $contador_Dias++;
+    echo $contador . " / " . $value . " / " . $key . '<br>';
+  }
+   
+}
+
+
+echo "<h1>Dias a trabajar: " . $contador_Dias . '</h1>';  
+
+});
 
 
 /*

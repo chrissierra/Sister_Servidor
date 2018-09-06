@@ -89,7 +89,7 @@ class MarcajeController extends Controller
 
     public function MarcarMovimiento(Request $request){
         $tabla_asistencia = new \App\asistencia;
-	    $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
+	      $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
         $planilla = \App\ingreso_empleados::where('id', $post['id'])->get();
         $turnos = \App\turnos::where([ ['trabajador_id', $post['id']], ['mes',  $this->mes], ['anio', $this->anio] ]);
         $trabajaDiaEnCurso = ( strcmp($planilla[0]['horario_con_o_sin_turnos'], 'Turnos') == 0 ) ? $this->TrabajaDiaEnCursoTurnos($post['id']) : 'Fijos';
@@ -107,6 +107,8 @@ class MarcajeController extends Controller
             $tabla_asistencia->status_salida = '';  // Atraso o no
             $tabla_asistencia->cuantia_entrada = date('H')+ (date('i') /60 ) ;
             $tabla_asistencia->cuantia_salida = '';
+            $tabla_asistencia->mes = date('m');
+            $tabla_asistencia->anio = date('Y');
             $tabla_asistencia->save();
         }
         $Salida = ( $trabajaDiaEnCurso == 1 ) ? $this->VerificaMovimiento($post['id'], 'salida') : 'Libre';
@@ -123,6 +125,8 @@ class MarcajeController extends Controller
             $tabla_asistencia->status_salida = $this->GetHoraMovimiento($post['id'], 'salida', (date('H') + ( date('i') /60 )) ) ;  // Atraso o no
             $tabla_asistencia->cuantia_entrada = date('H') + ( date('i') /60 ) ;
             $tabla_asistencia->cuantia_salida = '';
+            $tabla_asistencia->mes = date('m');
+            $tabla_asistencia->anio = date('Y');
             $tabla_asistencia->save();
         }
          // echo json_encode($Salida);
