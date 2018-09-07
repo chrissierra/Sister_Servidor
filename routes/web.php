@@ -85,13 +85,13 @@ $contador++;
 
   if(strpos($key, 'e') && strpos($value, ':') && $contador> 8){
     $contador_Dias++;
-    echo $contador . " / " . $value . " / " . $key . '<br>';
+   
   }
    
 }
 
 
-echo "<h1>Dias a trabajar: " . $contador_Dias . '</h1>';  
+echo $contador_Dias;  
 
 });
 
