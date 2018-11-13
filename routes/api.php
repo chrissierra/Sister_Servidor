@@ -70,4 +70,24 @@ Route::post('SituacionMarcaje', 'MarcajeController@SituacionMarcajeActual');
 
 Route::post('MarcarMovimiento', 'MarcajeController@MarcarMovimiento');
 
+Route::post('LiberarSueldo', 'liberarSueldos@InsertSueldo');
 
+Route::post('ConfirmarEstadoSueldo', 'liberarSueldos@getSueldoLiberado');
+
+Route::post('SueldosLiberados', 'liberarSueldos@getSueldosLiberados');
+
+Route::post('SueldosLiberadosPorFecha', 'liberarSueldos@getSueldosLiberadosPorFecha');
+
+Route::post('InsertTurnoFijo', 'turnosFijos@store');
+
+Route::post('updateTurnoFijo', 'turnosFijos@update');
+
+Route::post('getTurnos', 'turnosFijos@getTurnos');
+
+Route::post('UpdateTurnoFijo', 'turnosFijos@updateTurnos');
+
+Route::post('GetAsistenciaMesAnterior', 'turnosFijos@DiasTrabajados');
+
+Route::post('Enrolamiento', 'IngresoEmpleados@Enrolamiento');
+
+Route::post('guardarImagenesProcesoBiometricoEnMarcaje', 'MarcajeDesdeApp@guardarImagenesProcesoBiometricoEnMarcaje');

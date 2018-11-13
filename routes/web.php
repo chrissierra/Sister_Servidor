@@ -12,6 +12,13 @@
 |
 */
 
+Route::get('/test/{id}', function ($id) {
+
+     return json_encode($id);
+
+});
+
+
 Route::get('/perfil_trabajador/{id}', function ($id) {
 
      $planilla = \App\ingreso_empleados::where('id', $id)->get();
@@ -19,6 +26,8 @@ Route::get('/perfil_trabajador/{id}', function ($id) {
      echo $planilla->toJson();
 
 });
+
+
 
 
 
@@ -72,10 +81,10 @@ Route::get('/ComisionAfp/{afp}', function ($afp) {
 Route::get('/DiasLaboralesCalendarizados/{id}/{mes}/{anio}', function ($id, $mes, $anio) {
 
     $result = \App\turnos::where('trabajador_id', $id)->where('mes', $mes)->where('anio', $anio)->get();
-   
+
     $resultado_array = json_decode($result[0], true);
 
-    
+
 $contador=1;
 $contador_Dias=0;
 
@@ -85,61 +94,51 @@ $contador++;
 
   if(strpos($key, 'e') && strpos($value, ':') && $contador> 8){
     $contador_Dias++;
-   
+
   }
-   
+
 }
 
-
-echo $contador_Dias;  
-
+echo json_encode($contador_Dias);
 });
 
 
-/*
-TESTEOS
-//echo json_encode($planilla->toarray(),JSON_PARTIAL_OUTPUT_ON_ERROR);
+
+
+
+Route::get('/DiasLaboralesRealizados/{id}/{mes}/{anio}', function ($id, $mes, $anio) {
+    $horasNoTrabajadas = 0;
+    $result = \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->get();
+    $contadorEntrada=0;
+    $contadorSalida=0;
+    foreach ($result as $key => $value) {
+       
+       if($value["tipo_movimiento"] == "entrada")
+           $contadorEntrada++; # No lo usé
+
+           if($value["tipo_movimiento"] == "salida" && \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->count() == 1 ){
+
+
+            $horasNoTrabajadasTemp = -1 *  \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->first()['cuantia_diferencia_real_esperada'];  
+            $horasNoTrabajadas += $horasNoTrabajadasTemp;  
+
+              $horasNoTrabajadasTemp = -1 *  \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'salida')->first()['cuantia_diferencia_real_esperada'];   
+            $horasNoTrabajadas += $horasNoTrabajadasTemp;  
+
+               $contadorSalida++;  
+           }
+          
+
+    }
+
+    $response = array('HorasNoTrabajadas'=> $horasNoTrabajadas, 'diasTrabajados' => $contadorSalida);
+
+   // echo $horasNoTrabajadas;
+    echo json_encode($response);
+});
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/leer', 'Ejemplo1@test');
-Route::get('/peo', function(){
-$hola= new \App\clientes_rrhh;
- $hola->nombre_empresa = "Phillips";
-  $hola->nombre_rep = "Mr. Phillips";
-  $hola->email = "chris@chris.com";
-  $hola->numero = "82848955";
-     $hola->direccion="";
-   $hola->website="";
-   $hola->password="";
-   $hola->textarea="";
-   $hola->rut_empresa="";
-   $hola->rut_rep="";
-   $hola->giro="";
-   $hola->numero_empleados="";
-   $hola->nacimiento="";
-   $hola->estatus="";
-
-  $hola->save();
-});
-
-
-
-Route::get('/actualizar/{correo}', function($correo){
-
-$hola=  \App\clientes_rrhh::find(7);
-
-  $hola->email = $correo;
-  $hola->numero = "94746162";
-
-
-  $hola->save();
-
-  echo " Se ha actualizado al correo " . $correo;
-
-});
-*/
-//Route::post('', 'crudController@store');
-//Route::post('kk', 'crudController@store');
-
-//Route::post('hola', 'LoginController@store'); // No es necesario ponerlo, ya está lista la ruta.

@@ -50,7 +50,9 @@ class PlanillaController extends Controller
 
         $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $id)->get();
         //echo json_encode($planilla->toarray(),JSON_PARTIAL_OUTPUT_ON_ERROR);
-        echo $planilla->toJson();
+        //echo $planilla->toJson();
+
+        return response()->json($planilla);
 
     }   
 
