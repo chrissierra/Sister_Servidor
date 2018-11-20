@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Storage;
 
 
 /*
@@ -13,9 +14,16 @@
 */
 
 Route::get('/test/{id}', function ($id) {
+          date_default_timezone_set('America/Santiago');
+        $this->mes = date('m')*1;
+        $this->anio = date('Y');
+        $this->dia = (date('d') *1) . 'e';
+        $this->timeUnix = (date('d') *1) . 's';
+        $this->fecha = date('d/m/Y');
+     //echo public_path();
+        $path = './' . $this->anio . '/' . $this->mes .'/' .$this->dia . '/' . $this->timeUnix . '/';
 
-     return json_encode($id);
-
+        Storage::makeDirectory($path);
 });
 
 
