@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class turnosFijos extends Model
 {
     //
-        protected $table = "turnosFijos";
+        protected $table = "turnosfijos";
         public $timestamps = false;
 }

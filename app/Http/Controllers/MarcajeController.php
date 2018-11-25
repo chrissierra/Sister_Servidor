@@ -28,7 +28,8 @@ class MarcajeController extends Controller
         $Entrada = ( $trabajaDiaEnCurso == 1 ) ? $this->VerificaMovimiento($post['id'], 'entrada') : 'Libre';
         $Salida = ( $trabajaDiaEnCurso == 1 ) ? $this->VerificaMovimiento($post['id'], 'salida') : 'Libre';
         $respuesta = new \stdClass();
-        $respuesta->trabajaDiaEnCurso = $trabajaDiaEnCurso;
+        $respuesta->trabajaDiaEnCurso = $trabajaDiaEnCurso;        
+        $respuesta->TurnoYaRealizado = ( strcmp($planilla[0]['horario_con_o_sin_turnos'], 'Turnos') == 0 ) ? $this->TrabajaDiaEnCursoTurnos($post['id'])  :  $this->TrabajaDiaEnCursoFijos($post['id']);
         $respuesta->Entrada = $Entrada;
         $respuesta->Salida = $Salida;
         $respuesta->TipoTurno = $planilla[0]['horario_con_o_sin_turnos'];
@@ -60,7 +61,7 @@ class MarcajeController extends Controller
 
       $planilla = \App\turnosfijos::where('trabajador_id', $id);
       $valor = (-1 + date('N') ) . 'e';
-      echo json_encode($valor);
+     // echo json_encode($valor);
        if($planilla->count()>0){
         
         $valor_a_retornar = ( strlen($planilla->get()[0][$valor]) == 0 ) ? 'Libre' : 1;   
