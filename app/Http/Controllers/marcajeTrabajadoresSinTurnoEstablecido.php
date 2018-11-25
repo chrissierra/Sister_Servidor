@@ -29,10 +29,12 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
               if($ultimoMovimiento->count() == 0 ){
               	# Entrada
               	echo json_encode('entrada');
-              }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']== 'salida'){
-              	echo json_encode('entrada');
+              }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']== 'salida' && $ultimoMovimiento->get()[0]['tiempo']<43200){
+              	echo json_encode('listo');
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']== 'entrada'){
               	return $this->analizarMovimiento($ultimoMovimiento->get()[0]);
+              }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']== 'salida' && $ultimoMovimiento->get()[0]['tiempo']>43200){
+              	echo json_encode('entrada');
               }
     }
 
@@ -84,6 +86,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->cuantia_diferencia_real_esperada = '';
             $tabla_asistencia->tiempo = time();
             $tabla_asistencia->save();
+            echo json_encode('EntradaRealizada')
         }
         
          if($post['movimiento'] == 'salida'){
@@ -106,6 +109,8 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->cuantia_diferencia_real_esperada = '';
             $tabla_asistencia->tiempo = time();
             $tabla_asistencia->save();
+            echo json_encode('SalidaRealizada')
+
         }
          // echo json_encode($Salida);
         //echo json_encode($this->fecha);
