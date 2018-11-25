@@ -80,7 +80,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->mes = date('m');
             $tabla_asistencia->anio = date('Y');
             $tabla_asistencia->dia = date('d');
-            $tabla_asistencia->cuantia_esperada = $'';
+            $tabla_asistencia->cuantia_esperada = '';
             $tabla_asistencia->cuantia_diferencia_real_esperada = '';
             $tabla_asistencia->tiempo = time();
             $tabla_asistencia->save();
