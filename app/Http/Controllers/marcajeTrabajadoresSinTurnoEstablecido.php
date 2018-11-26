@@ -30,7 +30,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
               	# Entrada
               	echo json_encode('entrada');
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'salida' && ($this->tiempo- $ultimoMovimiento->get()[0]['tiempo']) <43200){
-              	echo json_encode($ultimoMovimiento->get()[0]['tipo_movimiento']);
+              	echo json_encode('Listo');
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento'] === 'entrada'){
               	return $this->analizarMovimiento($ultimoMovimiento->get()[0]);
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'salida' && ($this->tiempo- $ultimoMovimiento->get()[0]['tiempo'])>43200){
