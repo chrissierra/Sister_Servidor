@@ -63,8 +63,6 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
       
         $planilla = \App\ingreso_empleados::where('id', $post['id'])->get();          
        
-        $Entrada = ( $trabajaDiaEnCurso == 1 ) ? $this->VerificaMovimiento($post['id'], 'entrada') : 'Libre';
-
         if($post['movimiento'] == 'entrada'){
          
             $tabla_asistencia->rut = $planilla[0]['rut'];
