@@ -23,17 +23,17 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 	      		$post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
 
 	      		$ultimoMovimiento = \App\asistencia::where('id_trabajador', $post['id'])
-               ->orderBy('id', 'asc')
+               ->orderBy('id', 'desc')
                ->take(1);
                
               if($ultimoMovimiento->count() == 0 ){
               	# Entrada
               	echo json_encode('entrada');
-              }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']== 'salida' && $this->tiempo- $ultimoMovimiento->get()[0]['tiempo'] <43200){
+              }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']== 'salida' && ($this->tiempo- $ultimoMovimiento->get()[0]['tiempo']) <43200){
               	echo json_encode('listo');
-              }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']== 'entrada'){
+              }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento'] == 'entrada'){
               	return $this->analizarMovimiento($ultimoMovimiento->get()[0]);
-              }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']== 'salida' && $this->tiempo- $ultimoMovimiento->get()[0]['tiempo']>43200){
+              }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']== 'salida' && ($this->tiempo- $ultimoMovimiento->get()[0]['tiempo'])>43200){
               	echo json_encode('entrada');
               }
     }
