@@ -83,6 +83,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->cuantia_esperada = '';
             $tabla_asistencia->cuantia_diferencia_real_esperada = '';
             $tabla_asistencia->tiempo = time();
+            $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->save();
             echo json_encode('EntradaRealizada');
         }
@@ -106,6 +107,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->cuantia_esperada = '';
             $tabla_asistencia->cuantia_diferencia_real_esperada = '';
             $tabla_asistencia->tiempo = time();
+            $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->save();
             echo json_encode('SalidaRealizada');
 
