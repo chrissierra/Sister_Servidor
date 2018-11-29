@@ -95,3 +95,5 @@ Route::post('guardarImagenesProcesoBiometricoEnMarcaje', 'MarcajeDesdeApp@guarda
 Route::post('VerificarUltimoMovimiento', 'marcajeTrabajadoresSinTurnoEstablecido@VerificarUltimoMovimiento');
 
 Route::post('MarcarMovimientoSinTurnoEstablecido', 'marcajeTrabajadoresSinTurnoEstablecido@MarcarMovimiento');
+
+Route::post('libroremuneraciondiario', 'libroremuneraciones@diario');
