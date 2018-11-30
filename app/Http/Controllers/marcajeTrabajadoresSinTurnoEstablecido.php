@@ -83,7 +83,10 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->cuantia_esperada = '';
             $tabla_asistencia->cuantia_diferencia_real_esperada = '';
             $tabla_asistencia->tiempo = time();
-            $tabla_asistencia->locacion = $post['locacion']['coords']['latitude'];
+            $tabla_asistencia->locacion = json_encode($post['locacion']);
+            $tabla_asistencia->latitude = $post['locacion']['coords']['latitude'];
+            $tabla_asistencia->longitude = $post['locacion']['coords']['longitude'];
+            $tabla_asistencia->altitude = $post['locacion']['coords']['altitude'];
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->save();
             echo json_encode('EntradaRealizada');
@@ -108,7 +111,10 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->cuantia_esperada = '';
             $tabla_asistencia->cuantia_diferencia_real_esperada = '';
             $tabla_asistencia->tiempo = time();
-            $tabla_asistencia->locacion = $post['locacion']['coords']['latitude'];
+            $tabla_asistencia->locacion = json_encode($post['locacion']);
+            $tabla_asistencia->latitude = $post['locacion']['coords']['latitude'];
+            $tabla_asistencia->longitude = $post['locacion']['coords']['longitude'];
+            $tabla_asistencia->altitude = $post['locacion']['coords']['altitude'];
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->save();
             echo json_encode('SalidaRealizada');
