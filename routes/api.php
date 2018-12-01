@@ -99,3 +99,5 @@ Route::post('VerificarUltimoMovimiento', 'marcajeTrabajadoresSinTurnoEstablecido
 Route::post('MarcarMovimientoSinTurnoEstablecido', 'marcajeTrabajadoresSinTurnoEstablecido@MarcarMovimiento');
 
 Route::post('libroremuneraciondiario', 'libroremuneraciones@diario');
+
+Route::post('libroremuneracionmensual', 'libroremuneraciones@mensual');
