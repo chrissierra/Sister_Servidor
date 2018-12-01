@@ -136,7 +136,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->cuantia_esperada = '';
             $tabla_asistencia->cuantia_diferencia_real_esperada = '';
             $tabla_asistencia->tiempo = time();
-            $tabla_asistencia->locacion = $post['Sucursal'];
+            $tabla_asistencia->locacion = $sucursales[0]['nombre'];
             $tabla_asistencia->latitude = $post['locacion']['coords']['latitude'];
             $tabla_asistencia->longitude = $post['locacion']['coords']['longitude'];
             $tabla_asistencia->altitude = $post['locacion']['coords']['altitude'];
