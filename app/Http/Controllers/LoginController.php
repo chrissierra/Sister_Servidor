@@ -37,6 +37,8 @@ class LoginController extends Controller
         $post = $request->json()->all();
         
         $logueos = \App\clientes_rrhh::where('rut_empresa', $post["rut_empresa"]);
+
+        
        
         if($logueos->count() == 0){
         
@@ -44,7 +46,12 @@ class LoginController extends Controller
         
         }else{
 
-        echo json_encode(array("rut_empresa"=>$logueos->get()[0]["rut_empresa"], "nombre_empresa"=>$logueos->get()[0]["nombre_empresa"],"nombre_rep"=>$logueos->get()[0]["nombre_rep"]));
+            if (password_verify( $post["clave"], $logueos[0]['password'] )) {
+            echo json_encode(array("rut_empresa"=>$logueos->get()[0]["rut_empresa"], "nombre_empresa"=>$logueos->get()[0]["nombre_empresa"],"nombre_rep"=>$logueos->get()[0]["nombre_rep"]));
+        } else {
+            echo json_encode(array("error"=>'Contraseña Errónea'));
+        }
+        
         }
        
       //echo json_encode($logueos[0]["Id"]);
