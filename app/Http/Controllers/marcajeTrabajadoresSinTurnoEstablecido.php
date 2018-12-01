@@ -52,7 +52,27 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 
 
 
+    public function distance($lat1, $lon1, $lat2, $lon2, $unit) {
+          if (($lat1 == $lat2) && ($lon1 == $lon2)) {
+            return 0;
+          }
+          else {
+            $theta = $lon1 - $lon2;
+            $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+            $dist = acos($dist);
+            $dist = rad2deg($dist);
+            $miles = $dist * 60 * 1.1515;
+            $unit = strtoupper($unit);
 
+            if ($unit == "K") {
+              return ($miles * 1.609344);
+            } else if ($unit == "N") {
+              return ($miles * 0.8684);
+            } else {
+              return $miles;
+            }
+          }
+        }
 
 
      public function MarcarMovimiento(Request $request){
@@ -61,7 +81,11 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 	    
 	    $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
       
-        $planilla = \App\ingreso_empleados::where('id', $post['id'])->get();          
+        $planilla = \App\ingreso_empleados::where('id', $post['id'])->get();   
+
+        $sucursales = \App\sucursales::where('id', $post['Sucursal'])->get();
+
+        $diferenciaMetros = $this->distance($sucursales[0]['latitud'], $sucursales[0]['longitud'], $post['locacion']['coords']['latitude'], $post['locacion']['coords']['longitude'], 'K') / 1000;       
        
         if($post['movimiento'] == 'entrada'){
          
@@ -83,11 +107,12 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->cuantia_esperada = '';
             $tabla_asistencia->cuantia_diferencia_real_esperada = '';
             $tabla_asistencia->tiempo = time();
-            $tabla_asistencia->locacion = json_encode($post['locacion']);
+            $tabla_asistencia->locacion = $sucursales[0]['nombre'];
             $tabla_asistencia->latitude = $post['locacion']['coords']['latitude'];
             $tabla_asistencia->longitude = $post['locacion']['coords']['longitude'];
             $tabla_asistencia->altitude = $post['locacion']['coords']['altitude'];
             $tabla_asistencia->url = $post['url'];
+            $tabla_asistencia->distancia = $post['diferenciaMetros'];
             $tabla_asistencia->save();
             echo json_encode('EntradaRealizada');
         }
@@ -111,7 +136,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->cuantia_esperada = '';
             $tabla_asistencia->cuantia_diferencia_real_esperada = '';
             $tabla_asistencia->tiempo = time();
-            $tabla_asistencia->locacion = json_encode($post['locacion']);
+            $tabla_asistencia->locacion = $post['Sucursal'];
             $tabla_asistencia->latitude = $post['locacion']['coords']['latitude'];
             $tabla_asistencia->longitude = $post['locacion']['coords']['longitude'];
             $tabla_asistencia->altitude = $post['locacion']['coords']['altitude'];
