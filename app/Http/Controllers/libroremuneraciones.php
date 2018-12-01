@@ -19,7 +19,7 @@ class libroremuneraciones extends Controller
     	return json_decode($tabla);
     	
     }
-
+/*
      //
     public function mensual(Request $request){
 
@@ -44,6 +44,6 @@ class libroremuneraciones extends Controller
                             ->get();
     	return json_decode($tabla);
     	
-    }
+    }*/
 
 }

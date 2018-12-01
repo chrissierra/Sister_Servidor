@@ -22,4 +22,16 @@ class SucursalController extends Controller
 		$nuevo_ingreso_sucursal->save();
         echo json_encode(1);
     }
+
+
+
+
+    public function get_sucursales(Request $request){
+
+        $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
+        $nuevo_ingreso_sucursal =  \App\sucursales::where('usuario', $post['usuario'])->get();
+        echo json_encode($nuevo_ingreso_sucursal);      
+
+
+    }
 }
