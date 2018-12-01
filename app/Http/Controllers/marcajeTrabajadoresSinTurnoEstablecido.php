@@ -85,7 +85,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 
         $sucursales = \App\sucursales::where('id', $post['Sucursal'])->get();
 
-        $diferenciaMetros = $this->distance($sucursales[0]['latitud'], $sucursales[0]['longitud'], $post['locacion']['coords']['latitude'], $post['locacion']['coords']['longitude'], 'K') / 1000;       
+        $diferenciaMetros = $this->distance($sucursales[0]['latitud'], $sucursales[0]['longitud'], $post['locacion']['coords']['latitude'], $post['locacion']['coords']['longitude'], 'K');       
        
         if($post['movimiento'] == 'entrada'){
          
