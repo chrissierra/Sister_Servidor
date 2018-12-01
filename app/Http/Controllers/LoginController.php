@@ -46,7 +46,7 @@ class LoginController extends Controller
         
         }else{
 
-            if (password_verify( $post["clave"], $logueos[0]['password'] )) {
+            if (password_verify($post["clave"], $logueos->get()[0]['password'] )) {
             echo json_encode(array("rut_empresa"=>$logueos->get()[0]["rut_empresa"], "nombre_empresa"=>$logueos->get()[0]["nombre_empresa"],"nombre_rep"=>$logueos->get()[0]["nombre_rep"]));
         } else {
             echo json_encode(array("error"=>'Contraseña Errónea'));
