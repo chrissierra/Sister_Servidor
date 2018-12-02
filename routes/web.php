@@ -54,7 +54,7 @@ Route::get('/estatusturnos/{id}/{mes}/{anio}', function ($id, $mes, $anio) {
 
 Route::get('/TurnosSinLiberar/{id}', function ($id) {
 
-     $turnos = \App\turnos::where([ ['trabajador_id', $id], ['liberado', '=' , null]]);
+     $turnos = \App\Turnos::where([ ['trabajador_id', $id], ['liberado', '=' , null]]);
 
      echo  $turnos->get()->toJson();
 
