@@ -41,7 +41,7 @@ Route::get('/perfil_trabajador/{id}', function ($id) {
 
 Route::get('/estatusturnos/{id}/{mes}/{anio}', function ($id, $mes, $anio) {
 
-     $turnos = \App\turnos::where([ ['trabajador_id', $id], ['mes', $mes], ['anio', $anio] ]);
+     $turnos = \App\Turnos::where([ ['trabajador_id', $id], ['mes', $mes], ['anio', $anio] ]);
 
      if($turnos->count() == 0){
       return 0;
@@ -66,7 +66,7 @@ Route::get('/TurnosSinLiberar/{id}', function ($id) {
 
 Route::get('/LiberarTurnos/{mes}/{anio}/{id}', function ($mes, $anio, $id) {
 
-    $turnos = \App\turnos::where([ ['trabajador_id', $id], ['mes',  $mes], ['anio', $anio] ]);
+    $turnos = \App\Turnos::where([ ['trabajador_id', $id], ['mes',  $mes], ['anio', $anio] ]);
 
     echo  $turnos->get()->toJson() ;
 
@@ -88,7 +88,7 @@ Route::get('/ComisionAfp/{afp}', function ($afp) {
 
 Route::get('/DiasLaboralesCalendarizados/{id}/{mes}/{anio}', function ($id, $mes, $anio) {
 
-    $result = \App\turnos::where('trabajador_id', $id)->where('mes', $mes)->where('anio', $anio)->get();
+    $result = \App\Turnos::where('trabajador_id', $id)->where('mes', $mes)->where('anio', $anio)->get();
 
     $resultado_array = json_decode($result[0], true);
 
