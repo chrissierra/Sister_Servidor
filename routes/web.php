@@ -46,7 +46,7 @@ Route::get('/estatusturnos/{id}/{mes}/{anio}', function ($id, $mes, $anio) {
      if($turnos->count() == 0){
       return 0;
      }else {
-      echo $planilla->get()->toJson();
+      echo $turnos->get()->toJson();
      }
 
 });
