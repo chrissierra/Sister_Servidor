@@ -43,7 +43,7 @@ class MarcajeController extends Controller
 
     private function TrabajaDiaEnCursoTurnos($id){
 
-		$planilla = \App\turnos::where('trabajador_id', $id)
+		$planilla = \App\Turnos::where('trabajador_id', $id)
 		->where('mes', $this->mes)
 		->where('anio', $this->anio);
 
