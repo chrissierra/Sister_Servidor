@@ -101,3 +101,5 @@ Route::post('MarcarMovimientoSinTurnoEstablecido', 'marcajeTrabajadoresSinTurnoE
 Route::post('libroremuneraciondiario', 'libroremuneraciones@diario');
 
 Route::post('libroremuneracionmensual', 'libroremuneraciones@mensual');
+
+Route::post('loginTrabajador', 'loginTrabajador@loginTrabajadorDashboard');
