@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class MarcajeController extends Controller
 {
     //
-    public $dia_e, $dia_s, $anio, $mes, $cuantia_esperada, $cuantia_diferencia_real_esperada;
+    public $dia_e, $dia_s, $anio, $mes, $cuantia_esperada, $cuantia_diferencia_real_esperada, $horaEntrada, $horaSalida;
 
     function __construct(){
 
@@ -35,6 +35,9 @@ class MarcajeController extends Controller
         $respuesta->TipoTurno = $planilla[0]['horario_con_o_sin_turnos'];
         $respuesta->EstatusEntrada = ( $Entrada == 0  ) ? '' : $this->VerificaPorParametroMovimiento($post['id'], 'entrada', 'status_entrada');
         $respuesta->EstatusSalida = ( $Salida == 0  ) ? '' : $this->VerificaPorParametroMovimiento($post['id'], 'salida', 'status_salida');
+        $respuesta->horaEntrada = $this->horaEntrada;
+        $respuesta->horaSalida = $this->horaSalida;
+
         echo json_encode($respuesta);
         //echo json_encode($this->fecha);
 
@@ -49,6 +52,8 @@ class MarcajeController extends Controller
 
        if($planilla->count()>0){
         $valor_a_retornar = ( strlen($planilla->get()[0][$this->dia_e]) == 0 ) ? 'Libre' : 1;
+        $this->horaEntrada = $planilla->get()[0][$this->dia_e];
+        $this->horaSalida = $planilla->get()[0][$this->dia_s];
        	return $valor_a_retornar;
        }else{
        	return 'No tiene horario';
@@ -60,12 +65,14 @@ class MarcajeController extends Controller
     private function TrabajaDiaEnCursoFijos($id){
 
       $planilla = \App\turnosfijos::where('trabajador_id', $id);
-      $valor = (-1 + date('N') ) . 'e';
+      $valorE = (-1 + date('N') ) . 'e';
+      $valorS = (-1 + date('N') ) . 's';
      // echo json_encode($valor);
        if($planilla->count()>0){
         
-        $valor_a_retornar = ( strlen($planilla->get()[0][$valor]) == 0 ) ? 'Libre' : 1;   
-              
+        $valor_a_retornar = ( strlen($planilla->get()[0][$valorE]) == 0 ) ? 'Libre' : 1;   
+        $this->horaEntrada = $planilla->get()[0][$valorE];
+        $this->horaSalida = $planilla->get()[0][$valorS];   
         return $valor_a_retornar;
      
        }else{
