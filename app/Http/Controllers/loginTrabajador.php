@@ -22,7 +22,7 @@ class loginTrabajador extends Controller
 
            // if (password_verify($post["clave"], $logueos->get()[0]['password'] )) {
 
-         if ($post["clave"]  === $logueos->get()[0]['claveTrabajador'] ) {
+         if ($post["claveTrabajador"]  === $logueos->get()[0]['claveTrabajador'] ) {
             echo json_encode($logueos->get()[0]);
         } else {
             echo json_encode(array("error"=>'Contraseña Errónea'));
