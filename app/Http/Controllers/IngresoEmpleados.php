@@ -22,4 +22,24 @@ class IngresoEmpleados extends Controller
     	echo json_encode($post);
 
     }
+
+
+
+        public function Actualizacion_registro_Trabajadores(Request $request){
+
+        $post = $request->json()->all();
+
+        $planilla =  \App\ingreso_empleados::where('id', $post['id']);
+
+        foreach ($post as $key => $value) {
+            $planilla->$key = $value;
+        }
+
+
+        $planilla->save();
+        echo json_encode($post);
+
+    }
+
+
 }
