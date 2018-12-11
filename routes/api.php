@@ -92,6 +92,8 @@ Route::post('GetAsistenciaMesAnterior', 'turnosFijos@DiasTrabajados');
 
 Route::post('Enrolamiento', 'IngresoEmpleados@Enrolamiento');
 
+Route::post('Actualizacion_registro_Trabajadores', 'IngresoEmpleados@Actualizacion_registro_Trabajadores');
+
 Route::post('guardarImagenesProcesoBiometricoEnMarcaje', 'MarcajeDesdeApp@guardarImagenesProcesoBiometricoEnMarcaje');
 
 Route::post('VerificarUltimoMovimiento', 'marcajeTrabajadoresSinTurnoEstablecido@VerificarUltimoMovimiento');
