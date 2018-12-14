@@ -64,7 +64,7 @@ class MarcajeController extends Controller
 
     private function TrabajaDiaEnCursoFijos($id){
 
-      $planilla = \App\turnosfijos::where('trabajador_id', $id);
+      $planilla = \App\turnosFijos::where('trabajador_id', $id);
       $valorE = (-1 + date('N') ) . 'e';
       $valorS = (-1 + date('N') ) . 's';
      // echo json_encode($valor);
