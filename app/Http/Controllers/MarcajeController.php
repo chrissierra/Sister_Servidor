@@ -138,7 +138,7 @@ class MarcajeController extends Controller
         $planilla = \App\ingreso_empleados::where('id', $post['id'])->get();
       
   
-        $turnos = \App\turnos::where([ ['trabajador_id', $post['id']], ['mes',  $this->mes], ['anio', $this->anio] ]);
+        //$turnos = \App\turnos::where([ ['trabajador_id', $post['id']], ['mes',  $this->mes], ['anio', $this->anio] ]);
           
         
         $trabajaDiaEnCurso = ( strcmp($planilla[0]['horario_con_o_sin_turnos'], 'Turnos') == 0 ) ? $this->TrabajaDiaEnCursoTurnos($post['id']) : $this->TrabajaDiaEnCursoFijos($post['id']) ;
@@ -200,7 +200,7 @@ class MarcajeController extends Controller
     private function GetHoraMovimiento($id, $movimiento, $cuantia_actual, $Turnos_o_Fijos){
 
     if($Turnos_o_Fijos == 'Turnos'){
-          $planilla = \App\turnos::where('trabajador_id', $id)
+          $planilla = \App\turnosVariables::where('trabajador_id', $id)
           ->where('mes', $this->mes)
           ->where('anio', $this->anio);
 

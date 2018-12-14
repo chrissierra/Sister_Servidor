@@ -70,7 +70,7 @@ Route::post('get_sucursales', 'SucursalController@get_sucursales');
 
 Route::post('SituacionMarcaje', 'MarcajeController@SituacionMarcajeActual');
 
-Route::post('MarcarMovimiento', 'MarcajeController@MarcarMovimiento');
+Route::post('MarcarMovimiento', 'MarcajeController@MarcarMovimiento'); // < --- Si hay turno hecho 
 
 Route::post('LiberarSueldo', 'liberarSueldos@InsertSueldo');
 
@@ -98,7 +98,7 @@ Route::post('guardarImagenesProcesoBiometricoEnMarcaje', 'MarcajeDesdeApp@guarda
 
 Route::post('VerificarUltimoMovimiento', 'marcajeTrabajadoresSinTurnoEstablecido@VerificarUltimoMovimiento');
 
-Route::post('MarcarMovimientoSinTurnoEstablecido', 'marcajeTrabajadoresSinTurnoEstablecido@MarcarMovimiento');
+Route::post('MarcarMovimientoSinTurnoEstablecido', 'marcajeTrabajadoresSinTurnoEstablecido@MarcarMovimiento'); // < --- Si no hay turno hecho 
 
 Route::post('libroremuneraciondiario', 'libroremuneraciones@diario');
 
