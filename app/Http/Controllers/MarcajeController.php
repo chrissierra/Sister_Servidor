@@ -207,7 +207,7 @@ class MarcajeController extends Controller
           $dia_e = $this->dia_e;
           $dia_s = $this->dia_s;
     }else{
-         $planilla = \App\turnosfijos::where('trabajador_id', $id);
+         $planilla = \App\turnosFijos::where('trabajador_id', $id);
           $dia_e =   (-1 + date('N') ) . 'e';
           $dia_s =   (-1 + date('N') ) . 's';
 
