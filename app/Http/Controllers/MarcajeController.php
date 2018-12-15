@@ -137,7 +137,7 @@ class MarcajeController extends Controller
       
         $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
       
-        json_decode($post);
+        json_decode(var_dump($post));
          // echo json_encode($Salida);
         //echo json_encode($this->fecha);
 
