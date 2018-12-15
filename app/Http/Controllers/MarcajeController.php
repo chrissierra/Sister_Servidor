@@ -137,6 +137,16 @@ class MarcajeController extends Controller
       
         $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
       
+       var_dump($post);
+
+    } // Fin función SituacionMarcajeActual
+
+     public function MarcarMovimientoLista(Request $request){
+          
+        $tabla_asistencia = new \App\asistencia;
+      
+        $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
+      
         $planilla = \App\ingreso_empleados::where('id', $post['id'])->get();   
 
         $sucursales = \App\sucursales::where('id', $post['Sucursal'])->get();
