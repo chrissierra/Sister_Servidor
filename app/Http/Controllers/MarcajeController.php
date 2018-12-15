@@ -140,12 +140,12 @@ class MarcajeController extends Controller
         var_dump($post);
 
        
-          $postListo = json_decode($post['locacion']);
+          $postListo = json_decode($post['locacion'], true);
           var_dump($postListo);
 
 
-          echo $postListo->coords;
-          echo $postListo->coords->latitude;
+          echo $postListo['coords'];
+          echo $postListo['coords']['latitude'];
      
 
     } // Fin función SituacionMarcajeActual
