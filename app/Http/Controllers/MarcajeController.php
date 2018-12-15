@@ -137,15 +137,18 @@ class MarcajeController extends Controller
       
         $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
       
-       var_dump($post);
+        var_dump($post);
 
-       echo $post['locacion']['coords'];
-
-       echo $post['locacion']['coords']['latitude'];
+       
+          $postListo =json_decode($post['locacion']);
+     
+          echo $postListo['coords'];
+          echo $postListo['coords']['latitude'];
+     
 
     } // Fin función SituacionMarcajeActual
 
-     public function MarcarMovimientoLista(Request $request){
+     public function MarcarMovimientoApp(Request $request){
           
         $tabla_asistencia = new \App\asistencia;
       
