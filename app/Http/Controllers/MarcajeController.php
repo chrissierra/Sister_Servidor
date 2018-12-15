@@ -144,7 +144,7 @@ class MarcajeController extends Controller
           var_dump($postListo);
 
 
-          echo $postListo['coords'];
+         // echo $postListo['coords'];
           echo $postListo['coords']['latitude'];
      
 
