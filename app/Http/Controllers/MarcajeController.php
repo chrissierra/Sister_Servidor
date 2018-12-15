@@ -139,6 +139,10 @@ class MarcajeController extends Controller
       
        var_dump($post);
 
+       echo $post['locacion']['coords'];
+
+       echo $post['locacion']['coords']['latitude'];
+
     } // Fin función SituacionMarcajeActual
 
      public function MarcarMovimientoLista(Request $request){
