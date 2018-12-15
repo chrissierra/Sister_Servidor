@@ -10,8 +10,8 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 
 		        date_default_timezone_set('America/Santiago');
 		        	$this->tiempo = time();
-		    		$this->mes = date('m')*1;
-		    		$this->anio = date('Y');
+		    		  $this->mes = date('m')*1;
+		    		  $this->anio = date('Y');
 			        $this->dia_e = (date('d') *1) . 'e';
 			        $this->dia_s = (date('d') *1) . 's';
 			        $this->fecha = date('d/m/Y');
@@ -79,7 +79,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
           
         $tabla_asistencia = new \App\asistencia;
 	    
-	    $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
+	      $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
       
         $planilla = \App\ingreso_empleados::where('id', $post['id'])->get();   
 
