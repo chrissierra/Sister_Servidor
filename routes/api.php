@@ -100,6 +100,8 @@ Route::post('VerificarUltimoMovimiento', 'marcajeTrabajadoresSinTurnoEstablecido
 
 Route::post('MarcarMovimientoSinTurnoEstablecido', 'marcajeTrabajadoresSinTurnoEstablecido@MarcarMovimiento'); // < --- Si no hay turno hecho 
 
+Route::post('MarcarMovimientoSinTurnoEstablecidoWeb', 'marcajeTrabajadoresSinTurnoEstablecido@MarcarMovimientoWeb'); // < --- Si no hay turno hecho 
+
 Route::post('libroremuneraciondiario', 'libroremuneraciones@diario');
 
 Route::post('libroremuneracionmensual', 'libroremuneraciones@mensual');
