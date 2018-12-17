@@ -107,3 +107,5 @@ Route::post('libroremuneraciondiario', 'libroremuneraciones@diario');
 Route::post('libroremuneracionmensual', 'libroremuneraciones@mensual');
 
 Route::post('loginTrabajador', 'loginTrabajador@loginTrabajadorDashboard');
+
+Route::post('loginSucursal', 'loginTrabajador@loginSucursal');
