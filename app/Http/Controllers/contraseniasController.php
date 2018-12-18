@@ -8,9 +8,16 @@ class contraseniasController extends Controller
 {
     //
     public function ingresarClaves(Request $request){
+    	
     	 $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
 
-    	 echo json_encode($post);
+    	$peo="";
+
+    	 for ($i=0; $i < count($post); $i++) { 
+    	 	# code...
+    	 	$peo += $post[$i]['label'];
+    	 }
+    	 echo json_encode($peo);
     	 //$contrasenias = new \App\contraseñas;
 
     	 //$contraseñas->
