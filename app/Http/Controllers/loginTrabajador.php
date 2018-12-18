@@ -37,7 +37,8 @@ class loginTrabajador extends Controller
          
 
 
-         $logueos = \App\contraseñas::where('nombre_empresa', $nombre_empresa_usuario_plataforma);
+         $logueos = \App\contraseñas::where('nombre_empresa', $nombre_empresa_usuario_plataforma)
+                                    ->where('rol', 'trabajadores');
 
         
        
