@@ -109,3 +109,5 @@ Route::post('libroremuneracionmensual', 'libroremuneraciones@mensual');
 Route::post('loginTrabajador', 'loginTrabajador@loginTrabajadorDashboard');
 
 Route::post('loginSucursal', 'loginTrabajador@loginSucursal');
+
+Route::post('ingresarClaves', 'ingresarClaves@contraseniasController');

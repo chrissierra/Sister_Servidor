@@ -7,4 +7,13 @@ use Illuminate\Http\Request;
 class contraseniasController extends Controller
 {
     //
+    public function ingresarClaves(Request $request){
+    	 $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
+
+    	 echo json_decode($post);
+    	 //$contrasenias = new \App\contraseñas;
+
+    	 //$contraseñas->
+
+    }
 }
