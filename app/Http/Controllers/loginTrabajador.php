@@ -16,6 +16,7 @@ class loginTrabajador extends Controller
        
         if($logueos->count() == 0){
         
+        $this->LogueoDefault($logueos->get()[0]['nombre_empresa_usuario_plataforma']);
         abort(403, 'Unauthorized action.');
         
         }else{
@@ -30,6 +31,33 @@ class loginTrabajador extends Controller
         
         }
     } // Fin loginTrabajadorDashboard
+
+
+     public function LogueoDefault($nombre_empresa_usuario_plataforma){
+         
+
+
+         $logueos = \App\contraseñas::where('nombre_empresa', $nombre_empresa_usuario_plataforma);
+
+        
+       
+        if($logueos->count() == 0){
+        
+        abort(403, 'Unauthorized action.');
+        
+        }else{
+
+           // if (password_verify($post["clave"], $logueos->get()[0]['password'] )) {
+
+         if ($post["claveTrabajador"]  === $logueos->get()[0]['clave'] ) {
+            echo json_encode($logueos->get()[0]);
+        } else {
+            echo json_encode(array("error"=>'Contraseña Errónea'));
+        }
+        
+        }
+    } // Fin LogueoDefault
+
 
 
 
