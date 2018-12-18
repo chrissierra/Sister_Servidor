@@ -110,4 +110,4 @@ Route::post('loginTrabajador', 'loginTrabajador@loginTrabajadorDashboard');
 
 Route::post('loginSucursal', 'loginTrabajador@loginSucursal');
 
-Route::post('ingresarClaves', 'ingresarClaves@contraseniasController');
+Route::post('ingresarClaves', 'contraseniasController@ingresarClaves');
