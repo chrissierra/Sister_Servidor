@@ -32,4 +32,44 @@ class contraseniasController extends Controller
     	 //$contraseñas->
 
     }
+
+
+    //
+    public function UpdateClaves(Request $request){
+    	
+    	 $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]    	
+
+    	 for ($i=0; $i < count($post); $i++) { 
+    	 	# code...
+    	     $contrasenias = \App\contraseñas::where('nombre_empresa',$post[$i]['nombre_empresa'])
+    	     ->where('rol', $post[$i]['rol']);
+    	 	 $contrasenias->update(['administrador_id' => $post[$i]['administrador_id']]);			
+     	 	 $contrasenias->update(['clave' => $post[$i]['clave']]);			
+     	 	 $contrasenias->update(['rol' => $post[$i]['rol']]);			
+     	 	 $contrasenias->update(['sucursal' => '']);			
+     	 	 $contrasenias->update(['cargo' => '']);			
+     	 	 $contrasenias->update(['rut' => $post[$i]['rut']]);			
+     	 	 $contrasenias->update(['nombre_empresa' => $post[$i]['nombre_empresa']]);
+     	 	
+
+    	 }
+    	
+    	 //$contrasenias = new \App\contraseñas;
+
+    	 //$contraseñas->
+
+    } // en updateclaves
+
+
+        //
+    public function getClaves(Request $request){
+    	
+    	$post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]    	
+    	
+    	$contrasenias = \App\contraseñas::where('nombre_empresa',$post['nombre_empresa']);    	    
+    	
+    	return response()->json($contrasenias);
+     	 	
+
+    } // en updateclaves
 }

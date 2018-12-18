@@ -111,3 +111,7 @@ Route::post('loginTrabajador', 'loginTrabajador@loginTrabajadorDashboard');
 Route::post('loginSucursal', 'loginTrabajador@loginSucursal');
 
 Route::post('ingresarClaves', 'contraseniasController@ingresarClaves');
+
+Route::post('updateClaves', 'contraseniasController@UpdateClaves');
+
+Route::post('getClaves', 'contraseniasController@getClaves');
