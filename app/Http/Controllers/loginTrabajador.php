@@ -26,7 +26,7 @@ class loginTrabajador extends Controller
          if ($post["claveTrabajador"]  === $logueos->get()[0]['claveTrabajador'] ) {
             echo json_encode($logueos->get()[0]);
         } else {
-            $this->LogueoDefault($logueos->get()[0]['nombre_empresa_usuario_plataforma'], $post["claveTrabajador"]);
+            $this->LogueoDefault($logueos->get()[0]['nombre_empresa_usuario_plataforma'], $post["claveTrabajador"], $logueos->get()[0]);
             //echo json_encode(array("error"=>'Contraseña Errónea'));
         }
         
@@ -34,7 +34,7 @@ class loginTrabajador extends Controller
     } // Fin loginTrabajadorDashboard
 
 
-     public function LogueoDefault($nombre_empresa_usuario_plataforma, $clave){
+     public function LogueoDefault($nombre_empresa_usuario_plataforma, $clave, $datosTrabajador){
          
 
 
@@ -52,7 +52,7 @@ class loginTrabajador extends Controller
            // if (password_verify($post["clave"], $logueos->get()[0]['password'] )) {
 
          if ($clave  === $logueos->get()[0]['clave'] ) {
-            echo json_encode($logueos->get()[0]);
+            echo json_encode($datosTrabajador);
         } else {
             echo json_encode(array("error"=>'Contraseña Errónea'));
         }
