@@ -17,7 +17,7 @@ class loginTrabajador extends Controller
         if($logueos->count() == 0){
         
         $this->LogueoDefault($logueos->get()[0]['nombre_empresa_usuario_plataforma']);
-        abort(403, 'Unauthorized action.');
+        // abort(403, 'Unauthorized action.');
         
         }else{
 
