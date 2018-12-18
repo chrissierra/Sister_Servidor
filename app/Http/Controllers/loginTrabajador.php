@@ -14,10 +14,10 @@ class loginTrabajador extends Controller
 
         
        
-        if($logueos->count() == 0){
+        if($logueos->count() === 0){
         
-        $this->LogueoDefault($logueos->get()[0]['nombre_empresa_usuario_plataforma']);
-        // abort(403, 'Unauthorized action.');
+        
+         abort(403, 'Unauthorized action.');
         
         }else{
 
@@ -26,7 +26,8 @@ class loginTrabajador extends Controller
          if ($post["claveTrabajador"]  === $logueos->get()[0]['claveTrabajador'] ) {
             echo json_encode($logueos->get()[0]);
         } else {
-            echo json_encode(array("error"=>'Contraseña Errónea'));
+            $this->LogueoDefault($logueos->get()[0]['nombre_empresa_usuario_plataforma']);
+            //echo json_encode(array("error"=>'Contraseña Errónea'));
         }
         
         }
@@ -42,7 +43,7 @@ class loginTrabajador extends Controller
 
         
        
-        if($logueos->count() == 0){
+        if($logueos->count() === 0){
         
         abort(403, 'Unauthorized action.');
         
