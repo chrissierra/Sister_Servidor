@@ -15,7 +15,7 @@ class contraseniasController extends Controller
 
     	 for ($i=0; $i < count($post); $i++) { 
     	 	# code...
-    	 	$peo = $post[$i]['label'];
+    	 	$peo = $post[$i];
     	 }
     	 echo json_encode($peo);
     	 //$contrasenias = new \App\contraseñas;
