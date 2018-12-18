@@ -66,7 +66,7 @@ class contraseniasController extends Controller
     	
     	$post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]    	
     	
-    	$contrasenias = \App\contraseñas::where('nombre_empresa',$post['nombre_empresa']);    	    
+    	$contrasenias = \App\contraseñas::where('nombre_empresa', $post['nombre_empresa'])->get();    	    
     	
     	return response()->json($contrasenias);
      	 	
