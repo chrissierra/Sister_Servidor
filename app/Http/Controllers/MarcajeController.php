@@ -24,9 +24,17 @@ class MarcajeController extends Controller
 
 	    $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
 		  $planilla = \App\ingreso_empleados::where('id', $post['id'])->get();
-      $trabajaDiaEnCurso = ( strcmp($planilla[0]['horario_con_o_sin_turnos'], 'Turnos') == 0 ) ? $this->TrabajaDiaEnCursoTurnos($post['id']) : $this->BooleanTieneTurno($post['id']); // Si 0, no tiene turno 
-        $Entrada = ( $trabajaDiaEnCurso == 1 ) ? $this->VerificaMovimiento($post['id'], 'entrada') : 'Libre';
-        $Salida = ( $trabajaDiaEnCurso == 1 ) ? $this->VerificaMovimiento($post['id'], 'salida') : 'Libre';
+      $trabajaDiaEnCurso = ( strcmp($planilla[0]['horario_con_o_sin_turnos'], 'Turnos') == 0 ) ? $this->TrabajaDiaEnCursoTurnos($post['id']) : $this->TrabajaDiaEnCursoFijos($post['id']); // Si 0, no tiene turno 
+/*
+@ La entrada y salida, debe dar una hora. No libre. Trabaja dia en curso da cuenta de si está libre o no.
+*/
+
+
+          $Entrada = $this->VerificaMovimiento($post['id'], 'entrada');
+          $Salida =  $this->VerificaMovimiento($post['id'], 'salida');
+
+    //    $Entrada = ( $trabajaDiaEnCurso == 1 ) ? $this->VerificaMovimiento($post['id'], 'entrada') : 'Libre';
+     //   $Salida = ( $trabajaDiaEnCurso == 1 ) ? $this->VerificaMovimiento($post['id'], 'salida') : 'Libre';
         $respuesta = new \stdClass();
         $respuesta->trabajaDiaEnCurso = $trabajaDiaEnCurso;        
         $respuesta->TurnoYaRealizado = ( strcmp($planilla[0]['horario_con_o_sin_turnos'], 'Turnos') == 0 ) ? $this->TrabajaDiaEnCursoTurnos($post['id'])  :  $this->TrabajaDiaEnCursoFijos($post['id']);
