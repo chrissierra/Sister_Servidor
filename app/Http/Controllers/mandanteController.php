@@ -9,7 +9,7 @@ class mandanteController extends Controller
     //
     public function ingresarMandante(Request $request){
     	$post = $request->json()->all();
-    	echo json_encode($post);
+    	echo json_encode($post[1]['label']);
     	//$planilla = new \App\mandantes;
 
 
