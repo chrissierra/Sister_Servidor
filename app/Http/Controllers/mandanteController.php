@@ -42,7 +42,7 @@ class mandanteController extends Controller
 
     public function getMandante(Request $request){
     	$post = $request->json()->all();
-    	$mandantes = \App\mandantes::where('id', $post['id'])->get();
+    	$mandantes = \App\mandantes::where('proveedor_servicios', $post['proveedor_servicios'])->get();
     	return response()->json($mandantes);
     }
 
