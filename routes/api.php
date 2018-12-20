@@ -123,3 +123,11 @@ Route::post('actualizarMandante', 'mandanteController@actualizarMandante');
 Route::post('getMandante', 'mandanteController@getMandante');
 
 Route::post('deleteMandante', 'mandanteController@deleteMandante');
+
+Route::post('ingresarCargo', 'cargosController@ingresarCargo');
+
+Route::post('actualizarCargo', 'cargosController@actualizarCargo');
+
+Route::post('getCargos', 'cargosController@getCargos');
+
+Route::post('deleteCargos', 'cargosController@deleteCargos');
