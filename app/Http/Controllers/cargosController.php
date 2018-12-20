@@ -31,10 +31,11 @@ class cargosController extends Controller
 
     public function actualizarCargo(Request $request){
     	$post = $request->json()->all();
-    	$cargos = \App\cargos::where('id', $post['id']);    	
-
-    	$cargos->update(['hito' => $post[0]['value']]);
-    	$cargos->update(['descripcion' => $post[1]['value']]);
+    	$cargos = \App\cargos::where('cargo', $post[0]['value'])
+    	 						->where('nombre_empresa', $post[1]['value']);    	
+		$cargos->update(['cargo' => $post[0]['value']]);
+    	$cargos->update(['hito' => $post[4]['value']]);
+    	$cargos->update(['descripcion' => $post[5]['value']]);
     
 
     }
