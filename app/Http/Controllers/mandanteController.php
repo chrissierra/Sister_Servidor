@@ -29,7 +29,8 @@ class mandanteController extends Controller
 
     public function actualizarMandante(Request $request){
     	$post = $request->json()->all();
-    	$mandantes = \App\mandantes::where('id', $post['id']);    	
+    	$mandantes = \App\mandantes::where('proveedor_servicios', $post[3]['value'])
+    	->where('nombre_mandante',$post[0]['value']);   	
 
     	$mandantes->update(['nombre_mandante' => $post[0]['value']]);
     	$mandantes->update(['rut_mandante' => $post[1]['value']]);
