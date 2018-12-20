@@ -20,7 +20,7 @@ class mandanteController extends Controller
     	$mandantes->clave = $post[2]['value'];
     	$mandantes->proveedor_servicios = $post[3]['value'];
     	$mandantes->hitos =$post[4]['value'];
-
+    	$mandantes->save();
     	echo json_encode(array("estatus"=>'ok'));
     	//$planilla = new \App\mandantes;
 
