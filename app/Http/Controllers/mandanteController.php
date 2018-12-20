@@ -48,7 +48,10 @@ class mandanteController extends Controller
     }
 
     public function deleteMandante(Request $request){
-    	
+    	$post = $request->json()->all();
+    	\App\mandantes::where('proveedor_servicios', $post[3]['value'])
+    	->where('nombre_mandante',$post[0]['value'])->delete(); 
+    	echo json_encode(array("estatus"=>'ok'));
     }
 
 }

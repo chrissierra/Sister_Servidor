@@ -21,7 +21,7 @@ class cargosController extends Controller
     	$cargos->rut_empresa = $post[2]['value'];
     	$cargos->empresa_id = $post[3]['value'];
     	$cargos->hito =$post[4]['value'];
-    	$cargos->descripcion =$post[4]['value'];
+    	$cargos->descripcion =$post[5]['value'];
     	$cargos->save();
     	echo json_encode(array("estatus"=>'ok'));
     	//$planilla = new \App\mandantes;
@@ -48,6 +48,8 @@ class cargosController extends Controller
     }
 
     public function deleteCargos(Request $request){
-    	
+    	$post = $request->json()->all();
+    	$cargos = \App\cargos::where('cargo', $post[0]['value'])
+    	 						->where('nombre_empresa', $post[1]['value'])->delete();
     }
 }
