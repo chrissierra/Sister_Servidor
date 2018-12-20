@@ -115,3 +115,11 @@ Route::post('ingresarClaves', 'contraseniasController@ingresarClaves');
 Route::post('updateClaves', 'contraseniasController@UpdateClaves');
 
 Route::post('getClaves', 'contraseniasController@getClaves');
+
+Route::post('ingresarMandante', 'mandanteController@ingresarMandante');
+
+Route::post('actualizarMandante', 'mandanteController@actualizarMandante');
+
+Route::post('getMandante', 'mandanteController@getMandante');
+
+Route::post('deleteMandante', 'mandanteController@deleteMandante');
