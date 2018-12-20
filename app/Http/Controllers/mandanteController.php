@@ -15,11 +15,11 @@ class mandanteController extends Controller
     		if( strlen($post[$i]['value']) < 1) abort(403, 'Unauthorized action.');
     	}
 
-    	$mandantes->nombre_mandante = $post[0]['value']
-    	$mandantes->rut_mandante = $post[1]['value']
-    	$mandantes->clave = $post[2]['value']
-    	$mandantes->proveedor_servicios = $post[3]['value']
-    	$mandantes->hitos =$post[4]['value']
+    	$mandantes->nombre_mandante = $post[0]['value'];
+    	$mandantes->rut_mandante = $post[1]['value'];
+    	$mandantes->clave = $post[2]['value'];
+    	$mandantes->proveedor_servicios = $post[3]['value'];
+    	$mandantes->hitos =$post[4]['value'];
 
     	echo json_encode(array("estatus"=>'ok'));
     	//$planilla = new \App\mandantes;
