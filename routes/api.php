@@ -104,6 +104,8 @@ Route::post('MarcarMovimientoSinTurnoEstablecido', 'marcajeTrabajadoresSinTurnoE
 
 Route::post('MarcarMovimientoSinTurnoEstablecidoWeb', 'marcajeTrabajadoresSinTurnoEstablecido@MarcarMovimientoWeb'); // < --- Si no hay turno hecho 
 
+Route::post('MarcarMovimientoTurnoExtra', 'marcajeTrabajadoresSinTurnoEstablecido@MarcarMovimientoTurnoExtra'); // < --- TURNOS EXTRAS 
+
 Route::post('libroremuneraciondiario', 'libroremuneraciones@diario');
 
 Route::post('libroremuneracionmensual', 'libroremuneraciones@mensual');
