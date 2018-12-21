@@ -12,19 +12,19 @@ class hitosController extends Controller
 
     	$post = $request->json()->all();
     	$hitos =  new \App\hitos;
-    	echo json_encode($post['nombre_empresa']);
-    /*	$hitos->tipo_hito = $post[0]['value'];
-    	$hitos->nombre_empresa = $post[1]['value'];
-    	$hitos->mandante = $post[2]['value'];
-    	$hitos->url1 = $post[3]['value'];
-    	$hitos->url2 = $post[3]['value'];
-    	$hitos->url3 = $post[3]['value'];
-    	$hitos->comentario =$post[4]['value'];
-    	$hitos->nombre_trabajador =$post[4]['value'];
-    	$hitos->trabajador_id =$post[4]['value'];
+    	echo json_encode($post['url']['urlImagen']);
+    	$hitos->tipo_hito = $post['tipo_hito'];
+    	$hitos->nombre_empresa = $post['nombre_empresa'];
+    	$hitos->mandante = $post['mandante'];
+    	$hitos->url1 = $post['url']['urlImagen'];
+    	$hitos->url2 =$post['url1']['urlImagen'];
+    	$hitos->url3 =$post['url2']['urlImagen'];
+    	$hitos->comentario =$post['comentario'];
+    	$hitos->nombre_trabajador =$post['nombre_trabajador'];
+    	$hitos->trabajador_id =$post['trabajador_id'];
 
     	$hitos->save();
-    	echo json_encode(array("estatus"=>'ok'));*/
+    	echo json_encode(array("estatus"=>'ok'));
     }
 
 
