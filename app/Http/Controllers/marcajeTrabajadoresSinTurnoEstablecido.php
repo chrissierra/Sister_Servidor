@@ -28,7 +28,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
                ->orderBy('id', 'desc')
                ->take(1);
                
-              echo json_encode(var_dump($ultimoMovimiento->get()));
+              echo json_encode($ultimoMovimiento->get());
           /*    if($ultimoMovimiento->count() === 0 ){
               	# Entrada
               	echo json_encode('entrada');
