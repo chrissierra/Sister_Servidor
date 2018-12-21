@@ -17,7 +17,65 @@ class MarcajeController extends Controller
         $this->dia_e = (date('d') *1) . 'e';
         $this->dia_s = (date('d') *1) . 's';
         $this->fecha = date('d/m/Y');
+         $this->turnoExtraEnCurso = 0;
     } // Fin función __construct
+
+/*
+AGregado lo de abajo  el 21 12 2018 por turnos extas */
+
+
+      private function VerificarUltimoMovimientoTurnoExtraPorParametroInterna($id){
+                
+                
+
+                $ultimoMovimiento = \App\asistencia::where('id_trabajador', $id)
+                ->where('turnoExtra', 1)
+               ->orderBy('id', 'desc')
+               ->take(1);
+               
+              if($ultimoMovimiento->count() === 0 ){
+                # Entrada
+               return $this->turnoExtraEnCurso =0;
+              }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'salida'){
+               return  $this->turnoExtraEnCurso =0;
+              }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento'] === 'entrada'){
+                return  $this->turnoExtraEnCurso =1;
+              }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'entrada' && ($this->tiempo- $ultimoMovimiento->get()[0]['tiempo'])>43200){
+               return  $this->turnoExtraEnCurso =0; // Se acabó por tiempo el turno extra, por lógica puede marcar turno, no está en turno extra. 
+               // Por error de no marcar salida de turno extra
+              }
+    }
+
+    private function analizarMovimientoTurnosExtras($objetoUltimoMov){
+        if($this->tiempo-$objetoUltimoMov['tiempo']>46800){
+            #mas de 13 horas del ultimo movimiento entrada. Entrega entrada nuevamente. 
+            echo json_encode('entrada');
+        }elseif($this->tiempo-$objetoUltimoMov['tiempo']<46800){
+            #Entrega a marcar la salida, han pasado menos de 13 horas
+            echo json_encode('salida');
+
+        }
+    }
+
+
+
+    private function analizarMovimiento($objetoUltimoMov){
+        if($this->tiempo-$objetoUltimoMov['tiempo']>46800){
+            #mas de 13 horas del ultimo movimiento entrada. Entrega entrada nuevamente. 
+            echo json_encode('entrada');
+        }elseif($this->tiempo-$objetoUltimoMov['tiempo']<46800){
+            #Entrega a marcar la salida, han pasado menos de 13 horas
+            echo json_encode('salida');
+
+        }
+    }
+
+
+
+
+/* Agregado lo de arriba el 21 12 2018 por turnos extras */
+
+
 
 
     public function SituacionMarcajeActual(Request $request){
@@ -28,7 +86,7 @@ class MarcajeController extends Controller
 /*
 @ La entrada y salida, debe dar una hora. No libre. Trabaja dia en curso da cuenta de si está libre o no.
 */
-
+        $this->VerificarUltimoMovimientoTurnoExtraPorParametroInterna($post['id']);
 
           $Entrada = $this->VerificaMovimiento($post['id'], 'entrada');
           $Salida =  $this->VerificaMovimiento($post['id'], 'salida');
@@ -45,6 +103,8 @@ class MarcajeController extends Controller
         $respuesta->EstatusSalida = ( $Salida == 0  ) ? '' : $this->VerificaPorParametroMovimiento($post['id'], 'salida', 'status_salida');
         $respuesta->horaEntrada = $this->horaEntrada;
         $respuesta->horaSalida = $this->horaSalida;
+
+        $respuesta->TurnoExtraEnCurso =  $this->turnoExtraEnCurso;
 
         echo json_encode($respuesta);
         //echo json_encode($this->fecha);

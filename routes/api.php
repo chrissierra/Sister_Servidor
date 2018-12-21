@@ -98,6 +98,8 @@ Route::post('guardarImagenesProcesoBiometricoEnMarcaje', 'MarcajeDesdeApp@guarda
 
 Route::post('VerificarUltimoMovimiento', 'marcajeTrabajadoresSinTurnoEstablecido@VerificarUltimoMovimiento');
 
+Route::post('VerificarUltimoMovimientoTurnoExtra', 'marcajeTrabajadoresSinTurnoEstablecido@VerificarUltimoMovimientoTurnoExtra');
+
 Route::post('MarcarMovimientoSinTurnoEstablecido', 'marcajeTrabajadoresSinTurnoEstablecido@MarcarMovimiento'); // < --- Si no hay turno hecho 
 
 Route::post('MarcarMovimientoSinTurnoEstablecidoWeb', 'marcajeTrabajadoresSinTurnoEstablecido@MarcarMovimientoWeb'); // < --- Si no hay turno hecho 
