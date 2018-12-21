@@ -135,3 +135,7 @@ Route::post('actualizarCargo', 'cargosController@actualizarCargo');
 Route::post('getCargos', 'cargosController@getCargos');
 
 Route::post('deleteCargos', 'cargosController@deleteCargos');
+
+Route::post('ingresarHitos', 'hitosController@ingresarHitos');
+
+Route::post('VisualizarHitos', 'hitosController@VisualizarHitos');
