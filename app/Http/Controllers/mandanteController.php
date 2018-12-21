@@ -55,22 +55,3 @@ class mandanteController extends Controller
     }
 
 }
-
-
-<?php
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
-$tiempo=time();
-$ficheroRegistroMovimiento = "/usr/share/nginx/html/mandantes/". $_GET["id"] . $tiempo. ".jpg";
-$url = "https://sister.cl/mandantes/". $_GET["id"] . $tiempo. ".jpg";
-
-if (copy($_FILES['photo']['tmp_name'], $ficheroRegistroMovimiento)) {
-	$array_respuesta = array("urlImagen" => $url);
-} else {
-   // echo "¡Posible ataque de subida de ficheros!\n";
-	$array_respuesta = array("error" => 'error');
-}
-echo json_encode($array_respuesta);
-
-?>
