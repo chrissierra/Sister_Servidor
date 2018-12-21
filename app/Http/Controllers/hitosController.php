@@ -10,7 +10,7 @@ class hitosController extends Controller
 
     public function ingresarHitos(Request $request){
     	$post = $request->json()->all();
-    	json_encode($post);
+    	echo json_encode($post);
     }
 
 
