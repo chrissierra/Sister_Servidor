@@ -24,7 +24,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 	      		$post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
 
 	      		$ultimoMovimiento = \App\asistencia::where('id_trabajador', $post['id'])
-                ->where('turnoExtra', <>, 1)
+                ->where('turnoExtra', '<>', 1)
                ->orderBy('id', 'desc')
                ->take(1);
                
