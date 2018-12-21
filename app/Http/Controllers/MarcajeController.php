@@ -171,7 +171,7 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
     private function VerificaMovimiento($id, $movimiento){
 
 		$planilla = \App\asistencia::where('id_trabajador', $id)
-        ->where('turnoExtra', '<>', 1)
+        ->where('turnoExtra', null)
 		->where('fecha', $this->fecha)
 		->where('tipo_movimiento', $movimiento);
 
@@ -188,7 +188,7 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
     private function VerificaPorParametroMovimiento($id, $movimiento, $columna){
 
 		$planilla = \App\asistencia::where('id_trabajador', $id)
-         ->where('turnoExtra', '<>', 1)
+         ->where('turnoExtra', null)
 		->where('fecha', $this->fecha)
 		->where('tipo_movimiento', $movimiento);
 
