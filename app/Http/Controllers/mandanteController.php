@@ -65,7 +65,7 @@ class mandanteController extends Controller
         return response()->json($mandantes);
     }
 
-            public function getMandantePorRut(Request $request){
+            public function logueo(Request $request){
                     $post = $request->json()->all();
                     $logueos = \App\mandantes::where('proveedor_servicios', $post['proveedor_servicios'])
                     ->where('clave', $post['clave']);
