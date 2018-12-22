@@ -54,4 +54,12 @@ class mandanteController extends Controller
     	echo json_encode(array("estatus"=>'ok'));
     }
 
+
+
+        public function getMandantePorRut(Request $request){
+        $post = $request->json()->all();
+        $mandantes = \App\mandantes::where('rut_mandante', $post['rut_mandante'])->get();
+        return response()->json($mandantes);
+    }
+
 }

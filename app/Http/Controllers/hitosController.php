@@ -12,7 +12,7 @@ class hitosController extends Controller
 
     	$post = $request->json()->all();
     	$hitos =  new \App\hitos;
-    	echo json_encode($post['url']['urlImagen']);
+    	//echo json_encode($post['url']['urlImagen']);
     	$hitos->tipo_hito = $post['tipo_hito'];
     	$hitos->nombre_empresa = $post['nombre_empresa'];
     	$hitos->mandante = $post['mandante'];
@@ -22,13 +22,14 @@ class hitosController extends Controller
     	$hitos->comentario =$post['comentario'];
     	$hitos->nombre_trabajador =$post['nombre_trabajador'];
     	$hitos->trabajador_id =$post['trabajador_id'];
-
     	$hitos->save();
     	echo json_encode(array("estatus"=>'ok'));
     }
 
 
     public function VisualizarHitos(Request $request){
-    	
+    	$post = $request->json()->all();
+    	$hitos = \App\hitos::where('proveedor_servicios', $post['proveedor_servicios'])->get();
+    	return response()->json($hitos);    	
     }
 }
