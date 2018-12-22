@@ -59,6 +59,9 @@ class mandanteController extends Controller
         public function getMandantePorRut(Request $request){
         $post = $request->json()->all();
         $mandantes = \App\mandantes::where('rut_mandante', $post['rut_mandante'])->get();
+        for ($i=0; $i < count($mandantes); $i++) { 
+        $mandantes[$i]['clave'] = hash(ripemd160,  $mandantes[$i]['clave']);
+        } 
         return response()->json($mandantes);
     }
 
