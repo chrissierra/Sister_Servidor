@@ -36,6 +36,7 @@ class mandanteController extends Controller
     	$mandantes->update(['nombre_mandante' => $post[0]['value']]);
     	$mandantes->update(['rut_mandante' => $post[1]['value']]);
     	$mandantes->update(['clave' => password_hash($post[2]['value'], PASSWORD_DEFAULT)  ]); 
+        $mandantes->update(['claveTextual' => $post[2]['value']; 
     	$mandantes->update(['proveedor_servicios' => $post[3]['value']]);
     	$mandantes->update(['hitos' =>$post[4]['value']]);
 
