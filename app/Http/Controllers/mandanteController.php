@@ -68,7 +68,7 @@ class mandanteController extends Controller
             public function getMandantePorRut(Request $request){
                     $post = $request->json()->all();
                     $logueos = \App\mandantes::where('proveedor_servicios', $post['proveedor_servicios'])
-                    ->where('clave', $post['clave'])
+                    ->where('clave', $post['clave']);
                     
                       if($logueos->count() == 0){
         
