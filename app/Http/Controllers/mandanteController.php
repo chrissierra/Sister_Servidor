@@ -18,6 +18,7 @@ class mandanteController extends Controller
     	$mandantes->nombre_mandante = $post[0]['value'];
     	$mandantes->rut_mandante = $post[1]['value'];
     	$mandantes->clave = password_hash($post[2]['value'], PASSWORD_DEFAULT);
+        $mandantes->claveTextual = $post[2]['value'];
     	$mandantes->proveedor_servicios = $post[3]['value'];
     	$mandantes->hitos =$post[4]['value'];
     	$mandantes->save();
@@ -43,7 +44,7 @@ class mandanteController extends Controller
 
     public function getMandante(Request $request){
     	$post = $request->json()->all();
-    	$mandantes = \App\mandantes::where('proveedor_servicios', $post['proveedor_servicios'])->get();
+    	$mandantes = \App\mandantes::where('proveedor_servicios', $post['proveedor_servicios'])->get();         
     	return response()->json($mandantes);
     }
 
@@ -57,13 +58,13 @@ class mandanteController extends Controller
 
 
         public function getMandantePorRut(Request $request){
-        $post = $request->json()->all();
-        $mandantes = \App\mandantes::where('rut_mandante', $post['rut_mandante'])->get();
-        for ($i=0; $i < count($mandantes); $i++) { 
-        $mandantes[$i]['clave'] = hash('md5',  $mandantes[$i]['clave']);
-        } 
-        return response()->json($mandantes);
-    }
+            $post = $request->json()->all();
+            $mandantes = \App\mandantes::where('rut_mandante', $post['rut_mandante'])->get();
+            for ($i=0; $i < count($mandantes); $i++) { 
+            $mandantes[$i]['clave'] = hash('md5',  $mandantes[$i]['claveTextual']);
+            } 
+            return response()->json($mandantes);
+        }
 
             public function logueo(Request $request){
                     $post = $request->json()->all();
