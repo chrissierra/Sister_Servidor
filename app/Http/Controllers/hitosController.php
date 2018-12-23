@@ -9,7 +9,7 @@ class hitosController extends Controller
     //
 
     public function ingresarHitos(Request $request){
-
+ 		date_default_timezone_set('America/Santiago');
     	$post = $request->json()->all();
     	$hitos =  new \App\hitos;
     	//echo json_encode($post['url']['urlImagen']);
@@ -22,6 +22,8 @@ class hitosController extends Controller
     	$hitos->comentario =$post['comentario'];
     	$hitos->nombre_trabajador =$post['nombre_trabajador'];
     	$hitos->trabajador_id =$post['trabajador_id'];
+		$hitos->fecha = date('d/m/Y');
+    	$hitos->hora = date('h:i:s');
     	$hitos->save();
     	echo json_encode(array("estatus"=>'ok'));
     }
