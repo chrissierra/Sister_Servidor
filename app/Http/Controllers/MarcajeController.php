@@ -61,6 +61,8 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
             #mas de 13 horas del ultimo movimiento entrada. Entrega entrada nuevamente. 
             return 0;
         }elseif($this->tiempo-$objetoUltimoMov<46800){
+          echo json_encode(array('resultado resta' => $this->tiempo - $objetoUltimoMov));
+          echo json_encode( $this->tiempo - $objetoUltimoMov);
             #Entrega a marcar la salida, han pasado menos de 13 horas
            return 1;
 
