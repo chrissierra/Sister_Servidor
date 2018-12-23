@@ -78,7 +78,7 @@ class mandanteController extends Controller
                             
                             }else{
 
-                                if (password_verify($post["clave"], $logueos->get()[0]['password'] )) {
+                                if (password_verify($post["clave"], $logueos->get()[0]['clave'] )) {
                                
                                     echo json_encode(array("hola"=>"peo"));
                                // echo json_encode(array("rut_empresa"=>$logueos->get()[0]["rut_empresa"],"id"=>$logueos->get()[0]["id"], "nombre_empresa"=>$logueos->get()[0]["nombre_empresa"],"nombre_rep"=>$logueos->get()[0]["nombre_rep"]));
