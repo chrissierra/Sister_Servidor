@@ -39,7 +39,7 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'salida'){
                return  $this->turnoExtraEnCurso =0;
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento'] === 'entrada'){
-                return  $this->turnoExtraEnCurso =1;
+                return  $this->analizarMovimientoTurnosExtras($ultimoMovimiento->get()[0]);
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'entrada' && ($this->tiempo- $ultimoMovimiento->get()[0]['tiempo'])>43200){
                return  $this->turnoExtraEnCurso =0; // Se acabó por tiempo el turno extra, por lógica puede marcar turno, no está en turno extra. 
                // Por error de no marcar salida de turno extra
@@ -49,10 +49,10 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
     private function analizarMovimientoTurnosExtras($objetoUltimoMov){
         if($this->tiempo-$objetoUltimoMov['tiempo']>46800){
             #mas de 13 horas del ultimo movimiento entrada. Entrega entrada nuevamente. 
-            echo json_encode('entrada');
+            return 0;
         }elseif($this->tiempo-$objetoUltimoMov['tiempo']<46800){
             #Entrega a marcar la salida, han pasado menos de 13 horas
-            echo json_encode('salida');
+           return 1;
 
         }
     }
