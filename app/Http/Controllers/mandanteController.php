@@ -67,10 +67,16 @@ class mandanteController extends Controller
             return response()->json($mandantes);
         }
 
+
+
+
+
+
             public function logueo(Request $request){
+
                     $post = $request->json()->all();
                     $logueos = \App\mandantes::where('proveedor_servicios', $post['proveedor_servicios'])
-                    ->where('clave', $post['clave']);
+                    ->where('rut_mandante', $post['rut_mandante']);
                     
                       if($logueos->count() == 0){
         
