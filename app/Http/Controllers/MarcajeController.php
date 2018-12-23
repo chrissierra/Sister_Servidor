@@ -32,7 +32,7 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
                 ->where('turnoExtra', 1)
                ->orderBy('id', 'desc')
                ->take(1);
-               
+               echo json_encode($ultimoMovimiento->get());
               if($ultimoMovimiento->count() === 0 ){
                 # Entrada
                return $this->turnoExtraEnCurso =0;
