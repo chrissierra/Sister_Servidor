@@ -12,6 +12,7 @@ class MarcajeController extends Controller
     function __construct(){
 
         date_default_timezone_set('America/Santiago');
+          $this->tiempo = time();
     		$this->mes = date('m')*1;
     		$this->anio = date('Y');
         $this->dia_e = (date('d') *1) . 'e';
