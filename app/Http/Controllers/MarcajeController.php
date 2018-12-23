@@ -90,6 +90,8 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
 
           $Entrada = $this->VerificaMovimiento($post['id'], 'entrada');
           $Salida =  $this->VerificaMovimiento($post['id'], 'salida');
+          $EntradaTurnoExtra = $this->VerificaMovimientoTurnosExtras($post['id'], 'entrada');
+          $SalidaTurnoExtra = $this->VerificaMovimientoTurnosExtras($post['id'], 'salida');
 
     //    $Entrada = ( $trabajaDiaEnCurso == 1 ) ? $this->VerificaMovimiento($post['id'], 'entrada') : 'Libre';
      //   $Salida = ( $trabajaDiaEnCurso == 1 ) ? $this->VerificaMovimiento($post['id'], 'salida') : 'Libre';
@@ -103,7 +105,8 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
         $respuesta->EstatusSalida = ( $Salida == 0  ) ? '' : $this->VerificaPorParametroMovimiento($post['id'], 'salida', 'status_salida');
         $respuesta->horaEntrada = $this->horaEntrada;
         $respuesta->horaSalida = $this->horaSalida;
-
+        $respuesta->EntradaTurnoExtra = $SalidaTurnoExtra;
+        $respuesta->SalidaTurnoExtra = $EntradaTurnoExtra;
         $respuesta->TurnoExtraEnCurso =  $this->turnoExtraEnCurso;
 
         echo json_encode($respuesta);
@@ -183,6 +186,22 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
 
     } // Fin función VerificaMovimiento
 
+
+
+    private function VerificaMovimientoTurnosExtras($id, $movimiento){
+
+    $planilla = \App\asistencia::where('id_trabajador', $id)
+        ->where('turnoExtra', 1)
+    ->where('fecha', $this->fecha)
+    ->where('tipo_movimiento', $movimiento);
+
+       if($planilla->count()>0){
+        return $planilla->get()[0]['hora'];
+       }else{
+        return 0;  // Si entrega 0 ; quiere decir que no hay movimiento, o entrada o salida.
+       }
+
+    } // Fin función VerificaMovimiento
 
 
     private function VerificaPorParametroMovimiento($id, $movimiento, $columna){
