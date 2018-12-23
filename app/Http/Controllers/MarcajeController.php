@@ -57,6 +57,7 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
     private function analizarMovimientoTurnosExtras($objetoUltimoMov){
         if($this->tiempo - $objetoUltimoMov > 46800){
           echo json_encode(array('resultado resta' => $this->tiempo - $objetoUltimoMov));
+          echo json_encode( $this->tiempo - $objetoUltimoMov);
             #mas de 13 horas del ultimo movimiento entrada. Entrega entrada nuevamente. 
             return 0;
         }elseif($this->tiempo-$objetoUltimoMov<46800){
