@@ -179,9 +179,9 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
 
 		$planilla = \App\asistencia::where('id_trabajador', $id)
         ->where('turnoExtra', null)
-		    ->where('tipo_movimiento', $movimiento)
-        ->orderBy('id', 'desc')
-        ->take(1);
+		->where('fecha', $this->fecha)
+		->where('tipo_movimiento', $movimiento);
+
        if($planilla->count()>0){
        	return $planilla->get()[0]['hora'];
        }else{
@@ -195,11 +195,9 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
     private function VerificaMovimientoTurnosExtras($id, $movimiento){
 
     $planilla = \App\asistencia::where('id_trabajador', $id)
-    ->where('turnoExtra', 1)
-    ->where('tipo_movimiento', $movimiento)
-    ->orderBy('id', 'desc')
-    ->take(1);
-     
+        ->where('turnoExtra', 1)
+    ->where('fecha', $this->fecha)
+    ->where('tipo_movimiento', $movimiento);
 
        if($planilla->count()>0){
         return $planilla->get()[0]['hora'];
