@@ -105,8 +105,8 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
         $respuesta->EstatusSalida = ( $Salida == 0  ) ? '' : $this->VerificaPorParametroMovimiento($post['id'], 'salida', 'status_salida');
         $respuesta->horaEntrada = $this->horaEntrada;
         $respuesta->horaSalida = $this->horaSalida;
-        $respuesta->EntradaTurnoExtra = $SalidaTurnoExtra;
-        $respuesta->SalidaTurnoExtra = $EntradaTurnoExtra;
+        $respuesta->EntradaTurnoExtra = $EntradaTurnoExtra;
+        $respuesta->SalidaTurnoExtra = $SalidaTurnoExtra;
         $respuesta->TurnoExtraEnCurso =  $this->turnoExtraEnCurso;
 
         echo json_encode($respuesta);
