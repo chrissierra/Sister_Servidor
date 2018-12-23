@@ -32,11 +32,11 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
                 ->where('turnoExtra', 1)
                ->orderBy('id', 'desc')
                ->take(1);
-                              echo json_encode($ultimoMovimiento->get()[0]);
-                              echo json_encode("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+                            //  echo json_encode($ultimoMovimiento->get()[0]);
+                            //  echo json_encode("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 
-               echo json_encode($ultimoMovimiento->get()[0]['tiempo']);
-           /*   if($ultimoMovimiento->count() === 0 ){
+               //echo json_encode($ultimoMovimiento->get()[0]['tiempo']);
+              if($ultimoMovimiento->count() === 0 ){
                 # Entrada
                return $this->turnoExtraEnCurso =0;
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'salida'){
@@ -46,7 +46,7 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'entrada' && ($this->tiempo- $ultimoMovimiento->get()[0]['tiempo'])>43200){
                return  $this->turnoExtraEnCurso =0; // Se acabó por tiempo el turno extra, por lógica puede marcar turno, no está en turno extra. 
                // Por error de no marcar salida de turno extra
-              }*/
+              }
     }
 
     private function analizarMovimientoTurnosExtras($objetoUltimoMov){
