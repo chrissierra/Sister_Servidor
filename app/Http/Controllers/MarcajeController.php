@@ -39,16 +39,16 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
                //echo json_encode($ultimoMovimiento->get()[0]['tiempo']);
               if($ultimoMovimiento->count() === 0 ){
                 # Entrada
-                json_encode("aca 1")
+               echo  json_encode("aca 1");
                return $this->turnoExtraEnCurso =0;
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'salida'){
-                json_encode("aca 2")
+                echo json_encode("aca 2");
                return  $this->turnoExtraEnCurso =0;
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento'] === 'entrada'){
-                json_encode("aca 3")
+                echo json_encode("aca 3");
                 return  $this->analizarMovimientoTurnosExtras( $ultimoMovimiento->get()[0]['tiempo'] );
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'entrada' && ($this->tiempo- $ultimoMovimiento->get()[0]['tiempo'])>43200){
-              json_encode("aca 4")
+              echo json_encode("aca 4");
                return  $this->turnoExtraEnCurso =0; // Se acabó por tiempo el turno extra, por lógica puede marcar turno, no está en turno extra. 
                // Por error de no marcar salida de turno extra
               }
