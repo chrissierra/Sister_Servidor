@@ -108,6 +108,14 @@ Route::post('MarcarMovimientoTurnoExtra', 'marcajeTrabajadoresSinTurnoEstablecid
 
 Route::post('libroremuneraciondiario', 'libroremuneraciones@diario');
 
+Route::post('diarioPorTrabajador', 'libroremuneraciones@diarioPorTrabajador');
+
+Route::post('mensualPorTrabajador', 'libroremuneraciones@mensualPorTrabajador');
+
+Route::post('mensualPorSucursal', 'libroremuneraciones@mensualPorSucursal');
+
+Route::post('diarioPorSucursal', 'libroremuneraciones@diarioPorSucursal');
+
 Route::post('libroremuneracionmensual', 'libroremuneraciones@mensual');
 
 Route::post('loginTrabajador', 'loginTrabajador@loginTrabajadorDashboard');
