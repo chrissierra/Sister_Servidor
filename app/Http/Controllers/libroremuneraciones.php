@@ -20,6 +20,22 @@ class libroremuneraciones extends Controller
     	
     }
 
+
+        public function diarioUltimos(Request $request){
+
+        $post = $request->json()->all();
+
+        $tabla = \App\asistencia::where('usuario_cliente', $post['id'])
+                            ->where('mes', explode('-', $post['dia'])[0]) // No debe decir $mes + 1 ...; solo $mes 
+                            ->where('anio', explode('-', $post['dia'])[2])
+                            ->where('dia', explode('-', $post['dia'])[1])
+                            ->orderBy('id', 'desc')
+                            ->take($post['ultimosN'])
+                            ->get();
+        return json_decode($tabla);
+        
+    }
+
     public function mensual(Request $request){
 
         $post = $request->json()->all();
