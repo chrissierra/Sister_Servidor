@@ -270,7 +270,7 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
             $tabla_asistencia->altitude = $postListo['coords']['altitude'];
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
-            $tabla_asistencia->sucursal = $post['Sucursal'];
+            $tabla_asistencia->sucursal = $sucursales[0]['nombre'];
             $tabla_asistencia->biometrica = $post['biometrica'];
             $tabla_asistencia->save();
             echo json_encode('EntradaRealizada');
@@ -301,7 +301,7 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
             $tabla_asistencia->altitude = $postListo['coords']['altitude'];
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
-            $tabla_asistencia->sucursal = $post['Sucursal'];
+            $tabla_asistencia->sucursal = $sucursales[0]['nombre'];
             $tabla_asistencia->biometrica = $post['biometrica'];
             $tabla_asistencia->save();
             echo json_encode('SalidaRealizada');
