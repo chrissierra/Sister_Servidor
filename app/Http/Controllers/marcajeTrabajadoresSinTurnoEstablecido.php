@@ -176,6 +176,8 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->altitude = $post['locacion']['coords']['altitude'];
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
+            $tabla_asistencia->sucursal = $post['Sucursal'];
+            $tabla_asistencia->biometrica = $post['biometrica'];
             $tabla_asistencia->save();
             echo json_encode('EntradaRealizada');
         }
@@ -205,6 +207,8 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->altitude = $post['locacion']['coords']['altitude'];
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
+            $tabla_asistencia->sucursal = $post['Sucursal'];
+            $tabla_asistencia->biometrica = $post['biometrica'];
             $tabla_asistencia->save();
             echo json_encode('SalidaRealizada');
 
@@ -258,6 +262,8 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
             $tabla_asistencia->turnoExtra = 1;
+            $tabla_asistencia->sucursal = $post['Sucursal'];
+            $tabla_asistencia->biometrica = $post['biometrica'];
             $tabla_asistencia->save();
             echo json_encode('EntradaRealizada');
         }
@@ -288,6 +294,8 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
             $tabla_asistencia->turnoExtra = 1;
+            $tabla_asistencia->sucursal = $post['Sucursal'];
+            $tabla_asistencia->biometrica = $post['biometrica'];
             $tabla_asistencia->save();
             echo json_encode('SalidaRealizada');
 
@@ -338,6 +346,9 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->altitude = $postListo['coords']['altitude'];
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
+            $tabla_asistencia->sucursal = $post['Sucursal'];
+            $tabla_asistencia->biometrica = $post['biometrica'];
+
             $tabla_asistencia->save();
             echo json_encode('EntradaRealizada');
         }
@@ -367,6 +378,8 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->altitude = $postListo['coords']['altitude'];
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
+            $tabla_asistencia->sucursal = $post['Sucursal'];
+            $tabla_asistencia->biometrica = $post['biometrica'];
             $tabla_asistencia->save();
             echo json_encode('SalidaRealizada');
 
