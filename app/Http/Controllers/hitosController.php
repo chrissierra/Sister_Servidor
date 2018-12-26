@@ -24,6 +24,9 @@ class hitosController extends Controller
     	$hitos->trabajador_id =$post['trabajador_id'];
 		$hitos->fecha = date('d/m/Y');
     	$hitos->hora = date('h:i:s');
+    	$hitos->latitud = $post['latitud'];
+    	$hitos->longitud = $post['longitud'];
+
     	$hitos->save();
     	echo json_encode(array("estatus"=>'ok'));
     }
