@@ -178,6 +178,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->distancia = $diferenciaMetros;
             $tabla_asistencia->sucursal = $sucursales[0]['nombre'];
             $tabla_asistencia->biometrica = $post['biometrica'];
+            $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
             $tabla_asistencia->save();
             echo json_encode('EntradaRealizada');
         }
@@ -209,6 +210,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->distancia = $diferenciaMetros;
             $tabla_asistencia->sucursal = $sucursales[0]['nombre'];
             $tabla_asistencia->biometrica = $post['biometrica'];
+            $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
             $tabla_asistencia->save();
             echo json_encode('SalidaRealizada');
 
@@ -264,6 +266,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->turnoExtra = 1;
             $tabla_asistencia->sucursal = $sucursales[0]['nombre'];
             $tabla_asistencia->biometrica = $post['biometrica'];
+            $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
             $tabla_asistencia->save();
             echo json_encode('EntradaRealizada');
         }
@@ -296,6 +299,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->turnoExtra = 1;
             $tabla_asistencia->sucursal = $sucursales[0]['nombre'];
             $tabla_asistencia->biometrica = $post['biometrica'];
+            $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
             $tabla_asistencia->save();
             echo json_encode('SalidaRealizada');
 
@@ -348,7 +352,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->distancia = $diferenciaMetros;
             $tabla_asistencia->sucursal = $sucursales[0]['nombre'];
             $tabla_asistencia->biometrica = $post['biometrica'];
-
+           $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
             $tabla_asistencia->save();
             echo json_encode('EntradaRealizada');
         }
@@ -380,6 +384,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->distancia = $diferenciaMetros;
             $tabla_asistencia->sucursal = $sucursales[0]['nombre'];
             $tabla_asistencia->biometrica = $post['biometrica'];
+            $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
             $tabla_asistencia->save();
             echo json_encode('SalidaRealizada');
 
