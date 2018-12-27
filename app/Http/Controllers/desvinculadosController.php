@@ -15,8 +15,8 @@ class desvinculadosController extends Controller
 
     	$tablaDesvinculacion = new \App\TrabajadoresDesvinculados; 
 
-
-    	foreach ($planilla->get() as $key => $value) {
+    	
+    	foreach ($planilla->get()->toArray() as $key => $value) {
     	  //	$tablaDesvinculacion->$key = $value;
     		echo $key . ' | ' . $value;
     	}
