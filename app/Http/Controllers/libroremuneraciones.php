@@ -95,7 +95,7 @@ class libroremuneraciones extends Controller
 
         $post = $request->json()->all();
 
-        $tabla = \App\asistencia::where('locacion', $post['sucursal'])
+        $tabla = \App\asistencia::where('sucursal', $post['sucursal'])
                             ->where('usuario_cliente', $post['id'])
                             ->where('mes', explode('-', $post['dia'])[0]) // No debe decir $mes + 1 ...; solo $mes 
                             ->where('anio', explode('-', $post['dia'])[2])
