@@ -22,5 +22,9 @@ class desvinculadosController extends Controller
     	}
 
     	$tablaDesvinculacion->save();
+
+    	$planilla->delete();
+    	
+    	echo json_encode(array("estatus"=>'ok'));
     }
 }
