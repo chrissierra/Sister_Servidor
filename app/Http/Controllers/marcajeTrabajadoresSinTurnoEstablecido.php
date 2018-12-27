@@ -176,7 +176,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->altitude = $post['locacion']['coords']['altitude'];
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
-            $tabla_asistencia->sucursal = $sucursales[0]['nombre'];
+            $tabla_asistencia->sucursal = $sucursales[0]['id'];
             $tabla_asistencia->biometrica = $post['biometrica'];
             $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
             $tabla_asistencia->save();
@@ -208,7 +208,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->altitude = $post['locacion']['coords']['altitude'];
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
-            $tabla_asistencia->sucursal = $sucursales[0]['nombre'];
+            $tabla_asistencia->sucursal = $sucursales[0]['id'];
             $tabla_asistencia->biometrica = $post['biometrica'];
             $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
             $tabla_asistencia->save();
@@ -264,7 +264,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
             $tabla_asistencia->turnoExtra = 1;
-            $tabla_asistencia->sucursal = $sucursales[0]['nombre'];
+            $tabla_asistencia->sucursal = $sucursales[0]['id'];
             $tabla_asistencia->biometrica = $post['biometrica'];
             $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
             $tabla_asistencia->save();
@@ -297,7 +297,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
             $tabla_asistencia->turnoExtra = 1;
-            $tabla_asistencia->sucursal = $sucursales[0]['nombre'];
+            $tabla_asistencia->sucursal = $sucursales[0]['id'];
             $tabla_asistencia->biometrica = $post['biometrica'];
             $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
             $tabla_asistencia->save();
@@ -350,7 +350,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->altitude = $postListo['coords']['altitude'];
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
-            $tabla_asistencia->sucursal = $sucursales[0]['nombre'];
+            $tabla_asistencia->sucursal = $sucursales[0]['id'];
             $tabla_asistencia->biometrica = $post['biometrica'];
             $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
             $tabla_asistencia->save();
@@ -382,7 +382,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->altitude = $postListo['coords']['altitude'];
             $tabla_asistencia->url = $post['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
-            $tabla_asistencia->sucursal = $sucursales[0]['nombre'];
+            $tabla_asistencia->sucursal = $sucursales[0]['id'];
             $tabla_asistencia->biometrica = $post['biometrica'];
             $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
             $tabla_asistencia->save();
