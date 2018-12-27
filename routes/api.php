@@ -153,3 +153,5 @@ Route::post('VisualizarHitos', 'hitosController@VisualizarHitos');
 Route::post('getMandantePorRut', 'mandanteController@getMandantePorRut');
 
 Route::post('logueo', 'mandanteController@logueo');
+
+Route::post('actualizarDatosClientes', 'clientesrrhh@actualizarDatosClientes');
