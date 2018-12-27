@@ -155,3 +155,5 @@ Route::post('getMandantePorRut', 'mandanteController@getMandantePorRut');
 Route::post('logueo', 'mandanteController@logueo');
 
 Route::post('actualizarDatosClientes', 'clientesrrhh@actualizarDatosClientes');
+
+Route::post('GetDatosClientes', 'clientesrrhh@GetDatosClientes');

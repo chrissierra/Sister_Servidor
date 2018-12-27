@@ -21,4 +21,14 @@ class clientesrrhh extends Controller
 
 	        echo json_encode($post);
     }
+
+
+        public function GetDatosClientes(Request $request){
+    	    
+    	    $post = $request->json()->all();
+
+	        $planilla =  \App\clientes_rrhh::where('id', $post['id']);
+
+	       echo json_encode($planilla->get());
+    }
 }
