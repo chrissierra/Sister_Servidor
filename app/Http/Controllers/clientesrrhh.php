@@ -16,8 +16,8 @@ class clientesrrhh extends Controller
 
 	        foreach ($post as $key => $value) {
 	            $planilla->update([$key => $value]);
-	            if($key === 'password'){
-	            	$planilla->update([$key => password_hash($value, PASSWORD_DEFAULT) ]);
+	            if($key === 'claveTextual'){
+	            	$planilla->update(['password'=> password_hash($value, PASSWORD_DEFAULT) ]);
 	            }
 	        }
 
