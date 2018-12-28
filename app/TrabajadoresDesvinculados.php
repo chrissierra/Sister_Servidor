@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class TrabajadoresDesvinculados extends Model
 {
     //TrabajadoresDesvinculados
-         protected $table = 'TrabajadoresDesvinculados'; 
+     protected $table = 'TrabajadoresDesvinculados'; 
      public $timestamps = false;
 }
