@@ -13,6 +13,12 @@ class TurnoNocheController extends Controller
 
        $post = $request->json()->all();
 
-       
+         foreach ($post as $key => $value) {
+	           # code...
+	      		  $tabla_turnos->$key = $value;
+	      }
+
+        $tabla_turnos->save();
+
     }
 }
