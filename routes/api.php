@@ -161,3 +161,5 @@ Route::post('GetDatosClientes', 'clientesrrhh@GetDatosClientes');
 Route::post('desvincular', 'desvinculadosController@desvincular');
 
 Route::post('GuardarTurnoNoche', 'TurnoNocheController@GuardarTurnoNoche');
+
+Route::post('GetTurnoNoche', 'TurnoNocheController@GetTurnoNoche');

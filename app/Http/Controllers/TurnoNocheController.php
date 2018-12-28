@@ -20,5 +20,14 @@ class TurnoNocheController extends Controller
 
         $tabla_turnos->save();
 
-    }
+    } // Fin función GuardarTurnoNoche
+
+        public function GetTurnoNoche(Request $request){
+		    $post = $request->json()->all();
+		      
+    	    $tabla_turnos =  \App\TurnoNoche::where('id_trabajador', $post['id']);
+
+			return json_encode($tabla_turnos->get());
+
+    } // Fin función GuardarTurnoNoche
 }
