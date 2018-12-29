@@ -102,6 +102,8 @@ Route::post('VerificarUltimoMovimientoTurnoExtra', 'marcajeTrabajadoresSinTurnoE
 
 Route::post('MarcarMovimientoSinTurnoEstablecido', 'marcajeTrabajadoresSinTurnoEstablecido@MarcarMovimiento'); // < --- Si no hay turno hecho 
 
+Route::post('MarcarMovimientoWebNoches', 'marcajeTrabajadoresSinTurnoEstablecido@MarcarMovimientoWebNoches'); // < --- Si no hay turno hecho 
+
 Route::post('MarcarMovimientoSinTurnoEstablecidoWeb', 'marcajeTrabajadoresSinTurnoEstablecido@MarcarMovimientoWeb'); // < --- Si no hay turno hecho 
 
 Route::post('MarcarMovimientoTurnoExtra', 'marcajeTrabajadoresSinTurnoEstablecido@MarcarMovimientoTurnoExtra'); // < --- TURNOS EXTRAS 

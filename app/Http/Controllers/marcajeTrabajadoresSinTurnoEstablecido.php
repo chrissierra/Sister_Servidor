@@ -398,5 +398,107 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 
 
 
+    private function getDiferenciaCuantias($cuantia_actual, $cuantiaEsperada, $movimiento){
+
+      if($movimiento == 'entrada') // 831 - 830
+        return $cuantiaEsperada - $cuantia_actual;
+
+      if($movimiento == 'salida')  // Salir antes de la hora 1831-1830
+        return $cuantia_actual - $cuantiaEsperada;
+
+    }
+
+
+
+
+
+
+
+ public function MarcarMovimientoWebNoches(Request $request){
+          
+        $tabla_asistencia = new \App\asistencia;
+      
+        $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
+
+        $postListo = json_decode($post['locacion'], true);
+      
+        $planilla = \App\ingreso_empleados::where('id', $post['id'])->get();   
+
+        $sucursales = \App\sucursales::where('id', $post['Sucursal'])->get();
+
+        $diferenciaMetros = $this->distance($sucursales[0]['latitud'], $sucursales[0]['longitud'], $postListo['coords']['latitude'], $postListo['coords']['longitude'], 'K');       
+
+        $cuantiaEsperada = explode( ':', $post['hora_esperada'])[0] + (explode(':', $post['hora_esperada'])[1] / 60 );
+       
+        if($post['movimiento'] == 'entrada'){
+         
+            $tabla_asistencia->rut = $planilla[0]['rut'];
+            $tabla_asistencia->id_trabajador  = $planilla[0]['id'];
+            $tabla_asistencia->tipo_movimiento  = 'entrada';
+            $tabla_asistencia->fecha = date('d/m/Y');
+            $tabla_asistencia->hora = date('H:i:s');
+            $tabla_asistencia->usuario_cliente = $planilla[0]['nombre_empresa_usuario_plataforma'];
+            $tabla_asistencia->nombre = $planilla[0]['nombre'];
+            $tabla_asistencia->apellido = $planilla[0]['apellido'];
+            $tabla_asistencia->status_entrada = '';  // Atraso o no
+            $tabla_asistencia->status_salida = '';  // Atraso o no
+            $tabla_asistencia->cuantia_entrada = date('H')+ (date('i') /60 ) ;
+            $tabla_asistencia->cuantia_salida = '';
+            $tabla_asistencia->mes = date('m');
+            $tabla_asistencia->anio = date('Y');
+            $tabla_asistencia->dia = date('d');
+            $tabla_asistencia->cuantia_esperada =  $cuantiaEsperada;
+            $tabla_asistencia->cuantia_diferencia_real_esperada = '';
+            $tabla_asistencia->tiempo = time();
+            $tabla_asistencia->locacion = $sucursales[0]['nombre'];
+            $tabla_asistencia->latitude = $postListo['coords']['latitude'];
+            $tabla_asistencia->longitude = $postListo['coords']['longitude'];
+            $tabla_asistencia->altitude = $postListo['coords']['altitude'];
+            $tabla_asistencia->url = $post['url'];
+            $tabla_asistencia->distancia = $diferenciaMetros;
+            $tabla_asistencia->sucursal = $sucursales[0]['id'];
+            $tabla_asistencia->biometrica = $post['biometrica'];
+            $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
+            $tabla_asistencia->save();
+            echo json_encode('EntradaRealizada');
+        }
+        
+         if($post['movimiento'] == 'salida'){
+            $tabla_asistencia->rut = $planilla[0]['rut'];
+            $tabla_asistencia->id_trabajador  = $planilla[0]['id'];
+            $tabla_asistencia->tipo_movimiento  = 'salida';
+            $tabla_asistencia->fecha = date('d/m/Y');
+            $tabla_asistencia->hora = date('H:i:s');
+            $tabla_asistencia->usuario_cliente = $planilla[0]['nombre_empresa_usuario_plataforma'];
+            $tabla_asistencia->nombre = $planilla[0]['nombre'];
+            $tabla_asistencia->apellido = $planilla[0]['apellido'];
+            $tabla_asistencia->status_entrada = '';  // Atraso o no
+            $tabla_asistencia->status_salida = '' ;  // Atraso o no
+            $tabla_asistencia->cuantia_entrada = '' ;
+            $tabla_asistencia->cuantia_salida = date('H') + ( date('i') /60 );
+            $tabla_asistencia->mes = date('m');
+            $tabla_asistencia->anio = date('Y');
+            $tabla_asistencia->dia = date('d');
+            $tabla_asistencia->cuantia_esperada =  $cuantiaEsperada;
+            $tabla_asistencia->cuantia_diferencia_real_esperada = '';
+            $tabla_asistencia->tiempo = time();
+            $tabla_asistencia->locacion = $sucursales[0]['nombre'];
+            $tabla_asistencia->latitude = $postListo['coords']['latitude'];
+            $tabla_asistencia->longitude = $postListo['coords']['longitude'];
+            $tabla_asistencia->altitude = $postListo['coords']['altitude'];
+            $tabla_asistencia->url = $post['url'];
+            $tabla_asistencia->distancia = $diferenciaMetros;
+            $tabla_asistencia->sucursal = $sucursales[0]['id'];
+            $tabla_asistencia->biometrica = $post['biometrica'];
+            $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
+            $tabla_asistencia->save();
+            echo json_encode('SalidaRealizada');
+
+        }
+         // echo json_encode($Salida);
+        //echo json_encode($this->fecha);
+
+    } // Fin función SituacionMarcajeActual
+
 
 }
