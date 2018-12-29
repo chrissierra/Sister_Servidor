@@ -38,7 +38,7 @@ class TurnoNocheController extends Controller
     public function UpdateTurnoNoche(Request $request){
     	  $post = $request->json()->all();
 		      
-    	  $tabla_turnos =  \App\TurnoNoche::where('id_trabajador', $post['id'])
+    	  $tabla_turnos =  \App\TurnoNoche::where('id_trabajador', $post['id_trabajador'])
     	  					->where('mes', $post['mes'])
     	  					->where('anio', $post['anio']);
          foreach ($post as $key => $value) {
