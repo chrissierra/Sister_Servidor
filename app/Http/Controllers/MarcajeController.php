@@ -140,16 +140,9 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
        	return $valor_a_retornar;
        }else{
 
-        $planillaNoche = \App\TurnoNoche::where('id_trabajador', $id)
-                    ->where('mes', $this->mes)
-                    ->where('anio', $this->anio);
-
-                if($planillaNoche->count()>0){
-                    $this->horarioNoche = $planillaNoche->get();
-                    return 1;
-                }else{
+     
                     return 'No tiene horario';
-                }  
+               
        
        }
 
@@ -170,8 +163,16 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
         return $valor_a_retornar;
      
        }else{
-        return $valor_a_retornar ='No tiene horario';
-      //  echo json_encode($valor_a_retornar);                   
+    $planillaNoche = \App\TurnoNoche::where('id_trabajador', $id)
+                    ->where('mes', $this->mes)
+                    ->where('anio', $this->anio);
+
+                if($planillaNoche->count()>0){
+                    $this->horarioNoche = $planillaNoche->get();
+                    return 1;
+                }else{
+                    return 'No tiene horario';
+                }                    
 
        }
   
