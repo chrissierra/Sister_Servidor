@@ -163,3 +163,5 @@ Route::post('desvincular', 'desvinculadosController@desvincular');
 Route::post('GuardarTurnoNoche', 'TurnoNocheController@GuardarTurnoNoche');
 
 Route::post('GetTurnoNoche', 'TurnoNocheController@GetTurnoNoche');
+
+Route::post('UpdateTurnoNoche', 'TurnoNocheController@UpdateTurnoNoche');
