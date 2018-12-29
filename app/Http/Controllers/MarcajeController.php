@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class MarcajeController extends Controller
 {
     //
-    public $dia_e, $dia_s, $anio, $mes, $cuantia_esperada, $cuantia_diferencia_real_esperada, $horaEntrada, $horaSalida;
+    public $dia_e, $dia_s, $anio, $mes, $cuantia_esperada, $cuantia_diferencia_real_esperada, $horaEntrada, $horaSalida, $horarioNoche;
 
     function __construct(){
 
@@ -19,6 +19,8 @@ class MarcajeController extends Controller
         $this->dia_s = (date('d') *1) . 's';
         $this->fecha = date('d/m/Y');
          $this->turnoExtraEnCurso = 0;
+         $this->horarioNoche = 0;
+
     } // Fin función __construct
 
 /*
@@ -118,7 +120,7 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
         $respuesta->EntradaTurnoExtra = $EntradaTurnoExtra;
         $respuesta->SalidaTurnoExtra = $SalidaTurnoExtra;
         $respuesta->TurnoExtraEnCurso =  $this->turnoExtraEnCurso;
-
+        $respuesta->HorarioNoche = $this->horarioNoche;
         echo json_encode($respuesta);
         //echo json_encode($this->fecha);
 
@@ -137,7 +139,18 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
         $this->horaSalida = $planilla->get()[0][$this->dia_s];
        	return $valor_a_retornar;
        }else{
-       	return 'No tiene horario';
+
+        $planillaNoche = \App\TurnoNoche::where('id_trabajador', $id)
+                    ->where('mes', $this->mes)
+                    ->where('anio', $this->anio);
+
+                if($planillaNoche->count()>0){
+                    $this->horarioNoche = $planillaNoche->get();
+                    return 1;
+                }else{
+                    return 'No tiene horario';
+                }  
+       
        }
 
     } // Fin función TrabajaDiaEnCursoTurnos
