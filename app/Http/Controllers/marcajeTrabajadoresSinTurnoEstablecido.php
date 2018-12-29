@@ -16,6 +16,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 			        $this->dia_s = (date('d') *1) . 's';
 			        $this->fecha = date('d/m/Y');
                     $this->turnoExtraEnCurso = 0;
+                    $this->cuantia_actual = (date('H') + ( date('i') /60 ));
     	} // Fin función __construct
 
 
@@ -427,7 +428,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
         $sucursales = \App\sucursales::where('id', $post['Sucursal'])->get();
 
         $diferenciaMetros = $this->distance($sucursales[0]['latitud'], $sucursales[0]['longitud'], $postListo['coords']['latitude'], $postListo['coords']['longitude'], 'K');       
-
+        // cuantia_actual = 
         $cuantiaEsperada = explode( ':', $post['hora_esperada'])[0] + (explode(':', $post['hora_esperada'])[1] / 60 );
        
         if($post['movimiento'] == 'entrada'){
@@ -448,7 +449,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->anio = date('Y');
             $tabla_asistencia->dia = date('d');
             $tabla_asistencia->cuantia_esperada =  $cuantiaEsperada;
-            $tabla_asistencia->cuantia_diferencia_real_esperada = '';
+            $tabla_asistencia->cuantia_diferencia_real_esperada = $this->getDiferenciaCuantias($this->cuantia_actual , $cuantiaEsperada, 'entrada');
             $tabla_asistencia->tiempo = time();
             $tabla_asistencia->locacion = $sucursales[0]['nombre'];
             $tabla_asistencia->latitude = $postListo['coords']['latitude'];
@@ -480,7 +481,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->anio = date('Y');
             $tabla_asistencia->dia = date('d');
             $tabla_asistencia->cuantia_esperada =  $cuantiaEsperada;
-            $tabla_asistencia->cuantia_diferencia_real_esperada = '';
+            $tabla_asistencia->cuantia_diferencia_real_esperada = $this->getDiferenciaCuantias($this->cuantia_actual , $cuantiaEsperada, 'salida');
             $tabla_asistencia->tiempo = time();
             $tabla_asistencia->locacion = $sucursales[0]['nombre'];
             $tabla_asistencia->latitude = $postListo['coords']['latitude'];
