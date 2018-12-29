@@ -25,7 +25,7 @@ class TurnoNocheController extends Controller
         public function GetTurnoNoche(Request $request){
 		    $post = $request->json()->all();
 		      
-		    var_dump($post);
+		    
 
     	    $tabla_turnos =  \App\TurnoNoche::where('id_trabajador', $post['id'])
        	  					->where('mes', $post['mes'])
