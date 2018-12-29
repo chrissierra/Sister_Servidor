@@ -441,7 +441,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->usuario_cliente = $planilla[0]['nombre_empresa_usuario_plataforma'];
             $tabla_asistencia->nombre = $planilla[0]['nombre'];
             $tabla_asistencia->apellido = $planilla[0]['apellido'];
-            $tabla_asistencia->status_entrada = '';  // Atraso o no
+            $tabla_asistencia->status_entrada = $this->getDiferenciaCuantias($this->cuantia_actual , $cuantiaEsperada, 'salida') < 0 ? 'Atraso' : 'ok' ;  // Atraso o no
             $tabla_asistencia->status_salida = '';  // Atraso o no
             $tabla_asistencia->cuantia_entrada = date('H')+ (date('i') /60 ) ;
             $tabla_asistencia->cuantia_salida = '';
@@ -474,7 +474,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
             $tabla_asistencia->nombre = $planilla[0]['nombre'];
             $tabla_asistencia->apellido = $planilla[0]['apellido'];
             $tabla_asistencia->status_entrada = '';  // Atraso o no
-            $tabla_asistencia->status_salida = '' ;  // Atraso o no
+            $tabla_asistencia->status_salida = $this->getDiferenciaCuantias($this->cuantia_actual , $cuantiaEsperada, 'salida') < 0 ? 'MenosHoras' : 'HoraExtra' ;  // Atraso o no
             $tabla_asistencia->cuantia_entrada = '' ;
             $tabla_asistencia->cuantia_salida = date('H') + ( date('i') /60 );
             $tabla_asistencia->mes = date('m');
