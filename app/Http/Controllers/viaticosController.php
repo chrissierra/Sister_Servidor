@@ -24,6 +24,6 @@ class viaticosController extends Controller
 
 
 	    	$planilla->save();
-	    	echo json_encode($post);
+	    	echo json_encode(array("estatus"=> "ok"));
 	}
 }
