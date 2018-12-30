@@ -8,22 +8,42 @@ class viaticosController extends Controller
 {
     //
 
-	public function GetViaticos(Request $request){
-		
+	public function GetViaticosPorTrabajador(Request $request){
+		$post = $request->json()->all();
+
+		$viaticos = \App\viaticos::where('trabajador_id', $post['trabajador_id'])
+					->where('mes', $post['mes'])->get();
+
+		echo json_encode($viaticos);
+
 	}
+
+
+		public function GetViaticosPorEmpleador(Request $request){
+		$post = $request->json()->all();
+
+		$viaticos = \App\viaticos::where('cliente_rrhh', $post['cliente_rrhh'])
+					->where('mes', $post['mes'])->get();
+
+		echo json_encode($viaticos);
+
+	}
+
+
+
 
 
 	public function InsertViaticos(Request $request){
 			$post = $request->json()->all();
 
-	    	$planilla = new \App\viaticos;
+	    	$viaticos = new \App\viaticos;
 
 	    	foreach ($post as $key => $value) {
-	    		$planilla->$key = $value;
+	    		$viaticos->$key = $value;
 	    	}
 
 
-	    	$planilla->save();
+	    	$viaticos->save();
 	    	echo json_encode(array("estatus"=> "ok"));
 	}
 }

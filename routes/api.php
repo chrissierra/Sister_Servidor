@@ -171,3 +171,7 @@ Route::post('UpdateTurnoNoche', 'TurnoNocheController@UpdateTurnoNoche');
 Route::post('GetViaticos', 'viaticosController@GetViaticos');
 
 Route::post('InsertViaticos', 'viaticosController@InsertViaticos');
+
+Route::post('GetViaticosPorTrabajador', 'viaticosController@GetViaticosPorTrabajador');
+
+Route::post('GetViaticosPorEmpleador', 'viaticosController@GetViaticosPorEmpleador');
