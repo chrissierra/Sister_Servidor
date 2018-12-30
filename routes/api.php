@@ -167,3 +167,7 @@ Route::post('GuardarTurnoNoche', 'TurnoNocheController@GuardarTurnoNoche');
 Route::post('GetTurnoNoche', 'TurnoNocheController@GetTurnoNoche');
 
 Route::post('UpdateTurnoNoche', 'TurnoNocheController@UpdateTurnoNoche');
+
+Route::post('GetViaticos', 'viaticosController@GetViaticos');
+
+Route::post('InsertViaticos', 'viaticosController@InsertViaticos');
