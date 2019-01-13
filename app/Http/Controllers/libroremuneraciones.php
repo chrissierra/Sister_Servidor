@@ -164,8 +164,8 @@ class libroremuneraciones extends Controller
                             ->orderBy('id', 'desc')
                             ->take($post['ultimosN'])
                             ->get();*/
-        $WorkingArray = json_decode(json_encode($resultado),true);
-        return json_decode($WorkingArray);
+        $WorkingArray = json_decode(json_encode($data),true);
+        return $WorkingArray;
         
     }
 
