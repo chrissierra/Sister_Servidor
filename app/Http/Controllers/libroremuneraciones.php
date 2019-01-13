@@ -129,7 +129,7 @@ class libroremuneraciones extends Controller
 
         $tabla = \App\asistencia::where('id', $post['id'])
                             ->get();
-                            
+
         return json_decode($tabla);
         
     }
@@ -142,9 +142,9 @@ class libroremuneraciones extends Controller
         $tiempo_a = 13*60*60;
         $dif = $this->tiempo - $tiempo_a;
 
+
         $tabla = \App\asistencia::where('usuario_cliente', $post['id'])
-                            ->where('tiempo','>', $dif ) // No debe decir $mes + 1 
-                            ->where('tipo_movimiento','entrada') // No debe decir $mes + 1 
+                            ->where('tiempo','>', $dif )
                             ->orderBy('id', 'desc')
                             ->take($post['ultimosN'])
                             ->get();
@@ -164,7 +164,6 @@ class libroremuneraciones extends Controller
 
         $tabla = \App\asistencia::where('usuario_cliente', $post['id'])
                             ->where('tiempo','>', $dif ) // No debe decir $mes + 1 
-                            ->where('tipo_movimiento','entrada') // No debe decir $mes + 1 
                             ->where('sucursal',$post['sucursal']) // No debe decir $mes + 1 
                             ->orderBy('id', 'desc')
                             ->get();
