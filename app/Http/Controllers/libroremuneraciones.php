@@ -152,7 +152,8 @@ class libroremuneraciones extends Controller
                             ->orderBy('id', 'desc')
                             ->take(1)
                             ->get();
-            if($tabla['movimiento'] === 'entrada'){
+
+            if($tabla[0]['movimiento'] === 'entrada'){
                 array_push($resultado, $tabla);
             }
         }
