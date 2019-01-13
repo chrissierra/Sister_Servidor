@@ -138,16 +138,31 @@ class libroremuneraciones extends Controller
        public function actualmenteTrabajando(Request $request){
 
         $post = $request->json()->all();
-
+        $resultado = array();
         $tiempo_a = 13*60*60;
         $dif = $this->tiempo - $tiempo_a;
 
+        $buscarTrabajador = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma',$post['id'] )
+        ->get();
 
-        $tabla = \App\asistencia::where('usuario_cliente', $post['id'])
+        foreach ($buscarTrabajador as $key => $value) {
+            # code...
+            $tabla = \App\asistencia::where('id_trabajador', $value['id'])
+                            ->where('tiempo','>', $dif )
+                            ->orderBy('id', 'desc')
+                            ->take(1)
+                            ->get();
+            if($tabla['movimiento'] === 'entrada'){
+                array_push($resultado, $tabla);
+            }
+        }
+
+
+       /* $tabla = \App\asistencia::where('usuario_cliente', $post['id'])
                             ->where('tiempo','>', $dif )
                             ->orderBy('id', 'desc')
                             ->take($post['ultimosN'])
-                            ->first();
+                            ->get();*/
 
         return json_decode($tabla);
         
