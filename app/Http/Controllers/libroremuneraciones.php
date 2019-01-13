@@ -152,7 +152,7 @@ class libroremuneraciones extends Controller
                             ->orderBy('id', 'desc')
                             ->first();
 
-                            
+
             if($tabla['tipo_movimiento'] === 'entrada'){
                 array_push($resultado, $tabla);
             }
@@ -164,8 +164,8 @@ class libroremuneraciones extends Controller
                             ->orderBy('id', 'desc')
                             ->take($post['ultimosN'])
                             ->get();*/
-
-        return json_decode($resultado);
+        $WorkingArray = json_decode(json_encode($resultado),true);
+        return json_decode($WorkingArray);
         
     }
 
