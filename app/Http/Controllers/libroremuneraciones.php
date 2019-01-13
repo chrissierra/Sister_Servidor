@@ -150,10 +150,9 @@ class libroremuneraciones extends Controller
             $tabla = \App\asistencia::where('id_trabajador', $value['id'])
                             ->where('tiempo','>', $dif )
                             ->orderBy('id', 'desc')
-                            ->take(1)
-                            ->get();
+                            ->first();
 
-            if($tabla[0]['tipo_movimiento'] === 'entrada'){
+            if($tabla['tipo_movimiento'] === 'entrada'){
                 array_push($resultado, $tabla);
             }
         }
