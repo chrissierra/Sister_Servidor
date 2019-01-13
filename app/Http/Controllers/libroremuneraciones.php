@@ -128,10 +128,11 @@ class libroremuneraciones extends Controller
         $post = $request->json()->all();
 
         $tiempo_a = 13*60*60;
-        $dif = $tiempo_a - $this->tiempo;
+        $dif = $this->tiempo - $tiempo_a;
 
         $tabla = \App\asistencia::where('usuario_cliente', $post['id'])
                             ->where('tiempo','>', $dif ) // No debe decir $mes + 1 
+                            ->where('tipo_movimiento','entrada') // No debe decir $mes + 1 
                             ->get();
 
         return json_decode($tabla);
