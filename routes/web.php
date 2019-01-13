@@ -141,10 +141,10 @@ Route::get('/DiasLaboralesRealizados/{id}/{mes}/{anio}', function ($id, $mes, $a
 
             if(\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->exists() && \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'salida')->exists()){
 
-            $cuantiaSalida_ = (double)(  \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->first()['cuantia_entrada']);
+            $cuantiaEntrada_ = (double)(  \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->first()['cuantia_entrada']);
 
 
-            $cuantiaEntrada_ = (double)(\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'salida')->first()['cuantia_salida']);
+            $cuantiaSalida_ = (double)(\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'salida')->first()['cuantia_salida']);
 
             if(is_numeric(1*$cuantiaEntrada_) && is_numeric(1*$cuantiaSalida_)){
                 $horasTrabajadasTemp = $cuantiaSalida_ -$cuantiaEntrada_;   
