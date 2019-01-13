@@ -153,10 +153,9 @@ class libroremuneraciones extends Controller
                             ->take(1)
                             ->get();
 
-            print($tabla);
-            //if($tabla[0]['movimiento'] === 'entrada'){
-              //  array_push($resultado, $tabla);
-           // }
+            if($tabla['tipo_movimiento'] === 'entrada'){
+                array_push($resultado, $tabla);
+            }
         }
 
 
