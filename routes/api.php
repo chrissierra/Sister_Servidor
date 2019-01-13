@@ -180,3 +180,7 @@ Route::post('actualmenteTrabajando', 'libroremuneraciones@actualmenteTrabajando'
 
 Route::post('actualmenteTrabajandoPorSucursal', 'libroremuneraciones@actualmenteTrabajandoPorSucursal');
 
+
+Route::post('getmovimientounitario', 'libroremuneraciones@getmovimientounitario');
+
+

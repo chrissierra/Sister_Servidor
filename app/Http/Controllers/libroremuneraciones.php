@@ -123,6 +123,18 @@ class libroremuneraciones extends Controller
 
 
 
+        public function getmovimientounitario(Request $request){
+
+        $post = $request->json()->all();
+
+        $tabla = \App\asistencia::where('id', $post['id'])
+                            ->get();
+                            
+        return json_decode($tabla);
+        
+    }
+
+
        public function actualmenteTrabajando(Request $request){
 
         $post = $request->json()->all();
