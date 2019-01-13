@@ -116,15 +116,16 @@ echo json_encode($contador_Dias);
 
 Route::get('/DiasLaboralesRealizados/{id}/{mes}/{anio}', function ($id, $mes, $anio) {
     $horasNoTrabajadas = 0;
+    $horasTrabajadas = 0;
     $result = \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->get();
     $contadorEntrada=0;
     $contadorSalida=0;
     foreach ($result as $key => $value) {
        
-       if($value["tipo_movimiento"] == "entrada")
+       if($value["tipo_movimiento"] === "entrada")
            $contadorEntrada++; # No lo usé
 
-           if($value["tipo_movimiento"] == "salida" && \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->count() == 1 ){
+           if($value["tipo_movimiento"] === "salida" && \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->count() === 1 ){
 
 
             $horasNoTrabajadasTemp = -1 *  \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->first()['cuantia_diferencia_real_esperada'];  
@@ -133,13 +134,31 @@ Route::get('/DiasLaboralesRealizados/{id}/{mes}/{anio}', function ($id, $mes, $a
               $horasNoTrabajadasTemp = -1 *  \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'salida')->first()['cuantia_diferencia_real_esperada'];   
             $horasNoTrabajadas += $horasNoTrabajadasTemp;  
 
+
+            /*Horas Trabajadas*/
+
+
+
+            if(\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->exist() && \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'salida')->exists()){
+
+            $horasTrabajadasTemp =   \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->first()['cuantia_salida'] -  \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'salida')->first()['cuantia_entrada'];   
+            $horasTrabajadas += $horasTrabajadasTemp;  
+
+            }
+           
+
+
+
+
+            /* Fin horas trabajadas*/
+
                $contadorSalida++;  
            }
           
 
     }
 
-    $response = array('HorasNoTrabajadas'=> $horasNoTrabajadas, 'diasTrabajados' => $contadorSalida);
+    $response = array('HorasNoTrabajadas'=> $horasNoTrabajadas, 'diasTrabajados' => $contadorSalida, 'horasTrabajadas' => $horasTrabajadas);
 
    // echo $horasNoTrabajadas;
     echo json_encode($response);
