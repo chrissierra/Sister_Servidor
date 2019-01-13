@@ -131,7 +131,7 @@ class libroremuneraciones extends Controller
         $dif = $this->tiempo - $tiempo_a;
 
         $tabla = \App\asistencia::where('usuario_cliente', $post['id'])
-                            ->where('tiempo','>', $dif ) // No debe decir $mes + 1 
+                            ->where('tiempo','<', $dif ) // No debe decir $mes + 1 
                             ->where('tipo_movimiento','entrada') // No debe decir $mes + 1 
                             ->get();
 
