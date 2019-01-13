@@ -12,6 +12,7 @@ class viaticosController extends Controller
 		$post = $request->json()->all();
 
 		$viaticos = \App\viaticos::where('trabajador_id', $post['trabajador_id'])
+					->where('anio', $post['anio'])
 					->where('mes', $post['mes'])->get();
 
 		echo json_encode($viaticos);
@@ -23,7 +24,8 @@ class viaticosController extends Controller
 		$post = $request->json()->all();
 
 		$viaticos = \App\viaticos::where('cliente_rrhh', $post['cliente_rrhh'])
-					->where('mes', $post['mes'])->get();
+					->where('mes', $post['mes'])
+					->where('anio', $post['anio'])->get();
 
 		echo json_encode($viaticos);
 

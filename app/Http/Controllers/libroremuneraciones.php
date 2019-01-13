@@ -7,6 +7,22 @@ use Illuminate\Http\Request;
 class libroremuneraciones extends Controller
 {
     //
+    public $dia_e, $dia_s, $anio, $mes, $cuantia_esperada, $cuantia_diferencia_real_esperada, $horaEntrada, $horaSalida, $horarioNoche;
+    function __construct(){
+
+        date_default_timezone_set('America/Santiago');
+        $this->tiempo = time();
+        $this->mes = date('m')*1;
+        $this->anio = date('Y');
+        $this->dia_e = (date('d') *1) . 'e';
+        $this->dia_s = (date('d') *1) . 's';
+        $this->fecha = date('d/m/Y');
+        $this->turnoExtraEnCurso = 0;
+        $this->horarioNoche = 0;
+
+    } // Fin función __construct
+
+
     public function diario(Request $request){
 
     	$post = $request->json()->all();
@@ -101,6 +117,23 @@ class libroremuneraciones extends Controller
                             ->where('anio', explode('-', $post['dia'])[2])
                             ->where('dia', explode('-', $post['dia'])[1])
                             ->get();
+        return json_decode($tabla);
+        
+    }
+
+
+
+       public function actualmenteTrabajando(Request $request){
+
+        $post = $request->json()->all();
+
+        $tiempo_a = 13*60*60;
+        $dif = $tiempo_a - $this->tiempo;
+
+        $tabla = \App\asistencia::where('usuario_cliente', $post['id'])
+                            ->where('tiempo','>', $dif ) // No debe decir $mes + 1 
+                            ->get();
+
         return json_decode($tabla);
         
     }

@@ -175,3 +175,5 @@ Route::post('InsertViaticos', 'viaticosController@InsertViaticos');
 Route::post('GetViaticosPorTrabajador', 'viaticosController@GetViaticosPorTrabajador');
 
 Route::post('GetViaticosPorEmpleador', 'viaticosController@GetViaticosPorEmpleador');
+
+Route::post('actualmenteTrabajando', 'libroremuneraciones@actualmenteTrabajando');
