@@ -158,12 +158,6 @@ class libroremuneraciones extends Controller
             }
         }
 
-
-       /* $tabla = \App\asistencia::where('usuario_cliente', $post['id'])
-                            ->where('tiempo','>', $dif )
-                            ->orderBy('id', 'desc')
-                            ->take($post['ultimosN'])
-                            ->get();*/
         $WorkingArray = json_decode(json_encode($resultado),true);
         return $WorkingArray;
         
@@ -174,17 +168,29 @@ class libroremuneraciones extends Controller
    public function actualmenteTrabajandoPorSucursal(Request $request){
 
         $post = $request->json()->all();
-
+        $resultado = array();
         $tiempo_a = 13*60*60;
         $dif = $this->tiempo - $tiempo_a;
 
-        $tabla = \App\asistencia::where('usuario_cliente', $post['id'])
-                            ->where('tiempo','>', $dif ) // No debe decir $mes + 1 
-                            ->where('sucursal',$post['sucursal']) // No debe decir $mes + 1 
-                            ->orderBy('id', 'desc')
-                            ->get();
+        $buscarTrabajador = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma',$post['id'] )
+        ->get();
 
-        return json_decode($tabla);
+        foreach ($buscarTrabajador as $key => $value) {
+            # code...
+            $tabla = \App\asistencia::where('id_trabajador', $value['id'])
+                            ->where('tiempo','>', $dif )
+                            ->where('sucursal',$post['sucursal']) //                             
+                            ->orderBy('id', 'desc')
+                            ->first();
+
+
+            if($tabla['tipo_movimiento'] === 'entrada'){
+                array_push($resultado, $tabla);
+            }
+        }
+
+        $WorkingArray = json_decode(json_encode($resultado),true);
+        return $WorkingArray;
         
     }
 
