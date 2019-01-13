@@ -147,7 +147,7 @@ class libroremuneraciones extends Controller
                             ->where('tiempo','>', $dif )
                             ->orderBy('id', 'desc')
                             ->take($post['ultimosN'])
-                            ->get();
+                            ->first();
 
         return json_decode($tabla);
         
