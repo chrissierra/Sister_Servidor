@@ -286,6 +286,7 @@ foreach ($result as $key => $value) {
 
             echo $cuantiaEntrada_time . " Entrada<br>";
 
+            echo $result[$key+1]["dia"] . "dia de la salida...<br>";
             echo $cuantiaSalida_time . " Salida<br>";
 
                           $tiempoTrabajadoTemp = $cuantiaSalida_time - $cuantiaEntrada_time;   
