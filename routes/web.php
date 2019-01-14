@@ -276,7 +276,7 @@ foreach ($result as $key => $value) {
                   if((\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $result[$key+1]["dia"])->where('tipo_movimiento', 'salida')->exists()){
 
                         
-                         $cuantiaEntrada_time = (double)(  \App\asistencia::where('id_trabajador', $id)
+                         $cuantiaEntrada_time = \App\asistencia::where('id_trabajador', $id)
                           ->where('mes', $mes)
                           ->where('anio', $anio)
                           ->where('dia', $value["dia"])
