@@ -281,7 +281,7 @@ foreach ($result as $key => $value) {
                           ->where('anio', $anio)
                           ->where('dia', $value["dia"])
                           ->where('tipo_movimiento', 'entrada')
-                          ->first()['tiempo']);
+                          ->first()['tiempo'];
 
 
                             $cuantiaSalida_time = (double)(\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $result[$key+1]["dia"])->where('tipo_movimiento', 'salida')->first()['tiempo']);
