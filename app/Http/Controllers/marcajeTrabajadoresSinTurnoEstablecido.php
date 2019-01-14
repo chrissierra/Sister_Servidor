@@ -522,7 +522,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
         "en" => 'Marcaje dudoso de ' . $nombre
     );
     $hashes_array = array();
-  /*  array_push($hashes_array, array(
+    array_push($hashes_array, array(
         "id" => "like-button",
         "text" => "Like",
         "icon" => "http://i.imgur.com/N8SN8ZS.png",
@@ -533,7 +533,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
         "text" => "Like2",
         "icon" => "http://i.imgur.com/N8SN8ZS.png",
         "url" => "https://yoursite.com"
-    ));*/
+    ));
     $fields = array(
         'app_id' => "5200c8b2-a266-4832-9c92-47ea8616fb08",
         'include_player_ids' => [$id],
