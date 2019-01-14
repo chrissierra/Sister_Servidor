@@ -325,6 +325,8 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 
         $diferenciaMetros = $this->distance($sucursales[0]['latitud'], $sucursales[0]['longitud'], $postListo['coords']['latitude'], $postListo['coords']['longitude'], 'K');       
        
+       $post['biometrica'] > 0.61 ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre']) : 1 ;
+        
         if($post['movimiento'] == 'entrada'){
          
             $tabla_asistencia->rut = $planilla[0]['rut'];
@@ -396,7 +398,15 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
     } // Fin función SituacionMarcajeActual
 
 
-
+    private function notificaTurnoReprobable($id_empresa, $nombre){
+        $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $id_empresa)->get(); 
+        foreach ($planilla as $key => $value) {
+            # code...
+            if($value["onesignal"] !== null){
+                $this->sendMessage($value["onesignal"], $nombre);
+            }
+        }
+    }
 
 
     private function getDiferenciaCuantias($cuantia_actual, $cuantiaEsperada, $movimiento){
@@ -500,6 +510,66 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
         //echo json_encode($this->fecha);
 
     } // Fin función SituacionMarcajeActual
+
+
+
+
+
+
+
+    private function sendMessage($id, $nombre) {
+    $content      = array(
+        "en" => 'Marcaje dudoso de ' . $nombre
+    );
+    $hashes_array = array();
+  /*  array_push($hashes_array, array(
+        "id" => "like-button",
+        "text" => "Like",
+        "icon" => "http://i.imgur.com/N8SN8ZS.png",
+        "url" => "https://yoursite.com"
+    ));
+    array_push($hashes_array, array(
+        "id" => "like-button-2",
+        "text" => "Like2",
+        "icon" => "http://i.imgur.com/N8SN8ZS.png",
+        "url" => "https://yoursite.com"
+    ));*/
+    $fields = array(
+        'app_id' => "5200c8b2-a266-4832-9c92-47ea8616fb08",
+        'include_player_ids' => [$id],
+       // 'included_segments' => array(
+        //    'All'
+        //),
+        'data' => array(
+            "foo" => "bar"
+        ),
+        'contents' => $content,
+        'web_buttons' => $hashes_array
+    );
+
+    $fields = json_encode($fields);
+    print("\nJSON sent:\n");
+    print($fields);
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json; charset=utf-8',
+        'Authorization: Basic N2IwZGNkYTktNTBlZS00MWRhLWE3YmQtYmQ1MzVkZjQ2YjVm'
+    ));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+    curl_setopt($ch, CURLOPT_POST, TRUE);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    return $response;
+}
+
+
 
 
 }
