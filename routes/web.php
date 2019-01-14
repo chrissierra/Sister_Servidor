@@ -257,14 +257,50 @@ foreach ($result as $key => $value) {
             $cuantiaSalida_time = (double)(\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'salida')->first()['tiempo']);
 
             if(is_numeric(1*$cuantiaEntrada_) && is_numeric(1*$cuantiaSalida_)){
-                $horasTrabajadasTemp = $cuantiaSalida_ -$cuantiaEntrada_;   
-                $horasTrabajadas += $horasTrabajadasTemp;  
+
+                if($cuantiaSalida_ < $cuantiaEntrada_){
+                  #Turno de noche
+                }else{
+                  $horasTrabajadasTemp = $cuantiaSalida_ -$cuantiaEntrada_;   
+                  $horasTrabajadas += $horasTrabajadasTemp; 
+                }
+ 
             }
 
 
           if(is_numeric(1*$cuantiaEntrada_time) && is_numeric(1*$cuantiaSalida_time)){
+                if($cuantiaSalida_time < $cuantiaEntrada_time){
+                  #Turno de noche
+                  
+
+                  if((\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $result[$key+1]["dia"])->where('tipo_movimiento', 'salida')->exists()){
+
+                            $cuantiaEntrada_time = (double)(  \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->first()['tiempo']);
+
+
+                            $cuantiaSalida_time = (double)(\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $result[$key+1]["dia"])->where('tipo_movimiento', 'salida')->first()['tiempo']);
+
+
+
+                          $tiempoTrabajadoTemp = $cuantiaSalida_time - $cuantiaEntrada_time;   
+                          $tiempoTrabajado += $tiempoTrabajadoTemp;
+                  }else{
+
+                  }
+
+
+
+
+
+
+                }else{
                 $tiempoTrabajadoTemp = $cuantiaSalida_time - $cuantiaEntrada_time;   
                 $tiempoTrabajado += $tiempoTrabajadoTemp;  
+                }
+
+
+
+
             }
 
 
