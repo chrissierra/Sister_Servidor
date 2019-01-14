@@ -273,7 +273,7 @@ foreach ($result as $key => $value) {
                   #Turno de noche
                   
 
-                  if((\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $result[$key+1]["dia"])->where('tipo_movimiento', 'salida')->exists())){
+                  if((\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $result[$key+2]["dia"])->where('tipo_movimiento', 'salida')->exists())){
 
                         
 
@@ -282,11 +282,11 @@ foreach ($result as $key => $value) {
            $cuantiaEntrada_time = (double)(  \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->first()['tiempo']);
 
 
-            $cuantiaSalida_time = (double)(\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $result[$key+1]["dia"])->where('tipo_movimiento', 'salida')->first()['tiempo']);
+            $cuantiaSalida_time = (double)(\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $result[$key+2]["dia"])->where('tipo_movimiento', 'salida')->first()['tiempo']);
 
             echo $cuantiaEntrada_time . " Entrada<br>";
             echo  $value["dia"] . "dia de la entrada...<br>";
-            echo $result[$key+1]["dia"] . "dia de la salida...<br>";
+            echo $result[$key+2]["dia"] . "dia de la salida...<br>";
             echo $cuantiaSalida_time . " Salida<br>";
 
                           $tiempoTrabajadoTemp = $cuantiaSalida_time - $cuantiaEntrada_time;   
