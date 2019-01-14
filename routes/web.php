@@ -219,7 +219,7 @@ Route::get('/DiasLaboralesRealizadosNoche/{id}/{mes}/{anio}', function ($id, $me
 
 foreach ($result as $key => $value) {
        
-       echo "key" . $key;
+       //echo "key" . $key;
        if($value["tipo_movimiento"] === "entrada")
            $contadorEntrada++; # No lo usé
 
@@ -284,9 +284,9 @@ foreach ($result as $key => $value) {
 
             $cuantiaSalida_time = (double)(\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $result[$key+1]["dia"])->where('tipo_movimiento', 'salida')->first()['tiempo']);
 
-            echo $cuantiaEntrada_time . "<br>";
+            echo $cuantiaEntrada_time . " Entrada<br>";
 
-            echo $cuantiaSalida_time . "<br>";
+            echo $cuantiaSalida_time . " Salida<br>";
 
                           $tiempoTrabajadoTemp = $cuantiaSalida_time - $cuantiaEntrada_time;   
                           $tiempoTrabajado += $tiempoTrabajadoTemp;
