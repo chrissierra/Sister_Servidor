@@ -237,6 +237,10 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
         $sucursales = \App\sucursales::where('id', $post['Sucursal'])->get();
 
         $diferenciaMetros = $this->distance($sucursales[0]['latitud'], $sucursales[0]['longitud'], $postListo['coords']['latitude'], $postListo['coords']['longitude'], 'K');       
+
+        $post['biometrica'] > 0.61 ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
+
+       $diferenciaMetros > 0.3  ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
        
         if($post['movimiento'] == 'entrada'){
          
@@ -325,7 +329,9 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 
         $diferenciaMetros = $this->distance($sucursales[0]['latitud'], $sucursales[0]['longitud'], $postListo['coords']['latitude'], $postListo['coords']['longitude'], 'K');       
        
-       $post['biometrica'] > 0.61 ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre']) : 1 ;
+       $post['biometrica'] > 0.61 ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
+
+       $diferenciaMetros > 0.3  ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
         
         if($post['movimiento'] == 'entrada'){
          
@@ -398,12 +404,12 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
     } // Fin función SituacionMarcajeActual
 
 
-    private function notificaTurnoReprobable($id_empresa, $nombre){
+    private function notificaTurnoReprobable($id_empresa, $nombre, $apellido){
         $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $id_empresa)->get(); 
         foreach ($planilla as $key => $value) {
             # code...
             if($value["onesignal"] !== null){
-                $this->sendMessage($value["onesignal"], $nombre);
+                $this->sendMessage($value["onesignal"], $nombre, $apellido);
             }
         }
     }
@@ -441,6 +447,10 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
         // cuantia_actual = 
         $cuantiaEsperada = explode( ':', $post['hora_esperada'])[0] + (explode(':', $post['hora_esperada'])[1] / 60 );
        
+        $post['biometrica'] > 0.61 ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
+
+       $diferenciaMetros > 0.3  ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
+
         if($post['movimiento'] == 'entrada'){
          
             $tabla_asistencia->rut = $planilla[0]['rut'];
@@ -517,23 +527,11 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 
 
 
-    private function sendMessage($id, $nombre) {
+    private function sendMessage($id, $nombre, $apellido) {
     $content      = array(
-        "en" => 'Marcaje dudoso de ' . $nombre
+        "en" => 'Marcaje dudoso de ' . $nombre . " " . $apellido
     );
-    $hashes_array = array();
-    array_push($hashes_array, array(
-        "id" => "like-button",
-        "text" => "Like",
-        "icon" => "http://i.imgur.com/N8SN8ZS.png",
-        "url" => "https://yoursite.com"
-    ));
-    array_push($hashes_array, array(
-        "id" => "like-button-2",
-        "text" => "Like2",
-        "icon" => "http://i.imgur.com/N8SN8ZS.png",
-        "url" => "https://yoursite.com"
-    ));
+
     $fields = array(
         'app_id' => "5200c8b2-a266-4832-9c92-47ea8616fb08",
         'include_player_ids' => [$id],
@@ -543,13 +541,12 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
         'data' => array(
             "foo" => "bar"
         ),
-        'contents' => $content,
-        'web_buttons' => $hashes_array
+        'contents' => $content
+       // 'web_buttons' => $hashes_array
     );
 
     $fields = json_encode($fields);
-   // print("\nJSON sent:\n");
-   // print($fields);
+
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
