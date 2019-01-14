@@ -203,3 +203,91 @@ foreach ($result as $key => $value) {
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+
+Route::get('/DiasLaboralesRealizadosNoche/{id}/{mes}/{anio}', function ($id, $mes,$anio) {   
+  $horasNoTrabajadas = 0;    
+  $horasTrabajadas = 0; 
+  $tiempoTrabajado = 0;    
+  $result =\App\asistencia::where('id_trabajador', $id)->where('mes',$mes)->where('anio', $anio)->get();     
+  $contadorEntrada=0;
+  $contadorSalida=0;     
+
+
+
+foreach ($result as $key => $value) {
+       
+       echo "key" . $key;
+       if($value["tipo_movimiento"] === "entrada")
+           $contadorEntrada++; # No lo usé
+
+           if($value["tipo_movimiento"] === "salida" && \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->count() === 1 ){
+
+
+
+
+
+      if(\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->where('cuantia_esperada','>', 0)->exists() && \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'salida')->where('cuantia_esperada','>', 0)->exists()){
+
+                  $horasNoTrabajadasTemp = -1 *  \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->first()['cuantia_diferencia_real_esperada'];  
+                  $horasNoTrabajadas += $horasNoTrabajadasTemp;  
+
+                    $horasNoTrabajadasTemp = -1 *  \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'salida')->first()['cuantia_diferencia_real_esperada'];   
+                  $horasNoTrabajadas += $horasNoTrabajadasTemp;  
+
+      }
+            /*Horas Trabajadas*/
+
+
+
+            if(\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->exists() && \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'salida')->exists()){
+
+            $cuantiaEntrada_ = (double)(  \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->first()['cuantia_entrada']);
+
+
+            $cuantiaSalida_ = (double)(\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'salida')->first()['cuantia_salida']);
+
+
+
+           $cuantiaEntrada_time = (double)(  \App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'entrada')->first()['tiempo']);
+
+
+            $cuantiaSalida_time = (double)(\App\asistencia::where('id_trabajador', $id)->where('mes', $mes)->where('anio', $anio)->where('dia', $value["dia"])->where('tipo_movimiento', 'salida')->first()['tiempo']);
+
+            if(is_numeric(1*$cuantiaEntrada_) && is_numeric(1*$cuantiaSalida_)){
+                $horasTrabajadasTemp = $cuantiaSalida_ -$cuantiaEntrada_;   
+                $horasTrabajadas += $horasTrabajadasTemp;  
+            }
+
+
+          if(is_numeric(1*$cuantiaEntrada_time) && is_numeric(1*$cuantiaSalida_time)){
+                $tiempoTrabajadoTemp = $cuantiaSalida_time - $cuantiaEntrada_time;   
+                $tiempoTrabajado += $tiempoTrabajadoTemp;  
+            }
+
+
+
+
+
+
+            }
+           
+
+
+
+
+            /* Fin horas trabajadas*/
+
+               $contadorSalida++;  
+           }
+          
+
+    }
+
+    $response = array('HorasNoTrabajadas'=> $horasNoTrabajadas, 'diasTrabajados' => $contadorSalida, 'horasTrabajadas' => $horasTrabajadas, 'horasExactas' => ($tiempoTrabajado/3600) );
+
+   // echo $horasNoTrabajadas;
+    echo json_encode($response);
+});
