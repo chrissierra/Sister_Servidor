@@ -350,6 +350,7 @@ Route::get('/DiasLaboralesRealizadosProd/{id}/{mes}/{anio}', function ($id, $mes
   $horasTrabajadas = 0; 
   $tiempoTrabajado = 0;  
   $tiempoTrabajadoExtra = 0;
+
   $result =\App\asistencia::where('id_trabajador', $id)
   ->where('mes',$mes)
   ->where('anio', $anio)
@@ -371,11 +372,13 @@ foreach ($resultTurnosExtras as $key => $value) {
        
        //echo "key" . $key;
        if($value["tipo_movimiento"] === "entrada"){
-          if($result[$key+1]['tipo_movimiento'] === "salida"){
 
-           
-           $tiempoTrabajadoExtra += $result[$key+1]['tiempo'] - $value["tiempo"];
+        if(array_key_exists( ($key+1), $result)){
+           if($result[$key+1]['tipo_movimiento'] === "salida" ){        
+              $tiempoTrabajadoExtra += $result[$key+1]['tiempo'] - $value["tiempo"];
           }
+        }
+         
        }
        
 }
