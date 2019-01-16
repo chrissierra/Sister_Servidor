@@ -349,16 +349,36 @@ Route::get('/DiasLaboralesRealizadosProd/{id}/{mes}/{anio}', function ($id, $mes
   $horasNoTrabajadas = 0;    
   $horasTrabajadas = 0; 
   $tiempoTrabajado = 0;  
-
+  $tiempoTrabajadoExtra = 0;
   $result =\App\asistencia::where('id_trabajador', $id)
   ->where('mes',$mes)
   ->where('anio', $anio)
+  ->where('turnoExtra', null)
   ->orderBy('tiempo', 'asc')
-  ->get();     
+  ->get();  
+
+  $resultTurnosExtras =\App\asistencia::where('id_trabajador', $id)
+  ->where('mes',$mes)
+  ->where('anio', $anio)
+  ->where('turnoExtra', 1)
+  ->orderBy('tiempo', 'asc')
+  ->get();      
 
   $contadorEntrada=0;
   $contadorSalida=0;     
 
+foreach ($resultTurnosExtras as $key => $value) {
+       
+       //echo "key" . $key;
+       if($value["tipo_movimiento"] === "entrada"){
+          if($result[$key+1]['tipo_movimiento'] === "salida"){
+
+           
+           $tiempoTrabajadoExtra += $result[$key+1]['tiempo'] - $value["tiempo"];
+          }
+       }
+       
+}
 
 
 foreach ($result as $key => $value) {
@@ -374,7 +394,12 @@ foreach ($result as $key => $value) {
        
 }
 
-    $response = array('horasExactas' => ($tiempoTrabajado/3600), "diasTrabajados" => $contadorSalida);
+
+
+
+
+
+    $response = array('horasExactas' => ($tiempoTrabajado/3600), "diasTrabajados" => $contadorSalida, "horasExtras" => $tiempoTrabajadoExtra);
 
    // echo $horasNoTrabajadas;
     echo json_encode($response);
