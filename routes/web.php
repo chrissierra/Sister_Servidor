@@ -370,7 +370,7 @@ foreach ($result as $key => $value) {
           }
        }
        
-
+}
 
     $response = array('horasExactas' => ($tiempoTrabajado/3600) );
 
