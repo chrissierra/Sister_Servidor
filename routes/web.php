@@ -389,13 +389,13 @@ foreach ($result as $key => $value) {
        //echo "key" . $key;
        if($value["tipo_movimiento"] === "entrada"){
        
- if(array_key_exists( ($key+1), $result)){
+if(array_key_exists( ($key+1), $result)){
           if($result[$key+1]['tipo_movimiento'] === "salida"){
 
            $contadorSalida += 1;
            $tiempoTrabajado += $result[$key+1]['tiempo'] - $value["tiempo"];
           }
-
+        }
        }
        
 }
