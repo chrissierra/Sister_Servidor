@@ -366,13 +366,15 @@ foreach ($result as $key => $value) {
        //echo "key" . $key;
        if($value["tipo_movimiento"] === "entrada"){
           if($result[$key+1]['tipo_movimiento'] === "salida"){
+
+           $contadorSalida += 1;
            $tiempoTrabajado += $result[$key+1]['tiempo'] - $value["tiempo"];
           }
        }
        
 }
 
-    $response = array('horasExactas' => ($tiempoTrabajado/3600) );
+    $response = array('horasExactas' => ($tiempoTrabajado/3600), "diasTrabajados" => $contadorSalida);
 
    // echo $horasNoTrabajadas;
     echo json_encode($response);
