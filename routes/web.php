@@ -389,7 +389,6 @@ foreach ($resultTurnosExtras as $key => $value) {
 
 foreach ($result as $key => $value) {
           
-    if($value["cuantia_diferencia_real_esperada"]<0) $horasNoTrabajadas += (-1* $value["cuantia_diferencia_real_esperada"]);
 
        if($value["tipo_movimiento"] === "entrada"){
              
