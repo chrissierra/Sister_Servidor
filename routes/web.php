@@ -372,6 +372,7 @@ Route::get('/DiasLaboralesRealizadosProd/{id}/{mes}/{anio}', function ($id, $mes
 
 foreach ($resultTurnosExtras as $key => $value) {
        
+    if($value["cuantia_diferencia_real_esperada"]<0) $horasNoTrabajadas += (-1* $value["cuantia_diferencia_real_esperada"]);
        //echo "key" . $key;
        if($value["tipo_movimiento"] === "entrada"){
 
@@ -408,7 +409,7 @@ foreach ($result as $key => $value) {
 
 
 
-    $response = array('horasExactas' => ($tiempoTrabajado/3600), "diasTrabajados" => $contadorSalida, "horasExtras" => $tiempoTrabajadoExtra/3600);
+    $response = array('horasExactas' => ($tiempoTrabajado/3600), "diasTrabajados" => $contadorSalida, "horasExtras" => $tiempoTrabajadoExtra/3600, 'horasNoTrabajadas' => $horasNoTrabajadas);
 
    // echo $horasNoTrabajadas;
     echo json_encode($response);
