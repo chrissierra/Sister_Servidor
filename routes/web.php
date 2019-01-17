@@ -408,7 +408,7 @@ foreach ($result as $key => $value) {
 
 
 
-    $response = array('horasExactas' => ($tiempoTrabajado/3600), "diasTrabajados" => $contadorSalida, "horasExtras" => $tiempoTrabajadoExtra);
+    $response = array('horasExactas' => ($tiempoTrabajado/3600), "diasTrabajados" => $contadorSalida, "horasExtras" => $tiempoTrabajadoExtra/3600);
 
    // echo $horasNoTrabajadas;
     echo json_encode($response);
