@@ -383,10 +383,10 @@ foreach ($resultTurnosExtras as $key => $value) {
        
 }
 
-var_dump($result);
+
 
 foreach ($result as $key => $value) {
-       
+      echo $value["tipo_movimiento"] . " " . $value["tiempo"];
        //echo "key" . $key;
        if($value["tipo_movimiento"] === "entrada"){
        
