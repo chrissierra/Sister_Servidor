@@ -366,13 +366,12 @@ Route::get('/DiasLaboralesRealizadosProd/{id}/{mes}/{anio}', function ($id, $mes
   ->get();      
 
 
-  var_dump($resultTurnosExtras);
-  
+
   $contadorEntrada=0;
   $contadorSalida=0;     
 
 foreach ($resultTurnosExtras as $key => $value) {
-       
+       echo $value["tipo_movimiento"];
        //echo "key" . $key;
        if($value["tipo_movimiento"] === "entrada"){
 
