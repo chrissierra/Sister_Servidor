@@ -373,29 +373,30 @@ foreach ($resultTurnosExtras as $key => $value) {
        //echo "key" . $key;
        if($value["tipo_movimiento"] === "entrada"){
 
-        if(array_key_exists( ($key+1), $result)){
-           if($result[$key+1]['tipo_movimiento'] === "salida" ){        
-              $tiempoTrabajadoExtra += $result[$key+1]['tiempo'] - $value["tiempo"];
-          }
-        }
+                if(array_key_exists( ($key+1), $result)){
+                       if($result[$key+1]['tipo_movimiento'] === "salida" ){        
+                          $tiempoTrabajadoExtra += $result[$key+1]['tiempo'] - $value["tiempo"];
+                      }
+                }
          
        }
        
 }
 
+var_dump($result);
 
 foreach ($result as $key => $value) {
        
        //echo "key" . $key;
        if($value["tipo_movimiento"] === "entrada"){
        
-if(array_key_exists( ($key+1), $result)){
-          if($result[$key+1]['tipo_movimiento'] === "salida"){
+              if(array_key_exists( ($key+1), $result)){
+                        if($result[$key+1]['tipo_movimiento'] === "salida"){
 
-           $contadorSalida += 1;
-           $tiempoTrabajado += $result[$key+1]['tiempo'] - $value["tiempo"];
-          }
-        }
+                         $contadorSalida += 1;
+                         $tiempoTrabajado += $result[$key+1]['tiempo'] - $value["tiempo"];
+                        }
+              }
        }
        
 }
