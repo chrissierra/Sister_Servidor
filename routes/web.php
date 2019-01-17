@@ -386,11 +386,13 @@ foreach ($resultTurnosExtras as $key => $value) {
 
 
 foreach ($result as $key => $value) {
-      echo $value["tipo_movimiento"] . " " . $value["tiempo"];
+      echo $value["tipo_movimiento"] . " " . $value["tiempo"] . "<br>";
        //echo "key" . $key;
        if($value["tipo_movimiento"] === "entrada"){
-       
+               echo "Es entrada: " . $value["tipo_movimiento"] . " " . $value["tiempo"] . "<br>";
               if(array_key_exists( ($key+1), $result)){
+
+                 echo "Dentro array key exist : " . $result[$key+1]["tipo_movimiento"] . " " . $result[$key+1]["tiempo"] . "<br>";
                         if($result[$key+1]['tipo_movimiento'] === "salida"){
 
                          $contadorSalida += 1;
