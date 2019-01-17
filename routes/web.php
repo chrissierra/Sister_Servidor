@@ -392,7 +392,7 @@ foreach ($result as $key => $value) {
                echo "Es entrada: " . $value["tipo_movimiento"] . " " . $value["tiempo"] . "<br>";
                echo "array_key_exists: " . array_key_exists( ($key+1), $result) . "<br>";
                echo "isset: " . isset($result[$key+1]). "<br>";
-              if(array_key_exists( ($key+1), $result)){
+              if(isset($result[$key+1])){
 
                  echo "Dentro array key exist : " . $result[$key+1]["tipo_movimiento"] . " " . $result[$key+1]["tiempo"] . "<br>";
                         if($result[$key+1]['tipo_movimiento'] === "salida"){
