@@ -396,18 +396,18 @@ foreach ($result as $key => $value) {
 
                         if($result[$key+1]['tipo_movimiento'] === "salida"){
 
-                        if($value["cuantia_diferencia_real_esperada"]<0 && $result[$key+1]["cuantia_diferencia_real_esperada"] < 0){
-                          $horasNoTrabajadas += (-1* $value["cuantia_diferencia_real_esperada"]) + (-1* $result[$key+1]["cuantia_diferencia_real_esperada"]);
-                        }elseif ($value["cuantia_diferencia_real_esperada"]>0 && $result[$key+1]["cuantia_diferencia_real_esperada"] > 0) {
-                          # code...
-                           $horasNoTrabajadas += ( $value["cuantia_diferencia_real_esperada"]) + ( $result[$key+1]["cuantia_diferencia_real_esperada"]);
-                        }elseif ($value["cuantia_diferencia_real_esperada"]<0 && $result[$key+1]["cuantia_diferencia_real_esperada"] > 0) {
-                          # code...
-                           $horasNoTrabajadas += ( $value["cuantia_diferencia_real_esperada"]) + ( $result[$key+1]["cuantia_diferencia_real_esperada"]);
-                        }elseif ($value["cuantia_diferencia_real_esperada"]>0 && $result[$key+1]["cuantia_diferencia_real_esperada"] < 0) {
-                          # code...
-                           $horasNoTrabajadas += ( $result[$key+1]["cuantia_diferencia_real_esperada"])+( $value["cuantia_diferencia_real_esperada"]) ;
-                        }
+                                  if($value["cuantia_diferencia_real_esperada"]<0 && $result[$key+1]["cuantia_diferencia_real_esperada"] < 0){
+                                    $horasNoTrabajadas += (-1* $value["cuantia_diferencia_real_esperada"]) + (-1* $result[$key+1]["cuantia_diferencia_real_esperada"]);
+                                  }elseif ($value["cuantia_diferencia_real_esperada"]>0 && $result[$key+1]["cuantia_diferencia_real_esperada"] > 0) {
+                                    # code...
+                                     $horasNoTrabajadas += ( $value["cuantia_diferencia_real_esperada"]) + ( $result[$key+1]["cuantia_diferencia_real_esperada"]);
+                                  }elseif ($value["cuantia_diferencia_real_esperada"]<0 && $result[$key+1]["cuantia_diferencia_real_esperada"] > 0) {
+                                    # code...
+                                     $horasNoTrabajadas += ( $value["cuantia_diferencia_real_esperada"]) + ( $result[$key+1]["cuantia_diferencia_real_esperada"]);
+                                  }elseif ($value["cuantia_diferencia_real_esperada"]>0 && $result[$key+1]["cuantia_diferencia_real_esperada"] < 0) {
+                                    # code...
+                                     $horasNoTrabajadas += ( $result[$key+1]["cuantia_diferencia_real_esperada"])+( $value["cuantia_diferencia_real_esperada"]) ;
+                                  }
                          $contadorSalida += 1;
                          $tiempoTrabajado += $result[$key+1]['tiempo'] - $value["tiempo"];
                         }
