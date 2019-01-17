@@ -371,13 +371,13 @@ Route::get('/DiasLaboralesRealizadosProd/{id}/{mes}/{anio}', function ($id, $mes
   $contadorSalida=0;     
 
 foreach ($resultTurnosExtras as $key => $value) {
-       echo $value["tipo_movimiento"];
+       
        //echo "key" . $key;
        if($value["tipo_movimiento"] === "entrada"){
 
-                if(isset($result[$key+1])){
-                       if($result[$key+1]['tipo_movimiento'] === "salida" ){        
-                          $tiempoTrabajadoExtra += $result[$key+1]['tiempo'] - $value["tiempo"];
+                if(isset($resultTurnosExtras[$key+1])){
+                       if($resultTurnosExtras[$key+1]['tipo_movimiento'] === "salida" ){        
+                          $tiempoTrabajadoExtra += $resultTurnosExtras[$key+1]['tiempo'] - $value["tiempo"];
                       }
                 }
          
