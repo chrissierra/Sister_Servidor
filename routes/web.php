@@ -365,6 +365,9 @@ Route::get('/DiasLaboralesRealizadosProd/{id}/{mes}/{anio}', function ($id, $mes
   ->orderBy('tiempo', 'asc')
   ->get();      
 
+
+  var_dump($resultTurnosExtras);
+  
   $contadorEntrada=0;
   $contadorSalida=0;     
 
