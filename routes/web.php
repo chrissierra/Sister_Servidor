@@ -439,7 +439,7 @@ Route::get('/TurnosSinTerminar/{usuario_cliente}/{mes}/{anio}', function ($usuar
   ->get();  
 
   $TurnosSinTerminar= array();
-
+  var_dump($result);
 foreach ($result as $key => $value) {
           
 
