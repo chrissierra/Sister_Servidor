@@ -461,3 +461,72 @@ foreach ($result as $key => $value) {
    // echo $horasNoTrabajadas;
     echo json_encode($response);
 });
+
+
+Route::get('/TurnosSinTerminarPorTrabajador/{id_trabajador}/{mes}/{anio}', function ($id_trabajador, $mes,$anio) {   
+ 
+   $result =\App\asistencia::where('id_trabajador', $id_trabajador)
+  ->where('mes',$mes)
+  ->where('anio', $anio)
+  ->orderBy('tiempo', 'asc')
+  ->get();  
+
+  $TurnosSinTerminar= array();
+  //var_dump($result);
+foreach ($result as $key => $value) {
+          
+
+       if($value["tipo_movimiento"] === "entrada"){
+             
+              if(isset($result[$key+1])){
+
+                        if($result[$key+1]['tipo_movimiento'] !== "salida"){
+
+                          array_push($TurnosSinTerminar, $result[$key]);
+
+                        }
+              }
+       }
+       
+}
+    $response = array('turnosSinTerminar' => $TurnosSinTerminar);
+
+   // echo $horasNoTrabajadas;
+    echo json_encode($response);
+});
+
+
+
+
+Route::get('/TurnosSinTerminarPorSucursal/{usuario_cliente}/{mes}/{anio}/{sucursal}', function ($usuario_cliente, $mes,$anio, $sucursal) {   
+ 
+   $result =\App\asistencia::where('usuario_cliente', $usuario_cliente)
+  ->where('locacion', $sucursal)
+  ->where('mes',$mes)
+  ->where('anio', $anio)
+  ->orderBy('tiempo', 'asc')
+  ->get();  
+
+  $TurnosSinTerminar= array();
+  //var_dump($result);
+foreach ($result as $key => $value) {
+          
+
+       if($value["tipo_movimiento"] === "entrada"){
+             
+              if(isset($result[$key+1])){
+
+                        if($result[$key+1]['tipo_movimiento'] !== "salida"){
+
+                          array_push($TurnosSinTerminar, $result[$key]);
+
+                        }
+              }
+       }
+       
+}
+    $response = array('turnosSinTerminar' => $TurnosSinTerminar);
+
+   // echo $horasNoTrabajadas;
+    echo json_encode($response);
+});
