@@ -430,10 +430,34 @@ foreach ($result as $key => $value) {
 
 
 
+Route::get('/TurnosSinTerminar/{usuario_cliente}/{mes}/{anio}', function ($usuario_cliente, $mes,$anio) {   
+ 
+   $result =\App\asistencia::where('usuario_cliente', $usuario_cliente)
+  ->where('mes',$mes)
+  ->where('anio', $anio)
+  ->orderBy('tiempo', 'asc')
+  ->get();  
 
+  $TurnosSinTerminar= array();
 
+foreach ($result as $key => $value) {
+          
 
+       if($value["tipo_movimiento"] === "entrada"){
+             
+              if(isset($result[$key+1])){
 
+                        if($result[$key+1]['tipo_movimiento'] !== "salida"){
 
+                          array_push($TurnosSinTerminar, $result[$key]);
 
+                        }
+              }
+       }
+       
+}
+    $response = array('turnosSinTerminar' => $TurnosSinTerminar);
 
+   // echo $horasNoTrabajadas;
+    echo json_encode($response);
+});
