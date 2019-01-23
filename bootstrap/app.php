@@ -1,7 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: *');
-header('Access-Control-Allow-Headers: *');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Headers: Content-Type,X-Amz-Date,Authorization,X-Api-Key,Origin,Accept,Access-Control-Allow-Headers,Access-Control-Allow-Methods,Access-Control-Allow-Origin');
 /*
 |--------------------------------------------------------------------------
 | Create The Application
