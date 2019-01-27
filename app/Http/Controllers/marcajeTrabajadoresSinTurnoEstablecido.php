@@ -34,7 +34,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
               	# Entrada
               	echo json_encode('entrada');
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'salida' && ($this->tiempo- $ultimoMovimiento->get()[0]['tiempo']) <32400){
-              	echo json_encode('Listo');
+              	echo json_encode(array("estatus" => 'Listo', "diferenciaTimes" => $this->diferenciaTimes($ultimoMovimiento->get()[0]['tiempo'])));
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento'] === 'entrada'){
               	return $this->analizarMovimiento($ultimoMovimiento->get()[0]);
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'salida' && ($this->tiempo- $ultimoMovimiento->get()[0]['tiempo'])>43200){
@@ -42,6 +42,13 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
               }
     }
 
+
+  private function diferenciaTimes($ultimoRegistroTiempo){
+
+    $whole = (int) $ultimoRegistroTiempo;  // 5
+    $frac  = $ultimoRegistroTiempo - (int) $ultimoRegistroTiempo;  // .7
+    return ((($this->tiempo -  $ultimoRegistroTiempo )/ 60) / 60);
+  }
 
 
   public function VerificarUltimoMovimientoTurnoExtra(Request $request){
