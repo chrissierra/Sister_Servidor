@@ -37,7 +37,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
               	echo json_encode(array("estatus" => 'Listo', "diferenciaTimes" => $this->diferenciaTimes($ultimoMovimiento->get()[0]['tiempo'])));
               }elseif(($ultimoMovimiento->count() > 0) && ($ultimoMovimiento->get()[0]['tipo_movimiento'] === 'entrada')){
               	return $this->analizarMovimiento($ultimoMovimiento->get()[0]);
-              }elseif(($ultimoMovimiento->count() > 0) && ($ultimoMovimiento->get()[0]['tipo_movimiento']=== 'salida') && (($this->tiempo- $ultimoMovimiento->get()[0]['tiempo'])>43200)){
+              }elseif(($ultimoMovimiento->count() > 0) && ($ultimoMovimiento->get()[0]['tipo_movimiento']=== 'salida') && (($this->tiempo- $ultimoMovimiento->get()[0]['tiempo'])>28800)){
               	echo json_encode('entrada');
               }
     }
@@ -67,7 +67,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
                 echo json_encode('Listo'); // Quiza pueda poner otro turno, luego del listo. Son turnos extras... ****
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento'] === 'entrada'){
                 return $this->analizarMovimiento($ultimoMovimiento->get()[0]);
-              }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'salida' && ($this->tiempo- $ultimoMovimiento->get()[0]['tiempo'])>43200){
+              }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'salida' && ($this->tiempo- $ultimoMovimiento->get()[0]['tiempo'])>=28800){
                 echo json_encode('entrada');
               }
     }
