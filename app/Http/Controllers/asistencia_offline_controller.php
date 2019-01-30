@@ -58,7 +58,7 @@ class asistencia_offline_controller extends Controller
         $planilla = \App\ingreso_empleados::where('id', $post['id_trabajador'])->get();   
 
         $sucursales = \App\sucursales::where('id', $post['Sucursal'])->get();
-
+        var_dump($post['locacion']);
         $diferenciaMetros = $this->distance($sucursales[0]['latitud'], $sucursales[0]['longitud'], $post['locacion']['coords']['latitude'], $post['locacion']['coords']['longitude'], 'K');       
        
         if($post['movimiento'] == 'entrada'){
