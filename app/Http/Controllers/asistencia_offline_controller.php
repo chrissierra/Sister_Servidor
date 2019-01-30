@@ -56,10 +56,10 @@ class asistencia_offline_controller extends Controller
 	    $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
       
         $planilla = \App\ingreso_empleados::where('id', $post['id_trabajador'])->get();   
-
+		$postListo = json_decode($post['locacion'], true);
         $sucursales = \App\sucursales::where('id', $post['Sucursal'])->get();
         var_dump($post['locacion']);
-        $diferenciaMetros = $this->distance($sucursales[0]['latitud'], $sucursales[0]['longitud'], $post['locacion']['coords']['latitude'], $post['locacion']['coords']['longitude'], 'K');       
+        $diferenciaMetros = $this->distance($sucursales[0]['latitud'], $sucursales[0]['longitud'], $postListo['coords']['latitude'], $postListo['coords']['longitude'], 'K');       
        
         if($post['movimiento'] == 'entrada'){
          
@@ -82,9 +82,9 @@ class asistencia_offline_controller extends Controller
             $tabla_asistencia->cuantia_diferencia_real_esperada = '';
             $tabla_asistencia->tiempo = time();
             $tabla_asistencia->locacion = $sucursales[0]['nombre'];
-            $tabla_asistencia->latitude = $post['locacion']['coords']['latitude'];
-            $tabla_asistencia->longitude = $post['locacion']['coords']['longitude'];
-            $tabla_asistencia->altitude = $post['locacion']['coords']['altitude'];
+            $tabla_asistencia->latitude = $postListo['coords']['latitude'];
+            $tabla_asistencia->longitude = $postListo['coords']['longitude'];
+            $tabla_asistencia->altitude = $postListo['coords']['altitude'];
             $tabla_asistencia->url = $post['urlEscrita'];
             $tabla_asistencia->distancia = $diferenciaMetros;
             $tabla_asistencia->sucursal = $sucursales[0]['id'];
@@ -114,9 +114,9 @@ class asistencia_offline_controller extends Controller
             $tabla_asistencia->cuantia_diferencia_real_esperada = '';
             $tabla_asistencia->tiempo = time();
             $tabla_asistencia->locacion = $sucursales[0]['nombre'];
-            $tabla_asistencia->latitude = $post['locacion']['coords']['latitude'];
-            $tabla_asistencia->longitude = $post['locacion']['coords']['longitude'];
-            $tabla_asistencia->altitude = $post['locacion']['coords']['altitude'];
+            $tabla_asistencia->latitude = $postListo['coords']['latitude'];
+            $tabla_asistencia->longitude = $postListo['coords']['longitude'];
+            $tabla_asistencia->altitude = $postListo['coords']['altitude'];
             $tabla_asistencia->url = $post['urlEscrita'];
             $tabla_asistencia->distancia = $diferenciaMetros;
             $tabla_asistencia->sucursal = $sucursales[0]['id'];
