@@ -76,8 +76,6 @@ class asistencia_offline_controller extends Controller
             $tabla_asistencia->mes = date('m');
             $tabla_asistencia->anio = date('Y');
             $tabla_asistencia->dia = date('d');
-            $tabla_asistencia->cuantia_esperada = '';
-            $tabla_asistencia->cuantia_diferencia_real_esperada = '';
             $tabla_asistencia->tiempo = time();
             $tabla_asistencia->locacion = $sucursales[0]['nombre'];
             $tabla_asistencia->latitude = $postListo['coords']['latitude'];
@@ -106,8 +104,7 @@ class asistencia_offline_controller extends Controller
             $tabla_asistencia->mes = date('m');
             $tabla_asistencia->anio = date('Y');
             $tabla_asistencia->dia = date('d');
-            $tabla_asistencia->cuantia_esperada = '';
-            $tabla_asistencia->cuantia_diferencia_real_esperada = '';
+
             $tabla_asistencia->tiempo = time();
             $tabla_asistencia->locacion = $sucursales[0]['nombre'];
             $tabla_asistencia->latitude = $postListo['coords']['latitude'];
