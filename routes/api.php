@@ -185,3 +185,7 @@ Route::post('actualmenteTrabajandoPorSucursal', 'libroremuneraciones@actualmente
 Route::post('getmovimientounitario', 'libroremuneraciones@getmovimientounitario');
 
 Route::post('MarcarMovimiento_offline', 'asistencia_offline_controller@MarcarMovimiento');
+
+Route::post('getAsistenciaOfflineDiario', 'asistencia_offline_controller@getAsistenciaOfflineDiario');
+
+Route::post('getAsistenciaOfflineMensual', 'asistencia_offline_controller@getAsistenciaOfflineMensual');

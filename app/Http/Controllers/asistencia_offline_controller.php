@@ -123,6 +123,43 @@ class asistencia_offline_controller extends Controller
 
 
 
+    public function getAsistenciaOfflineDiario(Request $request){
+	    
+    	$post = $request->json()->all();
+
+    	$tabla = \App\asistencia_offline::where('usuario_cliente', $post['id'])
+    						->where('mes', explode('-', $post['dia'])[0]) // No debe decir $mes + 1 ...; solo $mes 
+                            ->where('anio', explode('-', $post['dia'])[2])
+                            ->where('dia', explode('-', $post['dia'])[1])
+                            ->get();
+
+    	return json_decode($tabla);
+
+
+    }
+
+
+
+        public function getAsistenciaOfflineMensual(Request $request){
+	    
+    	$post = $request->json()->all();
+
+    	$tabla = \App\asistencia_offline::where('usuario_cliente', $post['id'])
+    						->where('mes', $post['mes']) // No debe decir $mes + 1 ...; solo $mes 
+                            ->where('anio', $post['anio'])
+                            ->get();
+
+    	return json_decode($tabla);
+
+
+    }
+
+
+    
+
+
+
+
 
 
 }
