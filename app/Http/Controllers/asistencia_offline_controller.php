@@ -71,8 +71,6 @@ class asistencia_offline_controller extends Controller
             $tabla_asistencia->usuario_cliente = $planilla[0]['nombre_empresa_usuario_plataforma'];
             $tabla_asistencia->nombre = $planilla[0]['nombre'];
             $tabla_asistencia->apellido = $planilla[0]['apellido'];
-            $tabla_asistencia->status_entrada = '';  // Atraso o no
-            $tabla_asistencia->status_salida = '';  // Atraso o no
             $tabla_asistencia->cuantia_entrada = date('H')+ (date('i') /60 ) ;
             $tabla_asistencia->cuantia_salida = '';
             $tabla_asistencia->mes = date('m');
@@ -103,8 +101,6 @@ class asistencia_offline_controller extends Controller
             $tabla_asistencia->usuario_cliente = $planilla[0]['nombre_empresa_usuario_plataforma'];
             $tabla_asistencia->nombre = $planilla[0]['nombre'];
             $tabla_asistencia->apellido = $planilla[0]['apellido'];
-            $tabla_asistencia->status_entrada = '';  // Atraso o no
-            $tabla_asistencia->status_salida = '' ;  // Atraso o no
             $tabla_asistencia->cuantia_entrada = '' ;
             $tabla_asistencia->cuantia_salida = date('H') + ( date('i') /60 );
             $tabla_asistencia->mes = date('m');
