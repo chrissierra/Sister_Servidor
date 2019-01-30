@@ -81,7 +81,7 @@ class asistencia_offline_controller extends Controller
             $tabla_asistencia->latitude = $postListo['coords']['latitude'];
             $tabla_asistencia->longitude = $postListo['coords']['longitude'];
 
-            $tabla_asistencia->url = $post['urlEscrita'];
+            $tabla_asistencia->url = $post['urlEscrita']['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
             $tabla_asistencia->sucursal = $sucursales[0]['id'];
 
@@ -109,7 +109,7 @@ class asistencia_offline_controller extends Controller
 
             $tabla_asistencia->longitude = $postListo['coords']['longitude'];
             $tabla_asistencia->altitude = $postListo['coords']['altitude'];
-            $tabla_asistencia->url = $post['urlEscrita'];
+            $tabla_asistencia->url = $post['urlEscrita']['url'];
             $tabla_asistencia->distancia = $diferenciaMetros;
             $tabla_asistencia->sucursal = $sucursales[0]['id'];
 
