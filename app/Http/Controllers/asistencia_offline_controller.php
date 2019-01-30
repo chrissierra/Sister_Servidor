@@ -80,12 +80,11 @@ class asistencia_offline_controller extends Controller
             $tabla_asistencia->locacion = $sucursales[0]['nombre'];
             $tabla_asistencia->latitude = $postListo['coords']['latitude'];
             $tabla_asistencia->longitude = $postListo['coords']['longitude'];
-            $tabla_asistencia->altitude = $postListo['coords']['altitude'];
+
             $tabla_asistencia->url = $post['urlEscrita'];
             $tabla_asistencia->distancia = $diferenciaMetros;
             $tabla_asistencia->sucursal = $sucursales[0]['id'];
-            $tabla_asistencia->biometrica = $post['biometrica'];
-            $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
+
             $tabla_asistencia->save();
                            echo json_encode(array('estatus' => 'EntradaRealizada', 'id'=>$tabla_asistencia->id, 'sucursal'=> $tabla_asistencia->locacion, 'nombre' => $tabla_asistencia->nombre , 'apellido'=> $tabla_asistencia->apellido));
         }
@@ -107,14 +106,13 @@ class asistencia_offline_controller extends Controller
 
             $tabla_asistencia->tiempo = time();
             $tabla_asistencia->locacion = $sucursales[0]['nombre'];
-            $tabla_asistencia->latitude = $postListo['coords']['latitude'];
+
             $tabla_asistencia->longitude = $postListo['coords']['longitude'];
             $tabla_asistencia->altitude = $postListo['coords']['altitude'];
             $tabla_asistencia->url = $post['urlEscrita'];
             $tabla_asistencia->distancia = $diferenciaMetros;
             $tabla_asistencia->sucursal = $sucursales[0]['id'];
-            $tabla_asistencia->biometrica = $post['biometrica'];
-            $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
+
             $tabla_asistencia->save();
                            echo json_encode(array('estatus' => 'SalidaRealizada', 'id'=>$tabla_asistencia->id, 'sucursal'=> $tabla_asistencia->locacion, 'nombre' => $tabla_asistencia->nombre , 'apellido'=> $tabla_asistencia->apellido));
 
