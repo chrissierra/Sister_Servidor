@@ -501,7 +501,7 @@ foreach ($result as $key => $value) {
 Route::get('/TurnosSinTerminarPorSucursal/{usuario_cliente}/{mes}/{anio}/{sucursal}', function ($usuario_cliente, $mes,$anio, $sucursal) {   
  
    $result =\App\asistencia::where('usuario_cliente', $usuario_cliente)
-  ->where('locacion', $sucursal)
+  ->where('sucursal', $sucursal)
   ->where('mes',$mes)
   ->where('anio', $anio)
   ->orderBy('tiempo', 'asc')
