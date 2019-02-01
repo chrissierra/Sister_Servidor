@@ -432,35 +432,64 @@ foreach ($result as $key => $value) {
 
 Route::get('/TurnosSinTerminar/{usuario_cliente}/{mes}/{anio}', function ($usuario_cliente, $mes,$anio) {   
  
-   $result =\App\asistencia::where('usuario_cliente', $usuario_cliente)
-  ->where('mes',$mes)
-  ->where('anio', $anio)
-  ->orderBy('tiempo', 'asc')
-  ->get();  
 
-  $TurnosSinTerminar= array();
-  //var_dump($result);
-foreach ($result as $key => $value) {
-          
+    $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $usuario_cliente)->get();
 
-       if($value["tipo_movimiento"] === "entrada"){
-             
-              if(isset($result[$key+1])){
+    foreach ($planilla as $key => $value) {
+      # code...
+       $result =\App\asistencia::where('id_trabajador', $value['id'])
+                ->where('mes',$mes)
+                ->where('anio', $anio)
+                ->orderBy('tiempo', 'asc')
+                ->get();  
 
-                        if($result[$key+1]['tipo_movimiento'] !== "salida"){
+                $TurnosSinTerminar= array();
+                //var_dump($result);
+        foreach ($result as $key => $value) {
+                        
 
-                          array_push($TurnosSinTerminar, $result[$key]);
+                     if($value["tipo_movimiento"] === "entrada"){
+                           
+                            if(isset($result[$key+1])){
 
-                        }
-              }
-       }
-       
-}
-    $response = array('turnosSinTerminar' => $TurnosSinTerminar);
+                                      if($result[$key+1]['tipo_movimiento'] !== "salida"){
 
-   // echo $horasNoTrabajadas;
-    echo json_encode($response);
+                                        array_push($TurnosSinTerminar, $result[$key]);
+
+                                       }
+                            }
+                     }
+                     
+        }
+    }
+    
+
+      $response = array('turnosSinTerminar' => $TurnosSinTerminar);
+
+     // echo $horasNoTrabajadas;
+      echo json_encode($response);
+
+
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/TurnosSinTerminarPorTrabajador/{id_trabajador}/{mes}/{anio}', function ($id_trabajador, $mes,$anio) {   
