@@ -434,7 +434,7 @@ Route::get('/TurnosSinTerminar/{usuario_cliente}/{mes}/{anio}', function ($usuar
  
 
     $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $usuario_cliente)->get();
-
+    $TurnosSinTerminar= array();
     foreach ($planilla as $key => $value) {
       # code...
        $result =\App\asistencia::where('id_trabajador', $value['id'])
@@ -443,7 +443,7 @@ Route::get('/TurnosSinTerminar/{usuario_cliente}/{mes}/{anio}', function ($usuar
                 ->orderBy('tiempo', 'asc')
                 ->get();  
 
-                $TurnosSinTerminar= array();
+                
                 //var_dump($result);
         foreach ($result as $key => $value) {
                         
@@ -529,33 +529,44 @@ foreach ($result as $key => $value) {
 
 Route::get('/TurnosSinTerminarPorSucursal/{usuario_cliente}/{mes}/{anio}/{sucursal}', function ($usuario_cliente, $mes,$anio, $sucursal) {   
  
-   $result =\App\asistencia::where('usuario_cliente', $usuario_cliente)
-  ->where('sucursal', $sucursal)
-  ->where('mes',$mes)
-  ->where('anio', $anio)
-  ->orderBy('tiempo', 'asc')
-  ->get();  
+    $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $usuario_cliente)->get();
+    $TurnosSinTerminar= array();
+    foreach ($planilla as $key => $value) {
+      # code...
+       $result =\App\asistencia::where('id_trabajador', $value['id'])
+                ->where('sucursal', $sucursal)
+                ->where('mes',$mes)
+                ->where('anio', $anio)
+                ->orderBy('tiempo', 'asc')
+                ->get();  
 
-  $TurnosSinTerminar= array();
-  //var_dump($result);
-foreach ($result as $key => $value) {
-          
+                
+                //var_dump($result);
+        foreach ($result as $key => $value) {
+                        
 
-       if($value["tipo_movimiento"] === "entrada"){
-             
-              if(isset($result[$key+1])){
+                     if($value["tipo_movimiento"] === "entrada"){
+                           
+                            if(isset($result[$key+1])){
 
-                        if($result[$key+1]['tipo_movimiento'] !== "salida"){
+                                      if($result[$key+1]['tipo_movimiento'] !== "salida"){
 
-                          array_push($TurnosSinTerminar, $result[$key]);
+                                        array_push($TurnosSinTerminar, $result[$key]);
 
-                        }
-              }
-       }
-       
-}
-    $response = array('turnosSinTerminar' => $TurnosSinTerminar);
+                                       }
+                            }
+                     }
+                     
+        }
+    }
+    
 
-   // echo $horasNoTrabajadas;
-    echo json_encode($response);
+      $response = array('turnosSinTerminar' => $TurnosSinTerminar);
+
+     // echo $horasNoTrabajadas;
+      echo json_encode($response);
+
+
+
+
 });
