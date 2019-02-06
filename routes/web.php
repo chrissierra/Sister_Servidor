@@ -570,3 +570,198 @@ Route::get('/TurnosSinTerminarPorSucursal/{usuario_cliente}/{mes}/{anio}/{sucurs
 
 
 });
+
+
+
+
+
+/*
+// *****************************************
+
+
+Para Gráficas:
+
+
+//******************************************
+
+*/
+
+
+
+Route::get('/HorasPorSucursalMes/{id}/{mes}/{anio}/{sucursal}', function ($id, $mes,$anio, $sucursal) {   
+  $horasNoTrabajadas = 0;    
+  $horasTrabajadas = 0; 
+  $tiempoTrabajado = 0;  
+  $tiempoTrabajadoExtra = 0;
+
+  $result =\App\asistencia::where('usuario_cliente', $id)
+  ->where('mes',$mes)
+  ->where('anio', $anio)
+  ->where('turnoExtra', null)
+  ->where('sucursal', $sucursal)
+  ->orderBy('tiempo', 'asc')
+  ->get();  
+
+  $resultTurnosExtras =\App\asistencia::where('usuario_cliente', $id)
+  ->where('mes',$mes)
+  ->where('anio', $anio)
+  ->where('turnoExtra', 1)
+  ->where('sucursal', $sucursal)
+  ->orderBy('tiempo', 'asc')
+  ->get();      
+
+
+
+  $contadorEntrada=0;
+  $contadorSalida=0;     
+
+foreach ($resultTurnosExtras as $key => $value) {
+       
+       //echo "key" . $key;
+       if($value["tipo_movimiento"] === "entrada"){
+
+                if(isset($resultTurnosExtras[$key+1])){
+                       if($resultTurnosExtras[$key+1]['tipo_movimiento'] === "salida" ){        
+                          $tiempoTrabajadoExtra += $resultTurnosExtras[$key+1]['tiempo'] - $value["tiempo"];
+                      }
+                }
+         
+       }
+       
+}
+
+
+
+foreach ($result as $key => $value) {
+          
+
+       if($value["tipo_movimiento"] === "entrada"){
+             
+              if(isset($result[$key+1])){
+
+                        if($result[$key+1]['tipo_movimiento'] === "salida"){
+
+                                  if($value["cuantia_diferencia_real_esperada"]<0 && $result[$key+1]["cuantia_diferencia_real_esperada"] < 0){
+                                    $horasNoTrabajadas += (-1* $value["cuantia_diferencia_real_esperada"]) + (-1* $result[$key+1]["cuantia_diferencia_real_esperada"]);
+                                  }elseif ($value["cuantia_diferencia_real_esperada"]>0 && $result[$key+1]["cuantia_diferencia_real_esperada"] > 0) {
+                                    # code...
+                                     $horasNoTrabajadas += ( $value["cuantia_diferencia_real_esperada"]) + ( $result[$key+1]["cuantia_diferencia_real_esperada"]);
+                                  }elseif ($value["cuantia_diferencia_real_esperada"]<0 && $result[$key+1]["cuantia_diferencia_real_esperada"] > 0) {
+                                    # code...
+                                     $horasNoTrabajadas += ( $value["cuantia_diferencia_real_esperada"]) + ( $result[$key+1]["cuantia_diferencia_real_esperada"]);
+                                  }elseif ($value["cuantia_diferencia_real_esperada"]>0 && $result[$key+1]["cuantia_diferencia_real_esperada"] < 0) {
+                                    # code...
+                                     $horasNoTrabajadas += ( $result[$key+1]["cuantia_diferencia_real_esperada"])+( $value["cuantia_diferencia_real_esperada"]) ;
+                                  }
+                         $contadorSalida += 1;
+                         $tiempoTrabajado += $result[$key+1]['tiempo'] - $value["tiempo"];
+                        }
+              }
+       }
+       
+}
+
+
+
+
+
+
+    $response = array('horasExactas' => ($tiempoTrabajado/3600), "diasTrabajados" => $contadorSalida, "horasExtras" => $tiempoTrabajadoExtra/3600, 'horasNoTrabajadas' => $horasNoTrabajadas);
+
+   // echo $horasNoTrabajadas;
+    echo json_encode($response);
+});
+
+
+
+
+
+
+
+
+Route::get('/HorasPorSucursalDia/{id}/{mes}/{anio}/{dia}/{sucursal}', function ($id, $mes,$anio,$dia, $sucursal) {   
+  $horasNoTrabajadas = 0;    
+  $horasTrabajadas = 0; 
+  $tiempoTrabajado = 0;  
+  $tiempoTrabajadoExtra = 0;
+
+  $result =\App\asistencia::where('usuario_cliente', $id)
+  ->where('mes',$mes)
+  ->where('anio', $anio)
+  ->where('dia', $dia)
+  ->where('turnoExtra', null)
+  ->where('sucursal', $sucursal)
+  ->orderBy('tiempo', 'asc')
+  ->get();  
+
+  $resultTurnosExtras =\App\asistencia::where('usuario_cliente', $id)
+  ->where('mes',$mes)
+  ->where('anio', $anio)
+  ->where('dia', $dia)
+  ->where('turnoExtra', 1)
+  ->where('sucursal', $sucursal)
+  ->orderBy('tiempo', 'asc')
+  ->get();      
+
+
+
+  $contadorEntrada=0;
+  $contadorSalida=0;     
+
+foreach ($resultTurnosExtras as $key => $value) {
+       
+       //echo "key" . $key;
+       if($value["tipo_movimiento"] === "entrada"){
+
+                if(isset($resultTurnosExtras[$key+1])){
+                       if($resultTurnosExtras[$key+1]['tipo_movimiento'] === "salida" ){        
+                          $tiempoTrabajadoExtra += $resultTurnosExtras[$key+1]['tiempo'] - $value["tiempo"];
+                      }
+                }
+         
+       }
+       
+}
+
+
+
+foreach ($result as $key => $value) {
+          
+
+       if($value["tipo_movimiento"] === "entrada"){
+             
+              if(isset($result[$key+1])){
+
+                        if($result[$key+1]['tipo_movimiento'] === "salida"){
+
+                                  if($value["cuantia_diferencia_real_esperada"]<0 && $result[$key+1]["cuantia_diferencia_real_esperada"] < 0){
+                                    $horasNoTrabajadas += (-1* $value["cuantia_diferencia_real_esperada"]) + (-1* $result[$key+1]["cuantia_diferencia_real_esperada"]);
+                                  }elseif ($value["cuantia_diferencia_real_esperada"]>0 && $result[$key+1]["cuantia_diferencia_real_esperada"] > 0) {
+                                    # code...
+                                     $horasNoTrabajadas += ( $value["cuantia_diferencia_real_esperada"]) + ( $result[$key+1]["cuantia_diferencia_real_esperada"]);
+                                  }elseif ($value["cuantia_diferencia_real_esperada"]<0 && $result[$key+1]["cuantia_diferencia_real_esperada"] > 0) {
+                                    # code...
+                                     $horasNoTrabajadas += ( $value["cuantia_diferencia_real_esperada"]) + ( $result[$key+1]["cuantia_diferencia_real_esperada"]);
+                                  }elseif ($value["cuantia_diferencia_real_esperada"]>0 && $result[$key+1]["cuantia_diferencia_real_esperada"] < 0) {
+                                    # code...
+                                     $horasNoTrabajadas += ( $result[$key+1]["cuantia_diferencia_real_esperada"])+( $value["cuantia_diferencia_real_esperada"]) ;
+                                  }
+                         $contadorSalida += 1;
+                         $tiempoTrabajado += $result[$key+1]['tiempo'] - $value["tiempo"];
+                        }
+              }
+       }
+       
+}
+
+
+
+
+
+
+    $response = array('horasExactas' => ($tiempoTrabajado/3600), "diasTrabajados" => $contadorSalida, "horasExtras" => $tiempoTrabajadoExtra/3600, 'horasNoTrabajadas' => $horasNoTrabajadas);
+
+   // echo $horasNoTrabajadas;
+    echo json_encode($response);
+});
+
