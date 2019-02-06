@@ -602,7 +602,7 @@ Route::get('/HorasPorSucursalMes/{id}/{mes}/{anio}/{sucursal}', function ($id, $
   ->orderBy('tiempo', 'asc')
   ->get();  
 
-  dd($restult);
+  dd($result);
 
   $resultTurnosExtras =\App\asistencia::where('usuario_cliente', $id)
   ->where('mes',$mes)
