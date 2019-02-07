@@ -593,7 +593,8 @@ Route::get('/HorasPorSucursalMes/{id}/{mes}/{anio}/{sucursal}', function ($id, $
 
 
   $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $id)->get();
-  $total = 0;
+  $totalNormal = 0;
+  $totalTurnos = 0;
 
 
   foreach ($planilla as $key => $value) {
@@ -670,7 +671,9 @@ Route::get('/HorasPorSucursalMes/{id}/{mes}/{anio}/{sucursal}', function ($id, $
                      
               }
 
-              $total += $tiempoTrabajado;
+
+              $totalTurnos += $tiempoTrabajadoExtra;              
+              $totalNormal += $tiempoTrabajado;
 
 
   } // FIn foreach planilla
@@ -682,7 +685,7 @@ Route::get('/HorasPorSucursalMes/{id}/{mes}/{anio}/{sucursal}', function ($id, $
 
 
 
-    $response = array('horasExactas' => ($total/3600));
+    $response = array('horasExactas' => ($totalNormal/3600), 'horasExtras' => ($totalTurnos/3600));
 
    // echo $horasNoTrabajadas;
     echo json_encode($response);
@@ -696,86 +699,104 @@ Route::get('/HorasPorSucursalMes/{id}/{mes}/{anio}/{sucursal}', function ($id, $
 
 
 Route::get('/HorasPorSucursalDia/{id}/{mes}/{anio}/{dia}/{sucursal}', function ($id, $mes,$anio,$dia, $sucursal) {   
-  $horasNoTrabajadas = 0;    
-  $horasTrabajadas = 0; 
-  $tiempoTrabajado = 0;  
-  $tiempoTrabajadoExtra = 0;
-
-  $result =\App\asistencia::where('usuario_cliente', $id)
-  ->where('mes',$mes)
-  ->where('anio', $anio)
-  ->where('dia', $dia)
-  ->where('turnoExtra', null)
-  ->where('sucursal', $sucursal)
-  ->orderBy('tiempo', 'asc')
-  ->get();  
-
-  $resultTurnosExtras =\App\asistencia::where('usuario_cliente', $id)
-  ->where('mes',$mes)
-  ->where('anio', $anio)
-  ->where('dia', $dia)
-  ->where('turnoExtra', 1)
-  ->where('sucursal', $sucursal)
-  ->orderBy('tiempo', 'asc')
-  ->get();      
 
 
+      $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $id)->get();
+      $totalNormal = 0;
+      $totalTurnos = 0;
 
-  $contadorEntrada=0;
-  $contadorSalida=0;     
 
-foreach ($resultTurnosExtras as $key => $value) {
-       
-       //echo "key" . $key;
-       if($value["tipo_movimiento"] === "entrada"){
+  foreach ($planilla as $key => $value) {
+                  # code...
+                $horasNoTrabajadas = 0;    
+                $horasTrabajadas = 0; 
+                $tiempoTrabajado = 0;  
+                $tiempoTrabajadoExtra = 0;
+                $contadorEntrada=0;
+                $contadorSalida=0;     
 
-                if(isset($resultTurnosExtras[$key+1])){
-                       if($resultTurnosExtras[$key+1]['tipo_movimiento'] === "salida" ){        
-                          $tiempoTrabajadoExtra += $resultTurnosExtras[$key+1]['tiempo'] - $value["tiempo"];
-                      }
-                }
-         
-       }
-       
-}
+                $result =\App\asistencia::where('id_trabajador', $value['id'])
+                ->where('mes',$mes)
+                ->where('anio', $anio)
+                ->where('dia', $dia)
+                ->where('turnoExtra', null)
+                ->where('sucursal', $sucursal)
+                ->orderBy('tiempo', 'asc')
+                ->get();  
 
 
 
-foreach ($result as $key => $value) {
-          
+                $resultTurnosExtras =\App\asistencia::where('id_trabajador', $value['id'])
+                ->where('mes',$mes)
+                ->where('anio', $anio)
+                ->where('dia', $dia)
+                ->where('turnoExtra', 1)
+                ->where('sucursal', $sucursal)
+                ->orderBy('tiempo', 'asc')
+                ->get();   
 
-       if($value["tipo_movimiento"] === "entrada"){
-             
-              if(isset($result[$key+1])){
 
-                        if($result[$key+1]['tipo_movimiento'] === "salida"){
+              foreach ($resultTurnosExtras as $key => $value) {
+                     
+                     //echo "key" . $key;
+                     if($value["tipo_movimiento"] === "entrada"){
 
-                                  if($value["cuantia_diferencia_real_esperada"]<0 && $result[$key+1]["cuantia_diferencia_real_esperada"] < 0){
-                                    $horasNoTrabajadas += (-1* $value["cuantia_diferencia_real_esperada"]) + (-1* $result[$key+1]["cuantia_diferencia_real_esperada"]);
-                                  }elseif ($value["cuantia_diferencia_real_esperada"]>0 && $result[$key+1]["cuantia_diferencia_real_esperada"] > 0) {
-                                    # code...
-                                     $horasNoTrabajadas += ( $value["cuantia_diferencia_real_esperada"]) + ( $result[$key+1]["cuantia_diferencia_real_esperada"]);
-                                  }elseif ($value["cuantia_diferencia_real_esperada"]<0 && $result[$key+1]["cuantia_diferencia_real_esperada"] > 0) {
-                                    # code...
-                                     $horasNoTrabajadas += ( $value["cuantia_diferencia_real_esperada"]) + ( $result[$key+1]["cuantia_diferencia_real_esperada"]);
-                                  }elseif ($value["cuantia_diferencia_real_esperada"]>0 && $result[$key+1]["cuantia_diferencia_real_esperada"] < 0) {
-                                    # code...
-                                     $horasNoTrabajadas += ( $result[$key+1]["cuantia_diferencia_real_esperada"])+( $value["cuantia_diferencia_real_esperada"]) ;
-                                  }
-                         $contadorSalida += 1;
-                         $tiempoTrabajado += $result[$key+1]['tiempo'] - $value["tiempo"];
-                        }
+                              if(isset($resultTurnosExtras[$key+1])){
+                                     if($resultTurnosExtras[$key+1]['tipo_movimiento'] === "salida" ){        
+                                        $tiempoTrabajadoExtra += $resultTurnosExtras[$key+1]['tiempo'] - $value["tiempo"];
+                                    }
+                              }
+                       
+                     }
+                     
               }
-       }
-       
-}
+
+
+
+              foreach ($result as $key => $value) {
+                        
+
+                     if($value["tipo_movimiento"] === "entrada"){
+                           
+                            if(isset($result[$key+1])){
+
+                                      if($result[$key+1]['tipo_movimiento'] === "salida"){
+
+                                                if($value["cuantia_diferencia_real_esperada"]<0 && $result[$key+1]["cuantia_diferencia_real_esperada"] < 0){
+                                                  $horasNoTrabajadas += (-1* $value["cuantia_diferencia_real_esperada"]) + (-1* $result[$key+1]["cuantia_diferencia_real_esperada"]);
+                                                }elseif ($value["cuantia_diferencia_real_esperada"]>0 && $result[$key+1]["cuantia_diferencia_real_esperada"] > 0) {
+                                                  # code...
+                                                   $horasNoTrabajadas += ( $value["cuantia_diferencia_real_esperada"]) + ( $result[$key+1]["cuantia_diferencia_real_esperada"]);
+                                                }elseif ($value["cuantia_diferencia_real_esperada"]<0 && $result[$key+1]["cuantia_diferencia_real_esperada"] > 0) {
+                                                  # code...
+                                                   $horasNoTrabajadas += ( $value["cuantia_diferencia_real_esperada"]) + ( $result[$key+1]["cuantia_diferencia_real_esperada"]);
+                                                }elseif ($value["cuantia_diferencia_real_esperada"]>0 && $result[$key+1]["cuantia_diferencia_real_esperada"] < 0) {
+                                                  # code...
+                                                   $horasNoTrabajadas += ( $result[$key+1]["cuantia_diferencia_real_esperada"])+( $value["cuantia_diferencia_real_esperada"]) ;
+                                                }
+                                       $contadorSalida += 1;
+                                       $tiempoTrabajado += $result[$key+1]['tiempo'] - $value["tiempo"];
+                                      }
+                            }
+                     }
+                     
+              }
+
+
+              $totalTurnos += $tiempoTrabajadoExtra;              
+              $totalNormal += $tiempoTrabajado;
+
+
+  } // FIn foreach planilla
 
 
 
 
 
 
-    $response = array('horasExactas' => ($tiempoTrabajado/3600), "diasTrabajados" => $contadorSalida, "horasExtras" => $tiempoTrabajadoExtra/3600, 'horasNoTrabajadas' => $horasNoTrabajadas);
+
+
+    $response = array('horasExactas' => ($totalNormal/3600), 'horasExtras' => ($totalTurnos/3600));
 
    // echo $horasNoTrabajadas;
     echo json_encode($response);
