@@ -836,7 +836,7 @@ Route::get('/HorasPorSucursalDia/{id}/{mes}/{anio}/{dia}/{sucursal}', function (
   ->orderBy('tiempo', 'asc')
   ->get();      
 
-  $rut = Array($result[0]['rut']);
+  $rut = '12341234';
   $apellido = Array($result[0]['apellido']);
 
 foreach ($resultTurnosExtras as $key => $value) {
@@ -910,8 +910,7 @@ $marcador=0;
 
 
     $response = array("nombre"=> $nombre ,"respuesta" => $respuestaNormal, "rut"=> $rut);
-    var_dump($response);
-    //print_r(json_encode($response, JSON_FORCE_OBJECT));
+    print_r(json_encode($response, JSON_FORCE_OBJECT));
    // echo $horasNoTrabajadas;
     //echo json_encode($response);
 });
