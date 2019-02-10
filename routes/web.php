@@ -862,6 +862,8 @@ foreach ($resultTurnosExtras as $key => $value) {
 $marcador=0;
     for ($i=1; $i <= $numero; $i++) { 
             foreach ($result as $key => $value) {
+              $nombre = $value['nombre'] . ' ' . $value['apellido'];
+              $rut = $value['rut'];
               if($value['dia'] === $i){
                 
                                 if($value["tipo_movimiento"] === "entrada"){
@@ -905,7 +907,7 @@ $marcador=0;
 
 
 
-    $response = array('nombre'=> $id ,'respuesta' => $respuestaNormal);
+    $response = array('nombre'=> $nombre ,'respuesta' => $respuestaNormal, 'rut' => $rut );
 
    // echo $horasNoTrabajadas;
     echo json_encode($response);
