@@ -909,8 +909,8 @@ $marcador=0;
 
 
 
-    $response = array('nombre'=> $nombre ,'respuesta' => $respuestaNormal, 'rut'=> json_encode($rut));
-    print_r($response);
+    $response = array('nombre'=> $nombre ,'respuesta' => $respuestaNormal, 'rut'=> $rut);
+    print_r($json_encode($response));
    // echo $horasNoTrabajadas;
-    echo json_encode($response);
+    //echo json_encode($response);
 });
