@@ -864,7 +864,7 @@ foreach ($resultTurnosExtras as $key => $value) {
 $marcador=0;
     for ($i=1; $i <= $numero; $i++) { 
             foreach ($result as $key => $value) {
-              $nombre = $value['nombre'];
+              $nombre = $value['nombre'] . ' '. $value['apellido'];
              
               if($value['dia'] === $i){
                 
