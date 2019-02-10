@@ -814,7 +814,8 @@ Route::get('/HorasPorSucursalDia/{id}/{mes}/{anio}/{dia}/{sucursal}', function (
 
     $numero = cal_days_in_month(CAL_GREGORIAN,$mes, $anio); // 31
 
-
+  $nombre = '';
+  $apellido = '';
   $tiempoTrabajado = 0;  
   $tiempoTrabajadoExtra = 0;
   $contadorSalida=0; 
