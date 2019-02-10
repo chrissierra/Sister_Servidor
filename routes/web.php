@@ -892,7 +892,7 @@ $marcador=0;
     
     }
 
-    if($marcador = 1){
+    if($marcador === 1){
       array_push($respuestaNormal, '');
       $marcador=0;
     } 
