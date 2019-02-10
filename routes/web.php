@@ -836,8 +836,8 @@ Route::get('/HorasPorSucursalDia/{id}/{mes}/{anio}/{dia}/{sucursal}', function (
   ->orderBy('tiempo', 'asc')
   ->get();      
 
-  $rut = '12341234';
-  $apellido = Array($result[0]['apellido']);
+ // $rut = '12341234';
+ // $apellido = Array($result[0]['apellido']);
 
 foreach ($resultTurnosExtras as $key => $value) {
        
