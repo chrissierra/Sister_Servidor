@@ -857,11 +857,11 @@ foreach ($resultTurnosExtras as $key => $value) {
 
 
 
-foreach ($result as $key => $value) {
+
           
 
     for ($i=1; $i < $numero; $i++) { 
-
+            foreach ($result as $key => $value) {
               if($value['dia'] === $i){
                                 if($value["tipo_movimiento"] === "entrada"){
                                // var_dump($value);
