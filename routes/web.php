@@ -812,6 +812,9 @@ Route::get('/HorasPorSucursalDia/{id}/{mes}/{anio}/{dia}/{sucursal}', function (
 
   Route::get('/LibroTipoPlanillaAsistencia/{id}/{mes}/{anio}', function ($id, $mes,$anio) {   
 
+    $numero = cal_days_in_month(CAL_GREGORIAN,$mes, $anio); // 31
+
+
   $tiempoTrabajado = 0;  
   $tiempoTrabajadoExtra = 0;
   $contadorSalida=0; 
@@ -857,22 +860,38 @@ foreach ($resultTurnosExtras as $key => $value) {
 foreach ($result as $key => $value) {
           
 
-       if($value["tipo_movimiento"] === "entrada"){
-             // var_dump($value);
-             // echo '<br><br>';
-              if(isset($result[$key+1])){
+    for ($i=1; $i < $numero; $i++) { 
 
-                        if($result[$key+1]['tipo_movimiento'] === "salida"){
+              if($value['dia'] === $i){
+                                if($value["tipo_movimiento"] === "entrada"){
+                               // var_dump($value);
+                               // echo '<br><br>';
+                                          if(isset($result[$key+1])){
 
-                         $contadorSalida += 1;
-                         $tiempoTrabajado += $result[$key+1]['tiempo'] - $value["tiempo"];
-                         
-                         array_push($respuestaNormal, 2);
-                        }else{
-                            array_push($respuestaNormal, 1);
-                        }
+                                                    if($result[$key+1]['tipo_movimiento'] === "salida"){
+
+                                                     $contadorSalida += 1;
+                                                     $tiempoTrabajado += $result[$key+1]['tiempo'] - $value["tiempo"];
+                                                     
+
+                                                     array_push($respuestaNormal, 2);
+                                                    }else{
+                                                        array_push($respuestaNormal, 1);
+                                                    }
+                                          }
+                                  }
+
+
+              }else{
+                array_push($respuestaNormal, '');
               }
-       }
+
+
+
+    
+    }
+
+
        
 }
 
