@@ -858,8 +858,8 @@ foreach ($result as $key => $value) {
           
 
        if($value["tipo_movimiento"] === "entrada"){
-              var_dump($value);
-              echo '<br><br>';
+             // var_dump($value);
+             // echo '<br><br>';
               if(isset($result[$key+1])){
 
                         if($result[$key+1]['tipo_movimiento'] === "salida"){
