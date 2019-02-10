@@ -859,10 +859,11 @@ foreach ($resultTurnosExtras as $key => $value) {
 
 
           
-
+$marcador=0;
     for ($i=1; $i < $numero; $i++) { 
             foreach ($result as $key => $value) {
               if($value['dia'] === $i){
+                $marcador=1;
                                 if($value["tipo_movimiento"] === "entrada"){
                                // var_dump($value);
                                // echo '<br><br>';
@@ -883,7 +884,7 @@ foreach ($resultTurnosExtras as $key => $value) {
 
 
               }else{
-                array_push($respuestaNormal, '');
+                
               }
 
 
@@ -891,6 +892,10 @@ foreach ($resultTurnosExtras as $key => $value) {
     
     }
 
+    if($marcador = 1){
+      array_push($respuestaNormal, '');
+      $marcador=0;
+    } 
 
        
 }
