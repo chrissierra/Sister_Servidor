@@ -909,7 +909,7 @@ $marcador=0;
 
 
 
-    $response = array("nombre"=> $nombre ,"respuesta" => $respuestaNormal, "rut"=> 'hola');
+    $response = array("nombre"=> $nombre ,"respuesta" => $respuestaNormal);
     echo json_encode($response);
    // echo $horasNoTrabajadas;
     //echo json_encode($response);
