@@ -837,7 +837,7 @@ Route::get('/HorasPorSucursalDia/{id}/{mes}/{anio}/{dia}/{sucursal}', function (
   ->get();      
 
   $rut = $result[0]['rut'];
-  $apellido = $resulta[0]['apellido'];
+  $apellido = $result[0]['apellido'];
 
 foreach ($resultTurnosExtras as $key => $value) {
        
