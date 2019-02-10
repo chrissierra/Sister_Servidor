@@ -802,3 +802,83 @@ Route::get('/HorasPorSucursalDia/{id}/{mes}/{anio}/{dia}/{sucursal}', function (
     echo json_encode($response);
 });
 
+
+
+/*
+  TODO ESTO ES PARA VER LA PLANILLA TIPO AGR:
+
+*/
+
+
+  Route::get('/LibroTipoPlanillaAsistencia/{id}/{mes}/{anio}', function ($id, $mes,$anio) {   
+
+  $tiempoTrabajado = 0;  
+  $tiempoTrabajadoExtra = 0;
+  $contadorSalida=0; 
+  $respuestaExtras = Array();
+  $respuestaNormal = Array();
+  $result =\App\asistencia::where('id_trabajador', $id)
+  ->where('mes',$mes)
+  ->where('anio', $anio)
+  ->where('turnoExtra', null)
+  ->orderBy('tiempo', 'asc')
+  ->get();  
+
+  $resultTurnosExtras =\App\asistencia::where('id_trabajador', $id)
+  ->where('mes',$mes)
+  ->where('anio', $anio)
+  ->where('turnoExtra', 1)
+  ->orderBy('tiempo', 'asc')
+  ->get();      
+
+
+    
+
+foreach ($resultTurnosExtras as $key => $value) {
+       
+       //echo "key" . $key;
+       if($value["tipo_movimiento"] === "entrada"){
+
+                if(isset($resultTurnosExtras[$key+1])){
+                       if($resultTurnosExtras[$key+1]['tipo_movimiento'] === "salida" ){        
+                          $tiempoTrabajadoExtra += $resultTurnosExtras[$key+1]['tiempo'] - $value["tiempo"];
+                          array_push($respuestaExtras, 2);
+                      }else{
+                          array_push($respuestaExtras, 1);
+                      }
+                }
+         
+       }
+       
+}
+
+
+
+foreach ($result as $key => $value) {
+          
+
+       if($value["tipo_movimiento"] === "entrada"){
+             
+              if(isset($result[$key+1])){
+
+                        if($result[$key+1]['tipo_movimiento'] === "salida"){
+
+                         $contadorSalida += 1;
+                         $tiempoTrabajado += $result[$key+1]['tiempo'] - $value["tiempo"];
+                         
+                         array_push($respuestaNormal, 2);
+                        }else{
+                            array_push($respuestaNormal, 1);
+                        }
+              }
+       }
+       
+}
+
+
+
+    $response = array('nombre'=> $id ,'respuesta' => $respuestaNormal);
+
+   // echo $horasNoTrabajadas;
+    echo json_encode($response);
+});
