@@ -863,7 +863,7 @@ $marcador=0;
     for ($i=1; $i < $numero; $i++) { 
             foreach ($result as $key => $value) {
               if($value['dia'] === $i){
-                $marcador=1;
+                
                                 if($value["tipo_movimiento"] === "entrada"){
                                // var_dump($value);
                                // echo '<br><br>';
@@ -874,9 +874,10 @@ $marcador=0;
                                                      $contadorSalida += 1;
                                                      $tiempoTrabajado += $result[$key+1]['tiempo'] - $value["tiempo"];
                                                      
-
+                                                    $marcador=1;
                                                      array_push($respuestaNormal, 2);
                                                     }else{
+                                                      $marcador=1;
                                                         array_push($respuestaNormal, 1);
                                                     }
                                           }
