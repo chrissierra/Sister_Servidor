@@ -821,6 +821,7 @@ Route::get('/HorasPorSucursalDia/{id}/{mes}/{anio}/{dia}/{sucursal}', function (
   $contadorSalida=0; 
   $respuestaExtras = Array();
   $respuestaNormal = Array();
+
   $result =\App\asistencia::where('id_trabajador', $id)
   ->where('mes',$mes)
   ->where('anio', $anio)
@@ -835,7 +836,7 @@ Route::get('/HorasPorSucursalDia/{id}/{mes}/{anio}/{dia}/{sucursal}', function (
   ->orderBy('tiempo', 'asc')
   ->get();      
 
-
+  $rut = $result[0]['rut'];
     
 
 foreach ($resultTurnosExtras as $key => $value) {
@@ -864,7 +865,7 @@ $marcador=0;
     for ($i=1; $i <= $numero; $i++) { 
             foreach ($result as $key => $value) {
               $nombre = $value['nombre'];
-              $rut = $value['rut'];
+             
               if($value['dia'] === $i){
                 
                                 if($value["tipo_movimiento"] === "entrada"){
@@ -908,7 +909,7 @@ $marcador=0;
 
 
 
-    $response = array('nombre'=> $nombre ,'respuesta' => $respuestaNormal, 'rut' => [$rut] );
+    $response = array('nombre'=> $nombre ,'respuesta' => $respuestaNormal, 'rut' => $rut );
 
    // echo $horasNoTrabajadas;
     echo json_encode($response);
