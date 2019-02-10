@@ -909,7 +909,7 @@ $marcador=0;
 
      $planilla = \App\ingreso_empleados::where('id', $id)->get();  
 
-    $response = array("nombre"=> $nombre ,"respuesta" => $respuestaNormal, "rut" => $planilla[0]['rut'] );
+    $response = array("nombre"=> $nombre ,"respuesta" => $respuestaNormal, "rut" => $planilla[0]['rut'], "apellido" => $planilla[0]['apellido'] );
     echo json_encode($response);
    // echo $horasNoTrabajadas;
     //echo json_encode($response);
