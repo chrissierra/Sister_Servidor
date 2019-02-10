@@ -860,7 +860,7 @@ foreach ($resultTurnosExtras as $key => $value) {
 
           
 $marcador=0;
-    for ($i=1; $i = $numero; $i++) { 
+    for ($i=1; $i <= $numero; $i++) { 
             foreach ($result as $key => $value) {
               if($value['dia'] === $i){
                 
