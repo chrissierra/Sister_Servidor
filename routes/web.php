@@ -837,7 +837,7 @@ Route::get('/HorasPorSucursalDia/{id}/{mes}/{anio}/{dia}/{sucursal}', function (
   ->get();      
 
   $rut = $result[0]['rut'];
-    
+  $apellido = $resulta[0]['apellido'];
 
 foreach ($resultTurnosExtras as $key => $value) {
        
@@ -864,7 +864,7 @@ foreach ($resultTurnosExtras as $key => $value) {
 $marcador=0;
     for ($i=1; $i <= $numero; $i++) { 
             foreach ($result as $key => $value) {
-              $nombre = $value['nombre'] . ' '. $value['apellido'];
+              $nombre = $value['nombre'];
              
               if($value['dia'] === $i){
                 
@@ -909,7 +909,7 @@ $marcador=0;
 
 
 
-    $response = array('nombre'=> $nombre ,'respuesta' => $respuestaNormal, 'rut' => $rut , 'hola'=> 1);
+    $response = array('nombre'=> $nombre ,'respuesta' => $respuestaNormal, 'apellido'=> $apellido);
 
    // echo $horasNoTrabajadas;
     echo json_encode($response);
