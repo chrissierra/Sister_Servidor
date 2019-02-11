@@ -98,11 +98,11 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
     }
 
     private function analizarMovimientoTurnosExtras($objetoUltimoMov){
-        if($this->tiempo-$objetoUltimoMov['tiempo']>46800){
+        if($this->tiempo-$objetoUltimoMov['tiempo']>52800){
             #mas de 13 horas del ultimo movimiento entrada. Entrega entrada nuevamente. 
             echo json_encode('entrada');
-        }elseif($this->tiempo-$objetoUltimoMov['tiempo']<46800){
-            #Entrega a marcar la salida, han pasado menos de 13 horas
+        }elseif($this->tiempo-$objetoUltimoMov['tiempo']<52800){
+            #Entrega a marcar la salida, han pasado menos de 14.5 horas
             echo json_encode('salida');
 
         }
@@ -111,11 +111,11 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 
 
     private function analizarMovimiento($objetoUltimoMov){
-    	if($this->tiempo-$objetoUltimoMov['tiempo']>46800){
+    	if($this->tiempo-$objetoUltimoMov['tiempo']>52800){
     		#mas de 13 horas del ultimo movimiento entrada. Entrega entrada nuevamente. 
     		echo json_encode('entrada');
-    	}elseif($this->tiempo-$objetoUltimoMov['tiempo']<46800){
-    		#Entrega a marcar la salida, han pasado menos de 13 horas
+    	}elseif($this->tiempo-$objetoUltimoMov['tiempo']<52800){
+    		#Entrega a marcar la salida, han pasado menos de 14.5 horas
     		echo json_encode('salida');
 
     	}
