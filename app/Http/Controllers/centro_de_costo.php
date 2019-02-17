@@ -28,7 +28,6 @@ class centro_de_costo extends Controller
     	$post = $request->json()->all();
     	$centro_de_costo = \App\centro_de_costo::where('id', $post[1]['value']);   	
 		$centro_de_costo->update(['nombre' => $post[0]['value']]);
-    	$centro_de_costo->update(['administrador_id' => $post[4]['value']]);
     
 
     }
