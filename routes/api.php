@@ -189,3 +189,33 @@ Route::post('MarcarMovimiento_offline', 'asistencia_offline_controller@MarcarMov
 Route::post('getAsistenciaOfflineDiario', 'asistencia_offline_controller@getAsistenciaOfflineDiario');
 
 Route::post('getAsistenciaOfflineMensual', 'asistencia_offline_controller@getAsistenciaOfflineMensual');
+
+// departamento:
+
+Route::post('ingresardepartamento', 'departamento@ingresardepartamento');
+
+Route::post('actualizardepartamento', 'departamento@actualizardepartamento');
+
+Route::post('getdepartamento', 'departamento@getdepartamento');
+
+Route::post('deletedepartamento', 'departamento@deletedepartamento');
+
+// centro de costo:
+
+Route::post('ingresar_centrocosto', 'centro_de_costo@ingresar_centro_de_costo');
+
+Route::post('actualizar_centrocosto', 'centro_de_costo@actualizar_centro_de_costo');
+
+Route::post('get_centrocosto', 'centro_de_costo@get_centro_de_costo');
+
+Route::post('delete_centrocosto', 'centro_de_costo@delete_centro_de_costo');
+
+// jefaturas:
+
+Route::post('ingresarjefaturas', 'jefaturas@ingresarjefatura');
+
+Route::post('actualizarjefaturas', 'jefaturas@actualizarjefatura');
+
+Route::post('getjefaturas', 'jefaturas@getjefaturas');
+
+Route::post('deletejefaturas', 'jefaturas@deletejefaturas');
