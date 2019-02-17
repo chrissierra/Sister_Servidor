@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class centro_de_costo extends Controller
 {
     //
-        public function ingresarcentro_de_costo(Request $request){
+        public function ingresar_centro_de_costo(Request $request){
     	$post = $request->json()->all();
     	$centro_de_costo = new \App\centro_de_costo;
     	
@@ -24,7 +24,7 @@ class centro_de_costo extends Controller
 
     }
 
-    public function actualizarcentro_de_costo(Request $request){
+    public function actualizar_centro_de_costo(Request $request){
     	$post = $request->json()->all();
     	$centro_de_costo = \App\centro_de_costo::where('centro_de_costo', $post[0]['value'])
     	 						->where('nombre_empresa', $post[1]['value']);    	
@@ -35,13 +35,13 @@ class centro_de_costo extends Controller
     }
 
 
-    public function getcentro_de_costo(Request $request){
+    public function get_centro_de_costo(Request $request){
     	$post = $request->json()->all();
     	$centro_de_costo = \App\centro_de_costo::where('nombre_empresa', $post['nombre_empresa'])->get();
     	return response()->json($centro_de_costo);
     }
 
-    public function deletecentro_de_costo(Request $request){
+    public function delete_centro_de_costo(Request $request){
     	$post = $request->json()->all();
     	$centro_de_costo = \App\centro_de_costo::where('centro_de_costo', $post[0]['value'])
     	 						->where('nombre_empresa', $post[1]['value'])->delete();
