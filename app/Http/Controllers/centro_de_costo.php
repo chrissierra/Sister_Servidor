@@ -16,7 +16,7 @@ class centro_de_costo extends Controller
     	}
 
     	$centro_de_costo->nombre= $post[0]['value'];
-    	$centro_de_costo->administrador_id = $post[1]['value'];
+    	$centro_de_costo->nombre_empresa = $post[1]['value'];
     	$centro_de_costo->save();
     	echo json_encode(array("estatus"=>'ok'));
     	//$planilla = new \App\mandantes;
