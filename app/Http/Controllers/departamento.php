@@ -30,7 +30,7 @@ class departamento extends Controller
 
     public function actualizardepartamento(Request $request){
     	$post = $request->json()->all();
-    	$departamento = \App\departamento::where('departamento', $post[0]['id_valor']);  	
+    	$departamento = \App\departamento::where('id', $post[0]['id_valor']);  	
 		$departamento->update(['nombre' => $post[0]['value']]);
     	$departamento->update(['centrocosto_id' => $post[1]['value']]);
     	$departamento->update(['jefatura_id' => $post[2]['value']]);
