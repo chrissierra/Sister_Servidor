@@ -18,9 +18,9 @@ class departamento extends Controller
 
     	$departamento->nombre= $post[0]['value'];
     	$departamento->centrocosto_id = $post[1]['value'];
-    	$departamento->jefatura_id = $post[1]['value'];
-    	$departamento->nombre_empresa = $post[1]['value'];
-    	$departamento->trabajador_encargado_id = $post[1]['value'];
+    	$departamento->jefatura_id = $post[2]['value'];
+    	$departamento->nombre_empresa = $post[3]['value'];
+    	$departamento->trabajador_encargado_id = $post[4]['value'];
 	    $departamento->save();
     	echo json_encode(array("estatus"=>'ok'));
     	//$planilla = new \App\mandantes;
