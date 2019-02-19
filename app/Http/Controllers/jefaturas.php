@@ -38,8 +38,8 @@ class jefaturas extends Controller
         $departamento = \App\departamento::where('id', $post[2]['value'])->get();
 
 		$jefaturas->update(['nombre' => $post[0]['value']]);
-    	$jefaturas->update(['centro_costo_id' => $post[4]['value']]);
-    	$jefaturas->update(['departamento_id' => $post[5]['value']]);
+    	$jefaturas->update(['centro_costo_id' => $post[1]['value']]);
+    	$jefaturas->update(['departamento_id' => $post[2]['value']]);
         $jefaturas->update(['centro_costo_nombre' => $centro_costo[0]['nombre']]);
         $jefaturas->update(['departamento_nombre' => $departamento[0]['nombre']]);
     
