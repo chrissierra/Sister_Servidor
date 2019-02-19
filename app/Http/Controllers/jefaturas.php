@@ -33,7 +33,10 @@ class jefaturas extends Controller
 
     public function actualizarjefatura(Request $request){
     	$post = $request->json()->all();
-    	$jefaturas = \App\jefaturas::where('nombre_empresa', $post[0]['id_valor']);   	
+    	$jefaturas = \App\jefaturas::where('id', $post[0]['id_valor']);   
+        $centro_costo = \App\centro_de_costo::where('id', $post[1]['value'])->get();
+        $departamento = \App\departamento::where('id', $post[2]['value'])->get();
+
 		$jefaturas->update(['nombre' => $post[0]['value']]);
     	$jefaturas->update(['centro_costo_id' => $post[4]['value']]);
     	$jefaturas->update(['departamento_id' => $post[5]['value']]);
