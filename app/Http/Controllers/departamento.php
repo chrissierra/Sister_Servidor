@@ -11,14 +11,14 @@ class departamento extends Controller
     public function ingresardepartamento(Request $request){
     	$post = $request->json()->all();
     	$departamento = new \App\departamento;
-    	
+    	$centro_costo = \App\departamento::where('id', $post[1]['value'])->get();
     	for ($i=0; $i < count($post); $i++) { 
     		if( strlen($post[$i]['value']) < 1) abort(403, 'Unauthorized action.');
     	}
 
     	$departamento->nombre= $post[0]['value'];
     	$departamento->centrocosto_id = $post[1]['value'];
-    	$departamento->centro_costo_nombre = $post[1]['valor'];
+    	$departamento->centro_costo_nombre = $centro_costo[0]['nombre'];
     	$departamento->jefatura_id = $post[2]['value'];
     	$departamento->nombre_empresa = $post[3]['value'];
     	$departamento->trabajador_encargado_id = $post[4]['value'];
