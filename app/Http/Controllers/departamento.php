@@ -49,7 +49,6 @@ class departamento extends Controller
 
     public function deletedepartamento(Request $request){
     	$post = $request->json()->all();
-    	$departamento = \App\departamento::where('departamento', $post[0]['value'])
-    	 						->where('nombre_empresa', $post[1]['value'])->delete();
+    	$departamento = \App\departamento::where('id', $post[0]['id_valor'])->delete();
     }
 }
