@@ -11,7 +11,7 @@ class departamento extends Controller
     public function ingresardepartamento(Request $request){
     	$post = $request->json()->all();
     	$departamento = new \App\departamento;
-    	$centro_costo = \App\departamento::where('id', $post[1]['value'])->get();
+    	$centro_costo = \App\centro_de_costo::where('id', $post[1]['value'])->get();
     	for ($i=0; $i < count($post); $i++) { 
     		if( strlen($post[$i]['value']) < 1) abort(403, 'Unauthorized action.');
     	}
