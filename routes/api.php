@@ -219,3 +219,13 @@ Route::post('actualizarjefaturas', 'jefaturas@actualizarjefatura');
 Route::post('getjefaturas', 'jefaturas@getjefaturas');
 
 Route::post('deletejefaturas', 'jefaturas@deletejefaturas');
+
+// horario_por_sucursal:
+
+Route::post('ingresar_horario_por_sucursal', 'horario_por_sucursal@ingresar_horario_por_sucursal');
+
+Route::post('actualizar_horario_por_sucursal', 'horario_por_sucursal@actualizar_horario_por_sucursal');
+
+Route::post('get_horario_por_sucursal', 'horario_por_sucursal@get_horario_por_sucursal');
+
+Route::post('delete_horario_por_sucursal', 'horario_por_sucursal@delete_horario_por_sucursal');
