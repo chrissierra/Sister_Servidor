@@ -11,14 +11,15 @@ class horario_por_sucursal extends Controller
       public function ingresar_horario_por_sucursal(Request $request){
     	$post = $request->json()->all();
     	$horario_por_sucursal = new \App\horario_por_sucursal;
-    	$cuantiaEsperada = explode( ':', $post['hora_esperada'])[0] + (explode(':', $post['hora_esperada'])[1] / 60 );
+    	$cuantia_inferior = explode( ':', $post['hora_esperada'])[0] + (explode(':', $post['hora_esperada'])[1] / 60 );
+    	$cuantia_superior = explode( ':', $post['hora_esperada'])[0] + (explode(':', $post['hora_esperada'])[1] / 60 );
 
     	for ($i=0; $i < count($post); $i++) { 
     		if( strlen($post[$i]['value']) < 1) abort(403, 'Unauthorized action.');
     	}
 
-    	$horario_por_sucursal->cuantia_inferior = implode() $post[0]['value'];
-    	$horario_por_sucursal->cuantia_superior = $post[1]['value'];
+    	$horario_por_sucursal->cuantia_inferior = $cuantia_inferior;
+    	$horario_por_sucursal->cuantia_superior =$cuantia_superior;
         $horario_por_sucursal->cantidad_trabajadores = $post[2]['value'];
         $horario_por_sucursal->feriados = $post[3]['value'];
         $horario_por_sucursal->feriado_irrenunciable = $post4]['value'];
