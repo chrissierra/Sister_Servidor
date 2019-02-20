@@ -22,7 +22,7 @@ class horario_por_sucursal extends Controller
     	$horario_por_sucursal->cuantia_superior =$cuantia_superior;
         $horario_por_sucursal->cantidad_trabajadores = $post[2]['value'];
         $horario_por_sucursal->feriados = $post[3]['value'];
-        $horario_por_sucursal->feriado_irrenunciable = $post4]['value'];
+        $horario_por_sucursal->feriado_irrenunciable = $post[4]['value'];
         $horario_por_sucursal->dia = $post[5]['value'];
         $horario_por_sucursal->caso_especial = $post[6]['value'];
         $horario_por_sucursal->fecha_caso_especial = $post[7]['value'];
