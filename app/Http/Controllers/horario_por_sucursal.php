@@ -11,8 +11,8 @@ class horario_por_sucursal extends Controller
       public function ingresar_horario_por_sucursal(Request $request){
     	$post = $request->json()->all();
     	$horario_por_sucursal = new \App\horario_por_sucursal;
-    	$cuantia_inferior = explode( ':', $post['hora_esperada'])[0] + (explode(':', $post['hora_esperada'])[1] / 60 );
-    	$cuantia_superior = explode( ':', $post['hora_esperada'])[0] + (explode(':', $post['hora_esperada'])[1] / 60 );
+    	$cuantia_inferior = explode( ':', $post[0]['value'])[0] + (explode(':', $post[0]['value'])[1] / 60 );
+    	$cuantia_superior = explode( ':', $post[1]['value'])[0] + (explode(':', $post[1]['value'])[1] / 60 );
 
     	for ($i=0; $i < count($post); $i++) { 
     		if( strlen($post[$i]['value']) < 1) abort(403, 'Unauthorized action.');
@@ -26,6 +26,7 @@ class horario_por_sucursal extends Controller
         $horario_por_sucursal->dia = $post[5]['value'];
         $horario_por_sucursal->caso_especial = $post[6]['value'];
         $horario_por_sucursal->fecha_caso_especial = $post[7]['value'];
+        $horario_por_sucursal->nombre_empresa = $post[8]['value'];
     	$horario_por_sucursal->save();
     	echo json_encode(array("estatus"=>'ok'));
     	//$planilla = new \App\mandantes;
