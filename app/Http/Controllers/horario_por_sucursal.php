@@ -27,6 +27,9 @@ class horario_por_sucursal extends Controller
         $horario_por_sucursal->caso_especial = $post[6]['value'];
         $horario_por_sucursal->fecha_caso_especial = $post[7]['value'];
         $horario_por_sucursal->nombre_empresa = $post[8]['value'];
+        $horario_por_sucursal->cuantia_inferior_formato_hora = $post[0]['value'];      
+        $horario_por_sucursal->cuantia_superior_formato_hora = $post[1]['value'];
+        
     	$horario_por_sucursal->save();
     	echo json_encode(array("estatus"=>'ok'));
     	//$planilla = new \App\mandantes;
@@ -37,16 +40,19 @@ class horario_por_sucursal extends Controller
     public function actualizar_horario_por_sucursal(Request $request){
     	$post = $request->json()->all();
     	$horario_por_sucursal = \App\horario_por_sucursal::where('id', $post[0]['id_valor']);   
+    	$cuantia_inferior = explode( ':', $post[0]['value'])[0] + (explode(':', $post[0]['value'])[1] / 60 );
+    	$cuantia_superior = explode( ':', $post[1]['value'])[0] + (explode(':', $post[1]['value'])[1] / 60 );
 
-
-		$horario_por_sucursal->update(['cuantia_inferior' => $post[0]['value']]);
-    	$horario_por_sucursal->update(['cuantia_superior' => $post[1]['value']]);
+		$horario_por_sucursal->update(['cuantia_inferior' => $cuantia_inferior;
+    	$horario_por_sucursal->update(['cuantia_superior' => $cuantia_superior;
     	$horario_por_sucursal->update(['cantidad_trabajadores' => $post[2]['value']]);
         $horario_por_sucursal->update(['feriados' => $post[3]['value']]);
         $horario_por_sucursal->update(['feriado_irrenunciable' => $post[4]['value']]);
 		$horario_por_sucursal->update(['dia' => $post[5]['value']]);
     	$horario_por_sucursal->update(['caso_especial' => $post[6]['value']]);
     	$horario_por_sucursal->update(['fecha_caso_especial' => $post[7]['value']]);        
+    	$horario_por_sucursal->update(['cuantia_inferior_formato_hora' => $post[0]['value']]);        
+    	$horario_por_sucursal->update(['cuantia_superior_formato_hora' => $post[1]['value']]);        
 
     }
 
