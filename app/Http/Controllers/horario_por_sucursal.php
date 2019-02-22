@@ -43,8 +43,8 @@ class horario_por_sucursal extends Controller
     	$cuantia_inferior = explode( ':', $post[0]['value'])[0] + (explode(':', $post[0]['value'])[1] / 60 );
     	$cuantia_superior = explode( ':', $post[1]['value'])[0] + (explode(':', $post[1]['value'])[1] / 60 );
 
-		$horario_por_sucursal->update(['cuantia_inferior' => $cuantia_inferior;
-    	$horario_por_sucursal->update(['cuantia_superior' => $cuantia_superior;
+		$horario_por_sucursal->update(['cuantia_inferior' => $cuantia_inferior]);
+    	$horario_por_sucursal->update(['cuantia_superior' => $cuantia_superior]);
     	$horario_por_sucursal->update(['cantidad_trabajadores' => $post[2]['value']]);
         $horario_por_sucursal->update(['feriados' => $post[3]['value']]);
         $horario_por_sucursal->update(['feriado_irrenunciable' => $post[4]['value']]);
