@@ -65,7 +65,14 @@ class horario_por_sucursal extends Controller
 
     public function get_horario_por_sucursal(Request $request){
     	$post = $request->json()->all();
-    	$horario_por_sucursal = \App\horario_por_sucursal::where('nombre_empresa', $post['nombre_empresa'])->get();
+
+    	if(isset($post['sucursal'])){
+        	$horario_por_sucursal = \App\horario_por_sucursal::where('nombre_empresa', $post['nombre_empresa'])
+        	->where('sucursal_id', $post['sucursal'])
+        	->get();	
+    	}else{
+        	$horario_por_sucursal = \App\horario_por_sucursal::where('nombre_empresa', $post['nombre_empresa'])->get();
+    	}
     	return response()->json($horario_por_sucursal);
     }
 
