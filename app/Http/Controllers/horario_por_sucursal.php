@@ -13,6 +13,7 @@ class horario_por_sucursal extends Controller
     	$horario_por_sucursal = new \App\horario_por_sucursal;
     	$cuantia_inferior = explode( ':', $post[0]['value'])[0] + (explode(':', $post[0]['value'])[1] / 60 );
     	$cuantia_superior = explode( ':', $post[1]['value'])[0] + (explode(':', $post[1]['value'])[1] / 60 );
+        $sucursales = \App\sucursales::where('id', $post[9]['value'])->get();
 
     	for ($i=0; $i < count($post); $i++) { 
     		if( strlen($post[$i]['value']) < 1) abort(403, 'Unauthorized action.');
@@ -29,6 +30,8 @@ class horario_por_sucursal extends Controller
         $horario_por_sucursal->nombre_empresa = $post[8]['value'];
         $horario_por_sucursal->cuantia_inferior_formato_hora = $post[0]['value'];      
         $horario_por_sucursal->cuantia_superior_formato_hora = $post[1]['value'];
+        $horario_por_sucursal->sucursal_id = $post[9]['value'];
+        $horario_por_sucursal->sucursal_nombre = $sucursales[0]['nombre'];
         
     	$horario_por_sucursal->save();
     	echo json_encode(array("estatus"=>'ok'));
@@ -42,7 +45,7 @@ class horario_por_sucursal extends Controller
     	$horario_por_sucursal = \App\horario_por_sucursal::where('id', $post[0]['id_valor']);   
     	$cuantia_inferior = explode( ':', $post[0]['value'])[0] + (explode(':', $post[0]['value'])[1] / 60 );
     	$cuantia_superior = explode( ':', $post[1]['value'])[0] + (explode(':', $post[1]['value'])[1] / 60 );
-
+		$sucursales = \App\sucursales::where('id', $post[9]['value'])->get();
 		$horario_por_sucursal->update(['cuantia_inferior' => $cuantia_inferior]);
     	$horario_por_sucursal->update(['cuantia_superior' => $cuantia_superior]);
     	$horario_por_sucursal->update(['cantidad_trabajadores' => $post[2]['value']]);
@@ -53,6 +56,9 @@ class horario_por_sucursal extends Controller
     	$horario_por_sucursal->update(['fecha_caso_especial' => $post[7]['value']]);        
     	$horario_por_sucursal->update(['cuantia_inferior_formato_hora' => $post[0]['value']]);        
     	$horario_por_sucursal->update(['cuantia_superior_formato_hora' => $post[1]['value']]);        
+
+    	$horario_por_sucursal->update(['sucursal_id' => $post[9]['value']]);        
+    	$horario_por_sucursal->update(['sucursal_nombre' => $sucursales[0]['nombre']]);        
 
     }
 
