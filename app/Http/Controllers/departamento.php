@@ -12,7 +12,7 @@ class departamento extends Controller
     	$post = $request->json()->all();
     	$departamento = new \App\departamento;
     	$centro_costo = \App\centro_de_costo::where('id', $post[1]['value'])->get();
-        $jefatura = \App\jefatura::where('id', $post[2]['value'])->get();
+        $jefatura = \App\jefaturas::where('id', $post[2]['value'])->get();
     	for ($i=0; $i < count($post); $i++) { 
     		if( strlen($post[$i]['value']) < 1) abort(403, 'Unauthorized action.');
     	}
@@ -36,7 +36,7 @@ class departamento extends Controller
         $departamento = \App\departamento::where('id', $post[0]['id_valor']); 
 
     	$centro_costo = \App\centro_de_costo::where('id', $post[1]['value'])->get();   	
-        $jefatura = \App\jefatura::where('id', $post[2]['value'])->get();
+        $jefatura = \App\jefaturas::where('id', $post[2]['value'])->get();
  	
 		$departamento->update(['nombre' => $post[0]['value']]);
     	$departamento->update(['centrocosto_id' => $post[1]['value']]);
