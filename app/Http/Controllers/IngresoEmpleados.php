@@ -10,12 +10,19 @@ class IngresoEmpleados extends Controller
     public function Enrolamiento(Request $request){
 
     	$post = $request->json()->all();
+        $jefatura = \App\jefaturas::where('id', $post['jefatura'])->get();
+        $cargos = \App\cargos::where('id', $post['cargo_id'])->get();
 
     	$planilla = new \App\ingreso_empleados;
 
     	foreach ($post as $key => $value) {
     		$planilla->$key = $value;
     	}
+
+        $planilla->jefatura = $jefatura[0]['nombre'];
+        $planilla->cargo_nombre = $cargos[0]['nombre'];
+
+
 
 
     	$planilla->save();
