@@ -20,7 +20,7 @@ class IngresoEmpleados extends Controller
     	}
 
         $planilla->jefatura = $jefatura[0]['nombre'];
-        $planilla->cargo_nombre = $cargos[0]['nombre'];
+        $planilla->cargo_nombre = $cargos[0]['cargo'];
 
 
 
