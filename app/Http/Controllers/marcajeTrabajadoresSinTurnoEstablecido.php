@@ -64,7 +64,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
                 # Entrada
                 echo json_encode('entrada');
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'salida' && ($this->tiempo- $ultimoMovimiento->get()[0]['tiempo']) <28800){
-                echo json_encode('Listo'); // Quiza pueda poner otro turno, luego del listo. Son turnos extras... ****
+                echo json_encode('entrada'); // Quiza pueda poner otro turno, luego del listo. Son turnos extras... ****// 25-02-2019 : Entrego entrada , para repetir turno. Caso del famoso claudiomuñoñz.
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento'] === 'entrada'){
                 return $this->analizarMovimiento($ultimoMovimiento->get()[0]);
               }elseif($ultimoMovimiento->count() > 0 && $ultimoMovimiento->get()[0]['tipo_movimiento']=== 'salida' && ($this->tiempo- $ultimoMovimiento->get()[0]['tiempo'])>=28800){
