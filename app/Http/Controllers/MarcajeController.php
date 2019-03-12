@@ -288,7 +288,7 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
             $tabla_asistencia->biometrica = $post['biometrica'];
              $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
             $tabla_asistencia->save();
-                  echo json_encode(array('estatus' => 'EntradaRealizada', 'id'=>$tabla_asistencia->id, 'sucursal'=> $tabla_asistencia->locacion, 'nombre' => $tabla_asistencia->nombre , 'apellido'=> $tabla_asistencia->apellido));
+                  echo json_encode(array('estatus' => 'EntradaRealizada', 'id'=>$tabla_asistencia->id, 'sucursal'=> $tabla_asistencia->locacion, 'nombre' => $tabla_asistencia->nombre , 'apellido'=> $tabla_asistencia->apellido, 'email'=> $planilla[0]['email1']));
         }
         
          if($post['movimiento'] == 'salida'){
@@ -320,7 +320,7 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
             $tabla_asistencia->biometrica = $post['biometrica'];
             $tabla_asistencia->aprobado =( $post['biometrica'] > 0.61 ) ? 0 : 1 ;
             $tabla_asistencia->save();
-                           echo json_encode(array('estatus' => 'SalidaRealizada', 'id'=>$tabla_asistencia->id, 'sucursal'=> $tabla_asistencia->locacion, 'nombre' => $tabla_asistencia->nombre , 'apellido'=> $tabla_asistencia->apellido));
+                           echo json_encode(array('estatus' => 'SalidaRealizada', 'id'=>$tabla_asistencia->id, 'sucursal'=> $tabla_asistencia->locacion, 'nombre' => $tabla_asistencia->nombre , 'apellido'=> $tabla_asistencia->apellido, 'email'=> $planilla[0]['email1']));
 
         }
          // echo json_encode($Salida);

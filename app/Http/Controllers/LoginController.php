@@ -40,7 +40,7 @@ class LoginController extends Controller
 
         
        
-        if($logueos->count() == 0){
+        if($logueos->count() === 0){
         
         abort(403, 'Unauthorized action.');
         
