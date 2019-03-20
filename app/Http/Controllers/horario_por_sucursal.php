@@ -16,7 +16,7 @@ class horario_por_sucursal extends Controller
         $sucursales = \App\sucursales::where('id', $post[9]['value'])->get();
 
     	for ($i=0; $i < count($post); $i++) { 
-            if($post[6]['caso_especial'] === 'Si'){
+            if($post[6]['value'] === 'Si'){
                 if( strlen($post[$i]['value']) < 1) abort(403, 'Unauthorized action.');
             }else{
                 if( strlen($post[$i]['value']) < 1 && !$post[$i]['fecha_caso_especial']) abort(403, 'Unauthorized action.');
