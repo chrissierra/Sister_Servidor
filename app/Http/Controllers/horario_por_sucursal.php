@@ -19,7 +19,7 @@ class horario_por_sucursal extends Controller
             if($post[6]['value'] === 'Si'){
                 if( strlen($post[$i]['value']) < 1) abort(403, 'Unauthorized action.');
             }else{
-                if( strlen($post[$i]['value']) < 1 && !$post[$i]['fecha_caso_especial']) abort(403, 'Unauthorized action.');
+                if( strlen($post[$i]['value']) < 1 && $i !== 7) abort(403, 'Unauthorized action.');
             }
     		
     	}
