@@ -65,8 +65,8 @@ class jefaturas extends Controller
 		$jefaturas->update(['nombre' => $post[0]['value']]);
     	$jefaturas->update(['centro_costo_id' => $post[1]['value']]);
     	$jefaturas->update(['departamento_id' => $post[2]['value']]);
-        $jefaturas->update(['centro_costo_nombre' => $centro_costo[0]['nombre']]);
-        $jefaturas->update(['departamento_nombre' => $departamento[0]['nombre']]);
+        $jefaturas->update(['centro_costo_nombre' => $centro_costo]);
+        $jefaturas->update(['departamento_nombre' => $departamento]);
     
 
     }
