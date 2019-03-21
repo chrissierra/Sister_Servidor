@@ -12,8 +12,16 @@ class jefaturas extends Controller
     	$post = $request->json()->all();
     	$jefaturas = new \App\jefaturas;
 
-        if(\App\centro_de_costo::where('id', $post[1]['value'])->count()>0) $centro_costo = \App\centro_de_costo::where('id', $post[1]['value'])->get();
-    	if(\App\centro_de_costo::where('id', $post[2]['value'])->count()>0) $departamento = \App\departamento::where('id', $post[2]['value'])->get();
+        if(\App\centro_de_costo::where('id', $post[1]['value'])->count()>0){
+          $centro_costo = \App\centro_de_costo::where('id', $post[1]['value'])->get();  
+      }else{
+        $centro_costo = '';
+      } 
+    	if(\App\centro_de_costo::where('id', $post[2]['value'])->count()>0){
+            $departamento = \App\departamento::where('id', $post[2]['value'])->get();
+        }else{
+            $departamento = '';
+        } 
 
 
         if( strlen($post[0]['value']) < 1) abort(404, 'Unauthorized action.' . $post[0]['value']);
