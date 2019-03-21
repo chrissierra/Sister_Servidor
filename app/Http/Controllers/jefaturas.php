@@ -11,8 +11,10 @@ class jefaturas extends Controller
      public function ingresarjefatura(Request $request){
     	$post = $request->json()->all();
     	$jefaturas = new \App\jefaturas;
-    	$centro_costo = \App\centro_de_costo::where('id', $post[1]['value'])->get();
-        $departamento = \App\departamento::where('id', $post[2]['value'])->get();
+
+        if(\App\centro_de_costo::where('id', $post[1]['value'])->count()>0) $centro_costo = \App\centro_de_costo::where('id', $post[1]['value'])->get();
+    	if(\App\centro_de_costo::where('id', $post[2]['value'])->count()>0) $departamento = \App\departamento::where('id', $post[2]['value'])->get();
+
 
         if( strlen($post[0]['value']) < 1) abort(404, 'Unauthorized action.' . $post[0]['value']);
         if( strlen($post[3]['value']) < 1) abort(404, 'Unauthorized action.' . $post[3]['value']);
