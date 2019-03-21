@@ -15,7 +15,8 @@ class jefaturas extends Controller
         $departamento = \App\departamento::where('id', $post[2]['value'])->get();
 
     	for ($i=0; $i < count($post); $i++) { 
-    		if( strlen($post[$i]['value']) < 1) abort(403, 'Unauthorized action.');
+
+    		if( strlen($post[$i]['value']) < 1 && $i !== 2) abort(403, 'Unauthorized action.');
     	}
 
     	$jefaturas->nombre= $post[0]['value'];
