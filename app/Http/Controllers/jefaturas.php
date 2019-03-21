@@ -13,12 +13,12 @@ class jefaturas extends Controller
     	$jefaturas = new \App\jefaturas;
 
         if(\App\centro_de_costo::where('id', $post[1]['value'])->count()>0){
-          $centro_costo = \App\centro_de_costo::where('id', $post[1]['value'])->get();  
+          $centro_costo = \App\centro_de_costo::where('id', $post[1]['value'])->get()[0]['nombre'];  
       }else{
         $centro_costo = '';
       } 
     	if(\App\centro_de_costo::where('id', $post[2]['value'])->count()>0){
-            $departamento = \App\departamento::where('id', $post[2]['value'])->get();
+            $departamento = \App\departamento::where('id', $post[2]['value'])->get()[0]['nombre'];
         }else{
             $departamento = '';
         } 
@@ -35,8 +35,8 @@ class jefaturas extends Controller
     	$jefaturas->centro_costo_id = $post[1]['value'];
     	$jefaturas->departamento_id = $post[2]['value'];
         $jefaturas->nombre_empresa = $post[3]['value'];
-        $jefaturas->centro_costo_nombre = $centro_costo[0]['nombre'];
-        $jefaturas->departamento_nombre = $departamento[0]['nombre'];
+        $jefaturas->centro_costo_nombre = $centro_costo;
+        $jefaturas->departamento_nombre = $departamento;
     	$jefaturas->save();
     	echo json_encode(array("estatus"=>'ok'));
     	//$planilla = new \App\mandantes;
