@@ -14,8 +14,8 @@ class jefaturas extends Controller
     	$centro_costo = \App\centro_de_costo::where('id', $post[1]['value'])->get();
         $departamento = \App\departamento::where('id', $post[2]['value'])->get();
 
-        if( strlen($post[0]['value']) < 1) abort(403, 'Unauthorized action.');
-        if( strlen($post[3]['value']) < 1) abort(403, 'Unauthorized action.');
+        if( strlen($post[0]['value']) < 1) abort(404, 'Unauthorized action.' . $post[0]['value']);
+        if( strlen($post[3]['value']) < 1) abort(404, 'Unauthorized action.' . $post[3]['value']);
     	/*for ($i=0; $i < count($post); $i++) { 
 
     		if( strlen($post[$i]['value']) < 1 && $i !== 2) abort(403, 'Unauthorized action.');
