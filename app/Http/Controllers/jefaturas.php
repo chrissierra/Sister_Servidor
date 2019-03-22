@@ -17,7 +17,7 @@ class jefaturas extends Controller
       }else{
         $centro_costo = '';
       } 
-    	if(\App\centro_de_costo::where('id', $post[2]['value'])->count()>0){
+    	if(\App\departamento::where('id', $post[2]['value'])->count()>0){
             $departamento = \App\departamento::where('id', $post[2]['value'])->get()[0]['nombre'];
         }else{
             $departamento = '';
@@ -52,7 +52,7 @@ class jefaturas extends Controller
       }else{
         $centro_costo = '';
       } 
-        if(\App\centro_de_costo::where('id', $post[2]['value'])->count()>0){
+        if(\App\departamento::where('id', $post[2]['value'])->count()>0){
             $departamento = \App\departamento::where('id', $post[2]['value'])->get()[0]['nombre'];
         }else{
             $departamento = '';
