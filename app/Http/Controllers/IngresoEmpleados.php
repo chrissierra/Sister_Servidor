@@ -42,15 +42,16 @@ class IngresoEmpleados extends Controller
         
         $sucursal_nombre = \App\sucursales::where('id', $post['sucursal_id'])->get();
 
-        echo "post['sucursal_id']" . $post['sucursal_id'];
+        //echo "post['sucursal_id']" . $post['sucursal_id'];
 
-        echo $sucursal_nombre[0]['nombre'];
+        //echo $sucursal_nombre[0]['nombre'];
         
         foreach ($post as $key => $value) {
             $planilla->update([$key => $value]);
         }
 
         $planilla->update(['sucursal_nombre' => $sucursal_nombre[0]['nombre']]);
+        
         echo json_encode($post);
 
     }
