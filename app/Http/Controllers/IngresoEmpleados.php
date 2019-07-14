@@ -74,7 +74,7 @@ class IngresoEmpleados extends Controller
                     }
                 }*/
 
-                $collection = (new FastExcel)->configureCsv(';', '#', '\n', 'gbk')->import(storage_path('app\\public\\'.$nombreArchivo), function ($line) {
+                $collection = (new FastExcel)->configureCsv(';', '#', '\n', 'gbk')->import(storage_path('app/public/'.$nombreArchivo), function ($line) {
                    echo $line['Valor del HB']. '<br>';
                 });
 
