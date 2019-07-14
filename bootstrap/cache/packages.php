@@ -31,4 +31,22 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'maatwebsite/excel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
+    ),
+  ),
+  'rap2hpoutre/fast-excel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Rap2hpoutre\\FastExcel\\Providers\\FastExcelServiceProvider',
+    ),
+  ),
 );

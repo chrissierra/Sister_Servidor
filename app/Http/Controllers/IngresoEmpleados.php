@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Rap2hpoutre\FastExcel\FastExcel;
+use File;
+use Storage;
 
 class IngresoEmpleados extends Controller
 {
@@ -31,6 +35,69 @@ class IngresoEmpleados extends Controller
     	echo json_encode($post);
 
     }
+
+
+        /*
+        @Param: File CSV 
+
+        */
+        public function Importacion_Trabajadores(Request $request){
+
+            $validador = Validator::make( $request->all(), $this->parametros_array() );
+
+
+            if($validador->fails()){
+                #Falla por no cumplimiento
+
+                return response()->json(
+                    ['data'=> $validador->errors(), 'code'=> 404]
+                );
+
+            }else{
+                #Subir el archivo...
+
+                $filename = $request->file('filename');
+                $extension = $filename->getClientOriginalExtension();
+                $nombreArchivo = $filename->getFilename().'.'.$extension;
+                Storage::disk('public')->put($nombreArchivo, File::get($filename));
+                $contents = Storage::get('public/'.$nombreArchivo);
+
+                /*$dividir  = explode(";", $contents);
+                 $filepath = public_path($nombreArchivo);
+                $gestor = fopen('public/'.$nombreArchivo, "r"));
+                 while (($datos = fgetcsv($filepath, 1000, ",")) !== FALSE) {
+                    $numero = count($datos);
+                    echo "<p> $numero de campos en la línea $fila: <br /></p>\n";
+                    $fila++;
+                    for ($c=0; $c < $numero; $c++) {
+                        echo $datos[$c] . "<br />\n";
+                    }
+                }*/
+
+                $collection = (new FastExcel)->configureCsv(';', '#', '\n', 'gbk')->import(storage_path('app\\public\\'.$nombreArchivo), function ($line) {
+                   echo $line['Valor del HB']. '<br>';
+                });
+
+                //return response()->json(
+                //    ['archivo' => $collection]
+                //);
+
+            }
+
+        }
+
+
+        /**
+         * Devuelve un array.
+         *
+         * @return array
+         */
+        public function parametros_array()
+        {
+            return [
+                'name' => 'min:5',
+            ];
+        }
 
 
 

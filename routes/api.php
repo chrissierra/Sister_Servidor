@@ -229,3 +229,7 @@ Route::post('actualizar_horario_por_sucursal', 'horario_por_sucursal@actualizar_
 Route::post('get_horario_por_sucursal', 'horario_por_sucursal@get_horario_por_sucursal');
 
 Route::post('delete_horario_por_sucursal', 'horario_por_sucursal@delete_horario_por_sucursal');
+
+// Subir Archivos CSV 
+
+Route::post('importacion_trabajadores', 'IngresoEmpleados@Importacion_Trabajadores');
