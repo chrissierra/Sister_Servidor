@@ -84,7 +84,7 @@ class IngresoEmpleados extends Controller
                 $nombreArchivo = $filename->getFilename().'.'.$extension;
                 Storage::disk('public')->put($nombreArchivo, File::get($filename));
                 //$contents = Storage::get('public/'.$nombreArchivo);
-                $collection = (new FastExcel)->configureCsv(';', '#', '\n', 'gbk')->import(storage_path('app/public/'.$nombreArchivo), function ($line) {                
+                $collection = (new FastExcel)->configureCsv(';', '#', '\n')->import(storage_path('app/public/'.$nombreArchivo), function ($line) {                
                    $this->Enrolamiento_por_importacion($line); //echo $line['Valor del HB']. '<br>';
                 });
 
