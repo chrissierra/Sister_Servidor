@@ -37,18 +37,41 @@ class IngresoEmpleados extends Controller
     }
 
 
-        /*
-        @Param: File CSV 
 
-        */
-        public function Importacion_Trabajadores(Request $request){
+            //
+    private function Enrolamiento_por_importacion($post){
+
+
+         //  echo $value['jefatura_id'];
+       // foreach ($post as $key => $value) {
+           //echo $value . "<br>";
+       // }
+        $jefatura = \App\jefaturas::where('id', $post['jefatura_id'])->get();
+        $cargos = \App\cargos::where('id', $post['cargo_id'])->get();
+        $sucursal_nombre = \App\sucursales::where('id', $post['sucursal_id'])->get();
+        $planilla = new \App\ingreso_empleados;
+
+        foreach ($post as $key => $value) {
+            $planilla->$key = $value;
+        }
+
+        $planilla->jefatura = $jefatura[0]['nombre'];
+        $planilla->cargo_nombre = $cargos[0]['cargo'];
+        $planilla->sucursal_nombre = $sucursal_nombre[0]['nombre'];
+        $planilla->save(); 
+
+    }
+
+       /*
+       @Param: File CSV 
+
+      */
+    public function Importacion_Trabajadores(Request $request){
 
             $validador = Validator::make( $request->all(), $this->parametros_array() );
 
-
             if($validador->fails()){
                 #Falla por no cumplimiento
-
                 return response()->json(
                     ['data'=> $validador->errors(), 'code'=> 404]
                 );
@@ -60,27 +83,14 @@ class IngresoEmpleados extends Controller
                 $extension = $filename->getClientOriginalExtension();
                 $nombreArchivo = $filename->getFilename().'.'.$extension;
                 Storage::disk('public')->put($nombreArchivo, File::get($filename));
-                $contents = Storage::get('public/'.$nombreArchivo);
-
-                /*$dividir  = explode(";", $contents);
-                 $filepath = public_path($nombreArchivo);
-                $gestor = fopen('public/'.$nombreArchivo, "r"));
-                 while (($datos = fgetcsv($filepath, 1000, ",")) !== FALSE) {
-                    $numero = count($datos);
-                    echo "<p> $numero de campos en la línea $fila: <br /></p>\n";
-                    $fila++;
-                    for ($c=0; $c < $numero; $c++) {
-                        echo $datos[$c] . "<br />\n";
-                    }
-                }*/
-
-                $collection = (new FastExcel)->configureCsv(';', '#', '\n', 'gbk')->import(storage_path('app/public/'.$nombreArchivo), function ($line) {
-                   echo $line['Valor del HB']. '<br>';
+                //$contents = Storage::get('public/'.$nombreArchivo);
+                $collection = (new FastExcel)->configureCsv(';', '#', '\n', 'gbk')->import(storage_path('app/public/'.$nombreArchivo), function ($line) {                
+                   $this->Enrolamiento_por_importacion($line); //echo $line['Valor del HB']. '<br>';
                 });
 
-                //return response()->json(
-                //    ['archivo' => $collection]
-                //);
+                return response()->json(
+                    ['response' => 'Ok']
+                );
 
             }
 
