@@ -47,22 +47,9 @@ class IngresoEmpleados extends Controller
         $cargos = \App\cargos::where('id', $post['cargo_id'])->get();
         $sucursal_nombre = \App\sucursales::where('id', $post['sucursal_id'])->get();
         $planilla = new \App\ingreso_empleados;
+        // Comprobar que $post['nombre_empresa_usuario_plataforma'] === 
 
-       // foreach ($post as $key => $value) {
-       //     $planilla->$key = $value;
-       // }
-
-       // echo "post['jefatura_id']-> " . $post['jefatura_id'];
-
-       // foreach ($post as $key => $value) {
-        //    echo "$key " . $key . "  |  $value => " . $value;
-            \App\ingreso_empleados::updateOrCreate([ 'id' => $post['id'] ], $post);
-       // }
-
-        /*$planilla->jefatura = $jefatura[0]['nombre'];
-        $planilla->cargo_nombre = $cargos[0]['cargo'];
-        $planilla->sucursal_nombre = $sucursal_nombre[0]['nombre'];
-        $planilla->save(); */
+       \App\ingreso_empleados::updateOrCreate([ 'id' => $post['id'] ], $post);
 
     }
 
@@ -88,9 +75,16 @@ class IngresoEmpleados extends Controller
                 Storage::disk('public')->put($nombreArchivo, File::get($filename)); //$contents = Storage::get('public/'.$nombreArchivo);                
                 $collection = (new FastExcel)->configureCsv(';', '#', '\n')->import(storage_path('app/public/'.$nombreArchivo), function ($line) {                
                   
-                  echo "CUENTA -> " . count($line);  
+                  //echo "CUENTA -> " . count($line);  
 
-                  $this->Enrolamiento_por_importacion($line); //echo $line['Valor del HB']. '<br>';
+                if($request->input('nombre_empresa') === $line['nombre_empresa_usuario_plataforma']  && $request->input('rut_empresa') === $line['rut_empresa']  ){
+                    $this->Enrolamiento_por_importacion($line); //echo $line['Valor del HB']. '<br>';
+                }else{
+                    return response()->json(
+                        ['response' => 'error', 'error' => 'Debes establecer con claridad el nombre y el rut de la empresa en el importable']
+                     );
+                } 
+                  
                  
                 });
 
