@@ -78,7 +78,8 @@ class IngresoEmpleados extends Controller
                     //echo "request->input('nombre_empresa') -> " . $request->input('nombre_empresa');  
                     //echo "line['nombre_empresa_usuario_plataforma'] -> " . $line['nombre_empresa_usuario_plataforma'];  
                     echo "VER " . strcmp($request->input('nombre_empresa'), $line['nombre_empresa_usuario_plataforma']);
-                    if( strcmp($request->input('nombre_empresa'), $line['nombre_empresa_usuario_plataforma']) === 0  ){
+                    
+                    if( strcmp($request->input('nombre_empresa'), $line['nombre_empresa_usuario_plataforma']) == 0  ){
                         $this->Enrolamiento_por_importacion($line); //echo $line['Valor del HB']. '<br>';
                     }else{
                         return response()->json(
