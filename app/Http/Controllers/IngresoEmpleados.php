@@ -36,12 +36,6 @@ class IngresoEmpleados extends Controller
     }
 
 
-    private function verificar_si_existe_registro(){
-
-    }
-
-
-
             //
     private function Enrolamiento_por_importacion($post){
 
@@ -51,7 +45,7 @@ class IngresoEmpleados extends Controller
         $planilla = new \App\ingreso_empleados;
         // Comprobar que $post['nombre_empresa_usuario_plataforma'] === 
 
-       \App\ingreso_empleados::updateOrCreate([ 'id' => $post['id'] ], $post);
+        \App\ingreso_empleados::updateOrCreate([ 'id' => $post['id'] ], $post);
 
     }
 
@@ -75,22 +69,18 @@ class IngresoEmpleados extends Controller
                 $filename = $request->file('filename');
                 $extension = $filename->getClientOriginalExtension();
                 $nombreArchivo = $filename->getFilename().'.'.$extension;
-                Storage::disk('public')->put($nombreArchivo, File::get($filename)); //$contents = Storage::get('public/'.$nombreArchivo);                
+                Storage::disk('public')->put($nombreArchivo, File::get($filename));                 
                 $collection = (new FastExcel)->configureCsv(';', '#', '\n')->import(storage_path('app/public/'.$nombreArchivo), function ($line) use ($request) {                
-                  
-                    //echo "request->input('nombre_empresa') -> " . $request->input('nombre_empresa');  
-                    //echo "line['nombre_empresa_usuario_plataforma'] -> " . $line['nombre_empresa_usuario_plataforma'];  
-                    //echo "VER " . strcmp($request->input('nombre_empresa'), $line['nombre_empresa_usuario_plataforma']);
                     
                     if( strcmp($request->input('nombre_empresa'), $line['nombre_empresa_usuario_plataforma']) !== 0  ){
+                        
                         $this->fracasos++;
+                        
                         return response()->json(
                             ['response' => 'error', 'error' => 'Debes establecer con claridad el nombre y el rut de la empresa en el importable']
                         );
 
-                    }else{
-
-                        
+                    }else{                        
 
                         $this->Enrolamiento_por_importacion($line); //echo $line['Valor del HB']. '<br>';
 
