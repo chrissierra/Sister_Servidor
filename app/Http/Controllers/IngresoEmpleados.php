@@ -79,12 +79,14 @@ class IngresoEmpleados extends Controller
                     //echo "line['nombre_empresa_usuario_plataforma'] -> " . $line['nombre_empresa_usuario_plataforma'];  
                     echo "VER " . strcmp($request->input('nombre_empresa'), $line['nombre_empresa_usuario_plataforma']);
                     
-                    if( strcmp($request->input('nombre_empresa'), $line['nombre_empresa_usuario_plataforma']) == 0  ){
-                        $this->Enrolamiento_por_importacion($line); //echo $line['Valor del HB']. '<br>';
-                    }else{
+                    if( strcmp($request->input('nombre_empresa'), $line['nombre_empresa_usuario_plataforma']) !== 0  ){
                         return response()->json(
                             ['response' => 'error', 'error' => 'Debes establecer con claridad el nombre y el rut de la empresa en el importable']
-                         );
+                        );
+                    }else{
+
+                        $this->Enrolamiento_por_importacion($line); //echo $line['Valor del HB']. '<br>';
+
                     } 
                   
                  
