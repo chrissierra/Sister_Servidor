@@ -59,6 +59,7 @@ class IngresoEmpleados extends Controller
      */
     public function Importacion_Trabajadores(Request $request){
 
+            $fracasos = 0;
             $validador = Validator::make( $request->all(), $this->parametros_array() );
 
             if($validador->fails()){
@@ -73,19 +74,21 @@ class IngresoEmpleados extends Controller
                 $extension = $filename->getClientOriginalExtension();
                 $nombreArchivo = $filename->getFilename().'.'.$extension;
                 Storage::disk('public')->put($nombreArchivo, File::get($filename)); //$contents = Storage::get('public/'.$nombreArchivo);                
-                $collection = (new FastExcel)->configureCsv(';', '#', '\n')->import(storage_path('app/public/'.$nombreArchivo), function ($line) use ($request) {                
+                $collection = (new FastExcel)->configureCsv(';', '#', '\n')->import(storage_path('app/public/'.$nombreArchivo), function ($line) use ($request, $fracasos) {                
                   
                     //echo "request->input('nombre_empresa') -> " . $request->input('nombre_empresa');  
                     //echo "line['nombre_empresa_usuario_plataforma'] -> " . $line['nombre_empresa_usuario_plataforma'];  
                     //echo "VER " . strcmp($request->input('nombre_empresa'), $line['nombre_empresa_usuario_plataforma']);
                     
                     if( strcmp($request->input('nombre_empresa'), $line['nombre_empresa_usuario_plataforma']) !== 0  ){
-                        
+                        $fracasos++;
                         return response()->json(
                             ['response' => 'error', 'error' => 'Debes establecer con claridad el nombre y el rut de la empresa en el importable']
                         );
 
                     }else{
+
+                        
 
                         $this->Enrolamiento_por_importacion($line); //echo $line['Valor del HB']. '<br>';
 
@@ -95,7 +98,7 @@ class IngresoEmpleados extends Controller
                 });
 
                 return response()->json(
-                    ['response' => 'Ok']
+                    ['response' => 'Ok', 'fracasos' => $fracasos ]
                 );
 
             }
