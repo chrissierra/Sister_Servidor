@@ -73,7 +73,7 @@ class IngresoEmpleados extends Controller
                 $extension = $filename->getClientOriginalExtension();
                 $nombreArchivo = $filename->getFilename().'.'.$extension;
                 Storage::disk('public')->put($nombreArchivo, File::get($filename)); //$contents = Storage::get('public/'.$nombreArchivo);                
-                $collection = (new FastExcel)->configureCsv(';', '#', '\n')->import(storage_path('app/public/'.$nombreArchivo), function ($line, $request) {                
+                $collection = (new FastExcel)->configureCsv(';', '#', '\n')->import(storage_path('app/public/'.$nombreArchivo), function ($line) use ($request) {                
                   
                     //echo "CUENTA -> " . count($line);  
 
