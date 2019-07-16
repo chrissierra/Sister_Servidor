@@ -48,9 +48,11 @@ class IngresoEmpleados extends Controller
         $sucursal_nombre = \App\sucursales::where('id', $post['sucursal_id'])->get();
         $planilla = new \App\ingreso_empleados;
 
-        foreach ($post as $key => $value) {
-            $planilla->$key = $value;
-        }
+       // foreach ($post as $key => $value) {
+       //     $planilla->$key = $value;
+       // }
+
+        echo "post['jefatura_id']-> " . $post['jefatura_id'];
 
         foreach ($post as $key => $value) {
             $planilla->updateOrCreate([ 'id' => $post['id'] ], [$key => $value]);
