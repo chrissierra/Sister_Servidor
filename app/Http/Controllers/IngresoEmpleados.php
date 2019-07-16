@@ -56,7 +56,7 @@ class IngresoEmpleados extends Controller
 
         foreach ($post as $key => $value) {
             echo "$key " . $key . "  |  $value => " . $value;
-            \App\ingreso_empleados::updateOrCreate([ 'id' => $post['id'] ], [$key => $value]);
+            \App\ingreso_empleados::updateOrCreate([ 'id' => $post['id'] ], $post);
         }
 
         /*$planilla->jefatura = $jefatura[0]['nombre'];
