@@ -77,7 +77,7 @@ class IngresoEmpleados extends Controller
                   
                     //echo "CUENTA -> " . count($line);  
 
-                    if($request->input('nombre_empresa') == $line['nombre_empresa_usuario_plataforma']  && $request->input('rut_empresa') == $line['rut_empresa']  ){
+                    if($request->input('nombre_empresa') === $line['nombre_empresa_usuario_plataforma']  ){
                         $this->Enrolamiento_por_importacion($line); //echo $line['Valor del HB']. '<br>';
                     }else{
                         return response()->json(
