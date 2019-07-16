@@ -73,17 +73,17 @@ class IngresoEmpleados extends Controller
                 $extension = $filename->getClientOriginalExtension();
                 $nombreArchivo = $filename->getFilename().'.'.$extension;
                 Storage::disk('public')->put($nombreArchivo, File::get($filename)); //$contents = Storage::get('public/'.$nombreArchivo);                
-                $collection = (new FastExcel)->configureCsv(';', '#', '\n')->import(storage_path('app/public/'.$nombreArchivo), function ($line) {                
+                $collection = (new FastExcel)->configureCsv(';', '#', '\n')->import(storage_path('app/public/'.$nombreArchivo), function ($line, $request) {                
                   
-                  //echo "CUENTA -> " . count($line);  
+                    //echo "CUENTA -> " . count($line);  
 
-                if($request->input('nombre_empresa') === $line['nombre_empresa_usuario_plataforma']  && $request->input('rut_empresa') === $line['rut_empresa']  ){
-                    $this->Enrolamiento_por_importacion($line); //echo $line['Valor del HB']. '<br>';
-                }else{
-                    return response()->json(
-                        ['response' => 'error', 'error' => 'Debes establecer con claridad el nombre y el rut de la empresa en el importable']
-                     );
-                } 
+                    if($request->input('nombre_empresa') === $line['nombre_empresa_usuario_plataforma']  && $request->input('rut_empresa') === $line['rut_empresa']  ){
+                        $this->Enrolamiento_por_importacion($line); //echo $line['Valor del HB']. '<br>';
+                    }else{
+                        return response()->json(
+                            ['response' => 'error', 'error' => 'Debes establecer con claridad el nombre y el rut de la empresa en el importable']
+                         );
+                    } 
                   
                  
                 });
