@@ -52,7 +52,7 @@ class IngresoEmpleados extends Controller
        //     $planilla->$key = $value;
        // }
 
-        echo "post['jefatura_id']-> " . $post['jefatura_id'];
+       // echo "post['jefatura_id']-> " . $post['jefatura_id'];
 
         foreach ($post as $key => $value) {
             $planilla->updateOrCreate([ 'id' => $post['id'] ], [$key => $value]);
@@ -86,8 +86,8 @@ class IngresoEmpleados extends Controller
                 $nombreArchivo = $filename->getFilename().'.'.$extension;
                 Storage::disk('public')->put($nombreArchivo, File::get($filename)); //$contents = Storage::get('public/'.$nombreArchivo);                
                 $collection = (new FastExcel)->configureCsv(';', '#', '\n')->import(storage_path('app/public/'.$nombreArchivo), function ($line) {                
-                  // $this->Enrolamiento_por_importacion($line); //echo $line['Valor del HB']. '<br>';
-                    echo $line['jefatura_id']. '<br>';
+                  $this->Enrolamiento_por_importacion($line); //echo $line['Valor del HB']. '<br>';
+                   // echo $line['jefatura_id']. '<br>';
                 });
 
                 return response()->json(
