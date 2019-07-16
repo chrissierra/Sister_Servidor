@@ -55,13 +55,14 @@ class IngresoEmpleados extends Controller
        // echo "post['jefatura_id']-> " . $post['jefatura_id'];
 
         foreach ($post as $key => $value) {
+            echo "$key " . $key . "  |  $value => " . $value;
             \App\ingreso_empleados::updateOrCreate([ 'id' => $post['id'] ], [$key => $value]);
         }
 
-        $planilla->jefatura = $jefatura[0]['nombre'];
+        /*$planilla->jefatura = $jefatura[0]['nombre'];
         $planilla->cargo_nombre = $cargos[0]['cargo'];
         $planilla->sucursal_nombre = $sucursal_nombre[0]['nombre'];
-        $planilla->save(); 
+        $planilla->save(); */
 
     }
 
