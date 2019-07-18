@@ -233,3 +233,5 @@ Route::post('delete_horario_por_sucursal', 'horario_por_sucursal@delete_horario_
 // Subir Archivos CSV 
 
 Route::post('importacion_trabajadores', 'IngresoEmpleados@Importacion_Trabajadores');
+
+Route::post('getContrasteFotograficoValidacion', 'ContrasteFotograficoValidacion@getContrasteFotograficoValidacion');
