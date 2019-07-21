@@ -50,7 +50,7 @@ class ContrasteFotograficoValidacion extends Controller
     }
 
     public function UpdateContrasteFotograficoValidacion(Request $request){
-            var_dump($request->json()->all());
+            var_dump($request);
     }
 
     /**
