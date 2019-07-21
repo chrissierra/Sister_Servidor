@@ -45,7 +45,7 @@ class ContrasteFotograficoValidacion extends Controller
     {
         $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]  
 
-        dd($post);
+        //dd($post);
         //var_dump($post); 
 
         //echo "Que pasa...";     
