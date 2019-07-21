@@ -50,7 +50,7 @@ class ContrasteFotograficoValidacion extends Controller
         //echo "Que pasa...";     
 
         $get_validaciones = $contraste_fotografico_validacion::where('trabajador_id', $post['trabajador_id'])->get();
-        $get_validaciones->updata(['validado'=> $post['validado'] ]);
+        $get_validaciones->update(['validado'=> $post['validado'] ]);
         return response()->json(
                   ['response' => 'Ok' ]
         );
