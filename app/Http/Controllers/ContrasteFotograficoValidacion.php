@@ -23,7 +23,9 @@ class ContrasteFotograficoValidacion extends Controller
 
         $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]  
 
-        var_dump($post);      
+        var_dump($post); 
+
+        echo "Que pasa...";     
 
        // $get_validaciones = $contraste_fotografico_validacion::where('trabajador_id', $post['trabajador_id'])->get();
 
