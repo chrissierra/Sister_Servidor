@@ -18,7 +18,7 @@ class ContrasteFotograficoValidacion extends Controller
     }
 
 
-        public function UpdateContrasteFotograficoValidacion(Request $request, contraste_fotografico_validacion $contraste_fotografico_validacion)
+        public function UpdateContrasteFotograficoValidacion(Request $request)
     {
 
         $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]  
