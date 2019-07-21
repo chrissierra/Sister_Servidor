@@ -18,7 +18,7 @@ class ContrasteFotograficoValidacion extends Controller
     }
 
 
-        public function UpdateContrasteFotograficoValidacion(Request $request)
+    /*    public function UpdateContrasteFotograficoValidacion(Request $request)
     {
 
         $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]  
@@ -35,7 +35,7 @@ class ContrasteFotograficoValidacion extends Controller
         //            ['response' => 'Ok' ]
        // );
 
-    }
+    }*/
 
 
     public function getContrasteFotograficoValidacion(Request $request, contraste_fotografico_validacion $contraste_fotografico_validacion)
@@ -47,6 +47,10 @@ class ContrasteFotograficoValidacion extends Controller
 
         return response()->json($get_validaciones);
 
+    }
+
+    public function UpdateContrasteFotograficoValidacion(Request $request){
+            var_dump($request->json()->all());
     }
 
     /**
