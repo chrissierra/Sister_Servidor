@@ -25,13 +25,13 @@ class ContrasteFotograficoValidacion extends Controller
 
         var_dump($post);      
 
-        $get_validaciones = $contraste_fotografico_validacion::where('trabajador_id', $post['trabajador_id'])->get();
+       // $get_validaciones = $contraste_fotografico_validacion::where('trabajador_id', $post['trabajador_id'])->get();
 
-        $get_validaciones->updata(['validado'=> $post['validado'] ]);
+       // $get_validaciones->updata(['validado'=> $post['validado'] ]);
 
-        return response()->json(
-                    ['response' => 'Ok' ]
-        );
+       // return response()->json(
+        //            ['response' => 'Ok' ]
+       // );
 
     }
 
