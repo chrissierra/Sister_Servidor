@@ -46,13 +46,22 @@ class IngresoEmpleados extends Controller
         $empresa =  \App\clientes_rrhh::where('nombre_empresa', $post['nombre_empresa_usuario_plataforma'])->get();
         // Comprobar que $post['nombre_empresa_usuario_plataforma'] === 
 
+
+
+        \App\ingreso_empleados::updateOrCreate([ 'id' => $post['id'] ], $post);
+
+        
+        \App\contraste_fotografico_validacion::updateOrCreate(['trabajador_id' => $post['id']],
+            ['trabajador_id' => $post['id'], 'empresa_id' =>  $empresa[0]['id'], 'validado'=> 'false']
+
+        );
+
+        /*
         $contraste = new \App\contraste_fotografico_validacion;
         $contraste->trabajador_id = $post['id'];
         $contraste->empresa_id = $empresa[0]['id'];
         $contraste->validado = 'false';
-        $contraste->save();
-
-        \App\ingreso_empleados::updateOrCreate([ 'id' => $post['id'] ], $post);
+        $contraste->save();  */
 
     }
 
