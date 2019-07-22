@@ -43,7 +43,7 @@ class IngresoEmpleados extends Controller
         $cargos = \App\cargos::where('id', $post['cargo_id'])->get();
         $sucursal_nombre = \App\sucursales::where('id', $post['sucursal_id'])->get();
         $planilla = new \App\ingreso_empleados;
-        $empresa =  \App\clientes_rrhh::where('nombre_empresa', $post['nombre_empresa_usuario_plataforma '])->get();
+        $empresa =  \App\clientes_rrhh::where('nombre_empresa', $post['nombre_empresa_usuario_plataforma'])->get();
         // Comprobar que $post['nombre_empresa_usuario_plataforma'] === 
 
         $contraste = new \App\contraste_fotografico_validacion;
