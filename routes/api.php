@@ -238,3 +238,5 @@ Route::post('getContrasteFotograficoValidacion', 'ContrasteFotograficoValidacion
 
 
 Route::post('UpdateContrasteFotograficoValidacion', 'ContrasteFotograficoValidacion@UpdateContrasteFotograficoValidacion');
+
+Route::post('InsertContrasteFotograficoValidacion', 'ContrasteFotograficoValidacion@InsertContrasteFotograficoValidacion');
