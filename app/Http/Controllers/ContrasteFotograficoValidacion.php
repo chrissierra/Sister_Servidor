@@ -83,7 +83,7 @@ class ContrasteFotograficoValidacion extends Controller
         
 
                 $contraste_fotografico_validacion::updateOrCreate(['trabajador_id' => $post['trabajador_id']],
-                            ['trabajador_id' => $post['id'], 'empresa_id' =>  $empresa[0]['id'], 'validado'=> $post['validado']]
+                            ['trabajador_id' => $post['trabajador_id'], 'empresa_id' =>  $empresa[0]['id'], 'validado'=> $post['validado']]
                 );
         
 
