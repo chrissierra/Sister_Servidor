@@ -353,7 +353,7 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
             $tabla_asistencia->apellido = $planilla[0]['apellido'];
              $tabla_asistencia->status_entrada = $this->GetHoraMovimiento($post['id'], 'entrada', (date('H') + ( date('i') /60 )) , $planilla[0]['horario_con_o_sin_turnos']) ;  // Atraso o no
             $tabla_asistencia->status_salida = '';  // Atraso o no
-            $tabla_asistencia->cuantia_entrada = date('H')+ (date('i') /60 ) ;
+             $tabla_asistencia->cuantia_entrada = date('H')+ (date('i') /60 ) ; // 
             $tabla_asistencia->cuantia_salida = '';
             $tabla_asistencia->mes = date('m');
             $tabla_asistencia->anio = date('Y');
