@@ -245,9 +245,9 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 
         $diferenciaMetros = $this->distance($sucursales[0]['latitud'], $sucursales[0]['longitud'], $postListo['coords']['latitude'], $postListo['coords']['longitude'], 'K');       
 
-        $post['biometrica'] > 0.61 ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
+      //  $post['biometrica'] > 0.61 ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
 
-       $diferenciaMetros > 0.3  ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
+      // $diferenciaMetros > 0.3  ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
        
         if($post['movimiento'] == 'entrada'){
          
@@ -336,9 +336,9 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 
         $diferenciaMetros = $this->distance($sucursales[0]['latitud'], $sucursales[0]['longitud'], $postListo['coords']['latitude'], $postListo['coords']['longitude'], 'K');       
        
-       $post['biometrica'] > 0.61 ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
+     //  $post['biometrica'] > 0.61 ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
 
-       $diferenciaMetros > 0.3  ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
+     //  $diferenciaMetros > 0.3  ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
         
         if($post['movimiento'] == 'entrada'){
          
@@ -454,9 +454,9 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
         // cuantia_actual = 
         $cuantiaEsperada = explode( ':', $post['hora_esperada'])[0] + (explode(':', $post['hora_esperada'])[1] / 60 );
        
-        $post['biometrica'] > 0.61 ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
+     //   $post['biometrica'] > 0.61 ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
 
-       $diferenciaMetros > 0.3  ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
+      // $diferenciaMetros > 0.3  ? $this->notificaTurnoReprobable($planilla[0]['nombre_empresa_usuario_plataforma'],$planilla[0]['nombre'], $planilla[0]['apellido']) : 1 ;
 
         if($post['movimiento'] == 'entrada'){
          
