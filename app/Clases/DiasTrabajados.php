@@ -69,7 +69,7 @@ class DiasTrabajados {
                 ->where('mes',  $mes)
                 ->where('anio',  $anio)
                 ->where('dia',  $i)
-                ->where('tipo_movimiento',  strtolower($array["tipo_a_".$i]))
+                ->where('tipo_movimiento',  strtolower($array["tipo_a_".$i]));
                  
 
                 if(isset($ultimoMovimiento) && $ultimoMovimiento->count()>0){
@@ -93,7 +93,7 @@ class DiasTrabajados {
                 ->where('mes',  $mes)
                 ->where('anio',  $anio)
                 ->where('dia',  $i)
-                ->where('tipo_movimiento',  strtolower($array["tipo_a_".$i]))
+                ->where('tipo_movimiento',  strtolower($array["tipo_a_".$i]));
                 
 
 
