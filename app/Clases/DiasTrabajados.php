@@ -53,6 +53,10 @@ class DiasTrabajados {
         $variable2 = json_decode($variable1[0]->turno);
         $array =  (array) $variable2;
         echo "Count -> " . count($array);
+        for ($i=0; $i < count($array); $i++) { 
+        	# code...
+        	echo "Numero " . $i . " -> " . $array[$i] . "<br>";
+        }
         var_dump($array);
     }   
  
