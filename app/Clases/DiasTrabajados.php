@@ -58,12 +58,12 @@ class DiasTrabajados {
         	# code...
 
         	if(isset( $array["tipo_a_".$i])){
-        		echo "Fecha Día $i-$mes-$anio ;  Numero " . $i . " -> " . $array["tipo_a_".$i] . " Y la hora es " . $array["hora_a_".$i] . "<br>";
+        		echo "Fecha Día $i-$mes-$anio ;  Numero " . $i . " -> " . strtolower ($array["tipo_a_".$i]) . " Y la hora es " . $array["hora_a_".$i] . "<br>";
 
         	}
 
         	if(isset( $array["tipo_b_".$i])){
-        		echo "Fecha Día $i-$mes-$anio ;  Numero " . $i . " -> " . $array["tipo_b_".$i]. " Y la hora es " . $array["hora_b_".$i] . "<br>" ;
+        		echo "Fecha Día $i-$mes-$anio ;  Numero " . $i . " -> " . strtolower ($array["tipo_b_".$i]). " Y la hora es " . $array["hora_b_".$i] . "<br>" ;
 
         	}
 
