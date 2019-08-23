@@ -52,24 +52,25 @@ class DiasTrabajados {
         $variable1 = json_decode ($modelo->get());
         $variable2 = json_decode($variable1[0]->turno);
         $array =  (array) $variable2;
-        echo "Count -> " . count($array);
+        //echo "Count -> " . count($array);
+        
         for ($i=1; $i < count($array); $i++) { 
         	# code...
 
         	if(isset( $array["tipo_a_".$i])){
-        		echo "Numero " . $i . " -> " . $array["tipo_a_".$i] . " Y la hora es " . $array["hora_a_".$i] . "<br>";
+        		echo "Fecha Día $i-$mes-$anio ;  Numero " . $i . " -> " . $array["tipo_a_".$i] . " Y la hora es " . $array["hora_a_".$i] . "<br>";
 
         	}
 
         	if(isset( $array["tipo_b_".$i])){
-        		echo "Numero " . $i . " -> " . $array["tipo_b_".$i]. " Y la hora es " . $array["hora_b_".$i] . "<br>" ;
+        		echo "Fecha Día $i-$mes-$anio ;  Numero " . $i . " -> " . $array["tipo_b_".$i]. " Y la hora es " . $array["hora_b_".$i] . "<br>" ;
 
         	}
 
 
 
         }
-        var_dump($array);
+        //var_dump($array);
     }   
  
 }
