@@ -42,7 +42,7 @@ class DiasTrabajados {
        // $variable2 = json_decode($variable1[0], true);
         $array =  (array) $variable1;
         var_dump($array);
-        echo "Martes Entrada " . $array['1e'];
+        echo "Martes Entrada " . $array[0]['1e'];
     }
 
 
