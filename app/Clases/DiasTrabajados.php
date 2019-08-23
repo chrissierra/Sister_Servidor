@@ -44,7 +44,7 @@ class DiasTrabajados {
 		$d=cal_days_in_month(CAL_GREGORIAN,$mes,$anio);	
 		for ($i=0; $i < $d; $i++) { 
 			# code...
-			$fecha = new DateTime($anio."-".$mes."-".$dia);
+			$fecha = new \DateTime($anio."-".$mes."-".$dia);
 			echo $fecha->format('w');
 		}
         echo "Lunes Entrada " . $array[0]['0e'];
