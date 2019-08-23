@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Storage;
-
+use App\Clases\DiasTrabajados;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/test/{id}', function ($id) {
-          date_default_timezone_set('America/Santiago');
+        date_default_timezone_set('America/Santiago');
         $this->mes = date('m')*1;
         $this->anio = date('Y');
         $this->dia = (date('d') *1) . 'e';
@@ -32,6 +32,15 @@ Route::get('/perfil_trabajador/{id}', function ($id) {
      $planilla = \App\ingreso_empleados::where('id', $id)->get();
 
      echo $planilla->toJson();
+
+});
+
+
+Route::get('/test/{id}/{mes}/{anio}', function ($id, $mes, $anio) {
+
+    $peo = new DiasTrabajados();
+
+    echo $peo->DiasTrabajadosPorTrabajador($id, $mes, $anio);
 
 });
 

@@ -32,20 +32,20 @@ class DiasTrabajados {
 	 
 	 */
    private function Trabajador_Sin_Horario($id, $mes, $anio, $modelo) {
-        return 'Arjun';
+        var_dump($modelo->get());
     }
  
    private function Trabajador_Con_HorarioFijo($id, $mes, $anio, $modelo) {
-        return 'Arjun';
+        var_dump($modelo->get());
     }
 
    private function Trabajador_Con_HorarioVariable($id, $mes, $anio, $modelo) {
-        return 'Arjun';
+        var_dump($modelo->get());
     }
    
 
    private function Trabajador_Con_HorarioNoche($id, $mes, $anio, $modelo) {
-        return 'Arjun';
+        var_dump($modelo->get());
     }   
  
 }
