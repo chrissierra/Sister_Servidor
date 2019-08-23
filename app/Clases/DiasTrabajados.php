@@ -79,7 +79,7 @@ class DiasTrabajados {
 				                 
 
 				                if(isset($ultimoMovimiento) && $ultimoMovimiento->count()>0){
-				                	echo "Si Trabajó...". $ultimoMovimiento->get()[0]->nombre  . "<br>";
+				                	echo "Si Trabajó...". $ultimoMovimiento->get()[0]->hora  . "<br>";
 				                	if(strtolower($array["tipo_a_".$i]) == 'entrada') $dt_contador=1;
 				                	if(strtolower($array["tipo_a_".$i]) == 'salida' && $dt_contador == 1){
 				                    $dt_contador = 0;
