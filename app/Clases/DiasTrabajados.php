@@ -51,8 +51,9 @@ class DiasTrabajados {
    private function Trabajador_Con_HorarioNoche($id, $mes, $anio, $modelo) {
         $variable1 = json_decode ($modelo->get());
         $variable2 = json_decode($variable1[0]->turno);
-        echo "Count -> " . count($variable2);
-        var_dump($variable2);
+        $array =  (array) $variable2;
+        echo "Count -> " . count($array);
+        var_dump($array);
     }   
  
 }
