@@ -39,8 +39,10 @@ class DiasTrabajados {
  
    private function Trabajador_Con_HorarioFijo($id, $mes, $anio, $modelo) {
         $variable1 = json_decode ($modelo->get());
-        var_dump($variable1['turno']);
+        var_dump($variable1);
     }
+
+
 
    private function Trabajador_Con_HorarioVariable($id, $mes, $anio, $modelo) {
         $variable1 = json_decode ($modelo->get());
@@ -83,6 +85,7 @@ class DiasTrabajados {
 				                	if(strtolower($array["tipo_a_".$i]) == 'entrada') $dt_contador=1;
 				                	if(strtolower($array["tipo_a_".$i]) == 'salida' && $dt_contador == 1){
 				                    $dt_contador = 0;
+
 				                	$dt++;	
 				                	} 
 				                }else{
