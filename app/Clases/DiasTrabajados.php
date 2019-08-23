@@ -50,7 +50,7 @@ class DiasTrabajados {
 
    private function Trabajador_Con_HorarioNoche($id, $mes, $anio, $modelo) {
         $variable1 = json_decode ($modelo->get());
-        var_dump($variable1['turno']);
+        var_dump($variable1);
     }   
  
 }
