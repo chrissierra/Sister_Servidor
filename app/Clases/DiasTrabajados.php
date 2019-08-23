@@ -9,7 +9,7 @@ class DiasTrabajados {
 	                    ->where('mes', $mes)
 	                    ->where('anio', $anio);
         
-        $TurnosFijos =  \App\turnosFijos::where('trabajador_id', $post['trabajador_id']);
+        $TurnosFijos =  \App\turnosFijos::where('trabajador_id', $id);
 
         $TurnosVariables = \App\turnosVariables::where('trabajador_id', $id)
           ->where('mes', $mes)
