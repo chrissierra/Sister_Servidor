@@ -41,8 +41,29 @@ class DiasTrabajados {
         $variable1 = json_decode ($modelo->get(), true);
        // $variable2 = json_decode($variable1[0], true);
         $array =  (array) $variable1;
-        var_dump($array);
+		$d=cal_days_in_month(CAL_GREGORIAN,$mes,$anio);	
+		for ($i=0; $i < $d; $i++) { 
+			# code...
+			$fecha = new DateTime($anio."-".$mes."-".$dia);
+			echo $fecha->format('w');
+		}
+        echo "Lunes Entrada " . $array[0]['0e'];
+        echo "Lunes Salida " . $array[0]['0s'];
         echo "Martes Entrada " . $array[0]['1e'];
+        echo "Martes Salida " . $array[0]['1s'];
+        echo "Miecoles Entrada " . $array[0]['2e'];
+        echo "Miecoles Salida " . $array[0]['2s'];
+        echo "Jueves Entrada " . $array[0]['3e'];
+        echo "Jueves Salida " . $array[0]['3s'];
+        echo "Viernes Entrada " . $array[0]['4e'];
+        echo "Viernes Salida " . $array[0]['4s'];
+        echo "Sabado Entrada " . $array[0]['5e'];
+        echo "Sabado Salida " . $array[0]['5s'];
+        echo "Domingo Entrada " . $array[0]['6e'];
+        echo "Domingo Salida " . $array[0]['6s'];
+
+
+
     }
 
 
