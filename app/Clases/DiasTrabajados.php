@@ -55,7 +55,7 @@ class DiasTrabajados {
         echo "Count -> " . count($array);
         for ($i=1; $i < count($array); $i++) { 
         	# code...
-        	echo "Numero " . $i . " -> " . $array[$i] . "<br>";
+        	//echo "Numero " . $i . " -> " . $array[$i] . "<br>";
         }
         var_dump($array);
     }   
