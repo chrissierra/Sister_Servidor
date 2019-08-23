@@ -39,7 +39,9 @@ class DiasTrabajados {
  
    private function Trabajador_Con_HorarioFijo($id, $mes, $anio, $modelo) {
         $variable1 = json_decode ($modelo->get());
-        var_dump($variable1);
+        $variable2 = json_decode($variable1[0]->turno);
+        $array =  (array) $variable2;
+        var_dump($array);
     }
 
 
