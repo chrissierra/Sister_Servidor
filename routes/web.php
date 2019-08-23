@@ -345,7 +345,10 @@ foreach ($result as $key => $value) {
 
 
 
-Route::get('/DiasLaboralesRealizadosProd/{id}/{mes}/{anio}', function ($id, $mes,$anio) {   
+Route::get('/DiasLaboralesRealizadosProd/{id}/{mes}/{anio}', function ($id, $mes,$anio) {  
+
+  // Ver días DT para cada uno. $diasTrabajadosBaseDe30->procesar($id, $mes,$anio)
+  // procesar : if de si es fijo, variable o de noche. 
   $horasNoTrabajadas = 0;    
   $horasTrabajadas = 0; 
   $tiempoTrabajado = 0;  

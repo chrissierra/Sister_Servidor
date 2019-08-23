@@ -15,8 +15,8 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 			        $this->dia_e = (date('d') *1) . 'e';
 			        $this->dia_s = (date('d') *1) . 's';
 			        $this->fecha = date('d/m/Y');
-                    $this->turnoExtraEnCurso = 0;
-                    $this->cuantia_actual = (date('H') + ( date('i') /60 ));
+              $this->turnoExtraEnCurso = 0;
+              $this->cuantia_actual = (date('H') + ( date('i') /60 ));
     	} // Fin función __construct
 
 
@@ -412,13 +412,13 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 
 
     private function notificaTurnoReprobable($id_empresa, $nombre, $apellido){
-        $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $id_empresa)->get(); 
+      /*  $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $id_empresa)->get(); 
         foreach ($planilla as $key => $value) {
             # code...
             if($value["onesignal"] !== null){
                 $this->sendMessage($value["onesignal"], $nombre, $apellido);
             }
-        }
+        }*/
     }
 
 
@@ -535,7 +535,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
 
 
     private function sendMessage($id, $nombre, $apellido) {
-    $content      = array(
+    /*$content      = array(
         "en" => 'Marcaje dudoso de ' . $nombre . " " . $apellido
     );
 
@@ -570,7 +570,7 @@ class marcajeTrabajadoresSinTurnoEstablecido extends Controller
     $response = curl_exec($ch);
     curl_close($ch);
 
-    return $response;
+    return $response; */
 }
 
 

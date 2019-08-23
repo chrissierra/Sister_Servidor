@@ -12,14 +12,14 @@ class MarcajeController extends Controller
     function __construct(){
 
         date_default_timezone_set('America/Santiago');
-          $this->tiempo = time();
+        $this->tiempo = time();
     		$this->mes = date('m')*1;
     		$this->anio = date('Y');
         $this->dia_e = (date('d') *1) . 'e';
         $this->dia_s = (date('d') *1) . 's';
         $this->fecha = date('d/m/Y');
-         $this->turnoExtraEnCurso = 0;
-         $this->horarioNoche = 0;
+        $this->turnoExtraEnCurso = 0;
+        $this->horarioNoche = 0;
 
     } // Fin función __construct
 
@@ -216,8 +216,8 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
 
     $planilla = \App\asistencia::where('id_trabajador', $id)
         ->where('turnoExtra', 1)
-    ->where('fecha', $this->fecha)
-    ->where('tipo_movimiento', $movimiento);
+        ->where('fecha', $this->fecha)
+        ->where('tipo_movimiento', $movimiento);
 
        if($planilla->count()>0){
         return $planilla->get()[0]['hora'];
@@ -231,9 +231,9 @@ AGregado lo de abajo  el 21 12 2018 por turnos extas */
     private function VerificaPorParametroMovimiento($id, $movimiento, $columna){
 
 		$planilla = \App\asistencia::where('id_trabajador', $id)
-         ->where('turnoExtra', null)
-		->where('fecha', $this->fecha)
-		->where('tipo_movimiento', $movimiento);
+          ->where('turnoExtra', null)
+      		->where('fecha', $this->fecha)
+      		->where('tipo_movimiento', $movimiento);
 
        if($planilla->count()>0){
        	return $planilla->get()[0][$columna];
