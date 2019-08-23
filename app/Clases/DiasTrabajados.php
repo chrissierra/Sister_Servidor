@@ -73,7 +73,7 @@ class DiasTrabajados {
                 ->take(1);
 
                 if(isset($ultimoMovimiento)){
-                	echo "Si Trabajó...". var_dump($ultimoMovimiento) . "<br>";
+                	echo "Si Trabajó...". $ultimoMovimiento->nombre  . "<br>";
                 }else{
                 	echo "falto...<br>";
                 }
@@ -97,7 +97,7 @@ class DiasTrabajados {
                 ->take(1);
 
                 if(isset($ultimoMovimiento)){
-                	echo "Si Trabajó...". var_dump($ultimoMovimiento) . "<br>";
+                	echo "Si Trabajó...". $ultimoMovimiento->nombre . "<br>";
                 }else{
                 	echo "falto...<br>";
                 }
