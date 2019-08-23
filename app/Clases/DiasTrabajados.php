@@ -45,7 +45,7 @@ class DiasTrabajados {
 		for ($i=1; $i < $d; $i++) { 
 			# code...
 			$fecha = new \DateTime($anio."-".$mes."-".$i);
-			echo $fecha->format('w');
+			echo $fecha->format('w')."<br>";
 		}
         echo "Lunes Entrada " . $array[0]['0e'];
         echo "Lunes Salida " . $array[0]['0s'];
