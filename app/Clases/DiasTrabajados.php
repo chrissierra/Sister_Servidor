@@ -73,7 +73,7 @@ class DiasTrabajados {
                 ->take(1);
 
                 if(isset($ultimoMovimiento)){
-                	echo "Si Trabajó...<br>";
+                	echo "Si Trabajó...". var_dump($ultimoMovimiento) . "<br>";
                 }else{
                 	echo "falto...<br>";
                 }
@@ -82,6 +82,25 @@ class DiasTrabajados {
 
         	if(isset( $array["tipo_b_".$i])){
         		echo "Fecha Día $i-$mes-$anio ;  Numero " . $i . " -> " . strtolower ($array["tipo_b_".$i]). " Y la hora es " . $array["hora_b_".$i] . "<br>" ;
+
+
+        	$str = strtolower ($array["tipo_a_".$i]);
+			preg_match_all('!\d+!', $str, $matches);
+			//print_r($matches);
+
+        	$ultimoMovimiento = \App\asistencia::where('turnoExtra', null)
+                ->where('id_trabajador', $id)
+                ->where('mes',  $mes)
+                ->where('anio',  $anio)
+                ->where('dia',  $matches)
+                ->where('tipo_movimiento',  strtolower ($array["tipo_a_".$i]))
+                ->take(1);
+
+                if(isset($ultimoMovimiento)){
+                	echo "Si Trabajó...". var_dump($ultimoMovimiento) . "<br>";
+                }else{
+                	echo "falto...<br>";
+                }
 
         	}
 
