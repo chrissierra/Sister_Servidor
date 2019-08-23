@@ -16,11 +16,11 @@ class DiasTrabajados {
           ->where('anio', $anio);	          
 
         if($TurnoNoche->count()>0){            
-            return $this->Trabajador_Con_HorarioNoche($id, $mes, $anio, $TurnoNoche)
+            return $this->Trabajador_Con_HorarioNoche($id, $mes, $anio, $TurnoNoche);
         }elseif ($TurnosFijos->count()>0) {
-            return $this->Trabajador_Con_HorarioFijo($id, $mes, $anio, $TurnosFijos)
+            return $this->Trabajador_Con_HorarioFijo($id, $mes, $anio, $TurnosFijos);
         }elseif ($TurnosVariables->count()>0) {
-            return $this->Trabajador_Con_HorarioVariable($id, $mes, $anio, $TurnosVariables)
+            return $this->Trabajador_Con_HorarioVariable($id, $mes, $anio, $TurnosVariables);
         }  
 	
 	} // Fin Función SeleccionarTipoTurno
