@@ -70,10 +70,10 @@ class DiasTrabajados {
                 ->where('anio',  $anio)
                 ->where('dia',  $matches)
                 ->where('tipo_movimiento',  strtolower ($array["tipo_a_".$i]))
-                ->take(1);
+                 ->get();
 
-                if(isset($ultimoMovimiento)){
-                	echo "Si Trabajó...". $ultimoMovimiento->nombre  . "<br>";
+                if($ultimoMovimiento->count()>0){
+                	echo "Si Trabajó...". $ultimoMovimiento[0]->nombre  . "<br>";
                 }else{
                 	echo "falto...<br>";
                 }
@@ -94,10 +94,10 @@ class DiasTrabajados {
                 ->where('anio',  $anio)
                 ->where('dia',  $matches)
                 ->where('tipo_movimiento',  strtolower ($array["tipo_a_".$i]))
-                ->take(1);
+                ->get();
 
-                if(isset($ultimoMovimiento)){
-                	echo "Si Trabajó...". $ultimoMovimiento->nombre . "<br>";
+                if($ultimoMovimiento->count()>0){
+                	echo "Si Trabajó...". $ultimoMovimiento[0]->nombre . "<br>";
                 }else{
                 	echo "falto...<br>";
                 }
