@@ -69,7 +69,7 @@ class DiasTrabajados {
                 ->where('mes',  $mes)
                 ->where('anio',  $anio)
                 ->where('dia',  $matches)
-                ->where('tipo_movimiento',  $anio)
+                ->where('tipo_movimiento',  strtolower ($array["tipo_a_".$i]))
                 ->take(1);
 
                 if(isset($ultimoMovimiento)){
