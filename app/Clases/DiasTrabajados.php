@@ -5,13 +5,13 @@ class DiasTrabajados {
 
 	public function DiasTrabajadosPorTrabajador($id, $mes, $anio){
 
-		$TurnoNoche = App\TurnoNoche::where('id_trabajador', $id)
+		$TurnoNoche = \App\TurnoNoche::where('id_trabajador', $id)
 	                    ->where('mes', $mes)
 	                    ->where('anio', $anio);
         
-        $TurnosFijos =  App\turnosFijos::where('trabajador_id', $id);
+        $TurnosFijos =  \App\turnosFijos::where('trabajador_id', $id);
 
-        $TurnosVariables = App\TurnosVariables::where('trabajador_id', $id)
+        $TurnosVariables = App\turnosVariables::where('trabajador_id', $id)
           ->where('mes', $mes)
           ->where('anio', $anio);	          
 
