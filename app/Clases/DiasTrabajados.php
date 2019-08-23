@@ -53,32 +53,53 @@ class DiasTrabajados {
         $variable2 = json_decode($variable1[0]->turno);
         $array =  (array) $variable2;
         //echo "Count -> " . count($array);
-        
+        $dt_contador = 0;
+        $dt = 0;
         for ($i=1; $i < count($array); $i++) { 
         	# code...
-
+        	$contador = 0;
         	if(isset( $array["tipo_a_".$i])){
-        		echo "Fecha Día $i-$mes-$anio ;  Numero " . $i . " -> " . strtolower ($array["tipo_a_".$i]) . " Y la hora es " . $array["hora_a_".$i] . "<br>";
 
-        	$str = strtolower ($array["tipo_a_".$i]);
-			preg_match_all('!\d+!', $str, $matches);
-			//print_r($matches);
+	        		echo "Fecha Día $i-$mes-$anio ;  Numero " . $i . " -> " . strtolower ($array["tipo_a_".$i]) . " Y la hora es " . $array["hora_a_".$i] . "<br>";
 
-        	$ultimoMovimiento = \App\asistencia::where('turnoExtra', null)
-                ->where('id_trabajador', $id)
-                ->where('mes',  $mes)
-                ->where('anio',  $anio)
-                ->where('dia',  $i)
-                ->where('tipo_movimiento',  strtolower($array["tipo_a_".$i]));
-                 
+		        	$str = strtolower ($array["tipo_a_".$i]);
+					preg_match_all('!\d+!', $str, $matches);
+					//print_r($matches);
 
-                if(isset($ultimoMovimiento) && $ultimoMovimiento->count()>0){
-                	echo "Si Trabajó...". $ultimoMovimiento->get()[0]->nombre  . "<br>";
-                }else{
-                	echo "falto...<br>";
-                }
 
-        	}
+
+					if(strtolower ($array["tipo_a_".$i]) =='entrada' || strtolower ($array["tipo_a_".$i]) == 'salida'){
+
+								$ultimoMovimiento = \App\asistencia::where('turnoExtra', null)
+							       ->where('id_trabajador', $id)
+							       ->where('mes',  $mes)
+							       ->where('anio',  $anio)
+							       ->where('dia',  $i)
+							       ->where('tipo_movimiento',  strtolower($array["tipo_a_".$i]));
+				                 
+
+				                if(isset($ultimoMovimiento) && $ultimoMovimiento->count()>0){
+				                	echo "Si Trabajó...". $ultimoMovimiento->get()[0]->nombre  . "<br>";
+				                	if(strtolower($array["tipo_a_".$i]) == 'entrada') $dt_contador=1;
+				                	if(strtolower($array["tipo_a_".$i]) == 'salida' && $dt_contador = 1){
+				                    $dt = 0;
+				                	$dt++;	
+				                	} 
+				                }else{
+				                	$dt = 0;
+				                	echo "falto...<br>";
+				                }
+
+				    }
+			}
+
+
+
+
+
+
+
+
 
         	if(isset( $array["tipo_b_".$i])){
         		echo "Fecha Día $i-$mes-$anio ;  Numero " . $i . " -> " . strtolower ($array["tipo_b_".$i]). " Y la hora es " . $array["hora_b_".$i] . "<br>" ;
@@ -87,29 +108,35 @@ class DiasTrabajados {
         	$str = strtolower ($array["tipo_b_".$i]);
 			preg_match_all('!\d+!', $str, $matches);
 			//print_r($matches);
+				if(strtolower ($array["tipo_b_".$i]) =='entrada' || strtolower ($array["tipo_b_".$i]) == 'salida'){
+							$ultimoMovimiento = \App\asistencia::where('turnoExtra', null)
+							 ->where('id_trabajador', $id)
+							 ->where('mes',  $mes)
+							 ->where('anio',  $anio)
+							 ->where('dia',  $i)
+							 ->where('tipo_movimiento',  strtolower($array["tipo_b_".$i]));
+													                
 
-        	$ultimoMovimiento = \App\asistencia::where('turnoExtra', null)
-                ->where('id_trabajador', $id)
-                ->where('mes',  $mes)
-                ->where('anio',  $anio)
-                ->where('dia',  $i)
-                ->where('tipo_movimiento',  strtolower($array["tipo_b_".$i]));
-                
 
 
-
-                if(isset($ultimoMovimiento) && $ultimoMovimiento->count()>0){
-                	echo "Si Trabajó...". $ultimoMovimiento->get()[0]->nombre . "<br>";
-                }else{
-                	echo "falto...<br>";
-                }
-
+							 if(isset($ultimoMovimiento) && $ultimoMovimiento->count()>0){
+							 	echo "Si Trabajó...". $ultimoMovimiento->get()[0]->nombre . "<br>";
+							 	if(strtolower($array["tipo_b_".$i]) == 'entrada') $dt_contador=1;
+				                	if(strtolower($array["tipo_b_".$i]) == 'salida' && $dt_contador = 1){
+				                    $dt = 0;
+				                	$dt++;	
+				                	} 
+							 }else{
+							 	$dt = 0;
+							 	echo "falto...<br>";
+							 }
+				   }
         	}
 
 
 
         }
-        var_dump($variable2);
+        echo $dt;
     }   
  
 }
