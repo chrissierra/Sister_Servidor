@@ -82,11 +82,11 @@ class DiasTrabajados {
 				                	echo "Si Trabajó...". $ultimoMovimiento->get()[0]->nombre  . "<br>";
 				                	if(strtolower($array["tipo_a_".$i]) == 'entrada') $dt_contador=1;
 				                	if(strtolower($array["tipo_a_".$i]) == 'salida' && $dt_contador == 1){
-				                    $dt = 0;
+				                    $dt_contador = 0;
 				                	$dt++;	
 				                	} 
 				                }else{
-				                	$dt = 0;
+				                	$dt_contador = 0;
 				                	echo "falto...<br>";
 				                }
 
@@ -123,11 +123,11 @@ class DiasTrabajados {
 							 	echo "Si Trabajó...". $ultimoMovimiento->get()[0]->nombre . "<br>";
 							 	if(strtolower($array["tipo_b_".$i]) == 'entrada') $dt_contador=1;
 				                	if(strtolower($array["tipo_b_".$i]) == 'salida' && $dt_contador == 1){
-				                    $dt = 0;
+				                    $dt_contador = 0;
 				                	$dt++;	
 				                	} 
 							 }else{
-							 	$dt = 0;
+							 	$dt_contador = 0;
 							 	echo "falto...<br>";
 							 }
 				   }
