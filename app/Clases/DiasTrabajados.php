@@ -42,9 +42,9 @@ class DiasTrabajados {
        // $variable2 = json_decode($variable1[0], true);
         $array =  (array) $variable1;
 		$d=cal_days_in_month(CAL_GREGORIAN,$mes,$anio);	
-		for ($i=0; $i < $d; $i++) { 
+		for ($i=1; $i < $d; $i++) { 
 			# code...
-			$fecha = new \DateTime($anio."-".$mes."-".$dia);
+			$fecha = new \DateTime($anio."-".$mes."-".$i);
 			echo $fecha->format('w');
 		}
         echo "Lunes Entrada " . $array[0]['0e'];
