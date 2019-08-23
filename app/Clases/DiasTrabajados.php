@@ -50,7 +50,9 @@ class DiasTrabajados {
 
    private function Trabajador_Con_HorarioNoche($id, $mes, $anio, $modelo) {
         $variable1 = json_decode ($modelo->get());
-        var_dump(json_decode($variable1[0]->turno)->hora_b_31);
+        $variable2 = json_decode($variable1[0]->turno);
+        echo "Count -> " . count($variable2);
+        var_dump($variable2);
     }   
  
 }
@@ -101,7 +103,9 @@ class DiasTrabajados {
 "hora_b_31":"13:30",
 "tipo_b_31":"Salida"}
 
-// 1 - Recorrer el json ( turnos noche ). O la tabla. ( turnos dia sin noche)
+// 
+
+1 - Recorrer el json ( turnos noche ). O la tabla. ( turnos dia sin noche)
 2- ver cuales no son vacios; los que tienen algo. tomar ese numero. llevarlo a dia ( su Key, llevarla a día ) ( string.extraenumeros() : int ; ese int del turno contrastarlo en la tabla asistencia llevandolo a una query de mes consultado y dia; si hay algo ver ademas si cumple con entrada o salida ) . revisarlo en tabla asistencia. Ver si es entrada o salida. Si cumple con el movimiento y es movimiento === movimiento, ver cuántas horas de atraso podrían haber. 
 
 
