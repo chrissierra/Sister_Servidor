@@ -75,7 +75,7 @@ class DiasTrabajados {
 		}
 
 		echo json_encode(
-			{'diasTrabajados': $diasLaburados}
+			array('diasTrabajados'=> $diasLaburados)
 		);
 
 
