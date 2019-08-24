@@ -74,9 +74,9 @@ class DiasTrabajados {
 			$diasLaburados = 30-$faltas;
 		}
 
-		echo json_decode({
+		echo json_encode(
 			'diasTrabajados': $diasLaburados
-		});
+		);
 
 
 
