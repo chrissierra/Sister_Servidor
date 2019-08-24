@@ -75,7 +75,7 @@ class DiasTrabajados {
 		}
 
 		echo json_encode(
-			array('diasTrabajados'=> $diasLaburados)
+			array('diasTrabajados'=> $this->CalculoDiasTrabajados($faltas), 'faltas'=> $faltas)
 		);
 
 
@@ -102,6 +102,16 @@ class DiasTrabajados {
 
 
 
+    }
+
+    private function CalculoDiasTrabajados($faltas){
+		//echo "FALTAS: " . $faltas;
+		if($faltas > 30){
+			$diasLaburados = 0;	
+		}else{
+			$diasLaburados = 30-$faltas;
+		}
+		return $diasLaburados;
     }
 
 
@@ -208,7 +218,7 @@ class DiasTrabajados {
 
         } // Fin bucle FOR
 
-        echo json_encode(array('Faltas'=> $faltas));
+        echo json_encode(array('Faltas'=> $faltas, 'DT'=> $this->CalculoDiasTrabajados($faltas)));
     } // Fin método Trabajador_Con_HorarioNoche()   
  
 }
