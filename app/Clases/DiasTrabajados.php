@@ -38,6 +38,7 @@ class DiasTrabajados {
     }
  
    private function Trabajador_Con_HorarioFijo($id, $mes, $anio, $modelo) {
+   		$faltas = 0;
         $variable1 = json_decode ($modelo->get(), true);
        // $variable2 = json_decode($variable1[0], true);
         $array =  (array) $variable1;
@@ -45,9 +46,36 @@ class DiasTrabajados {
 		for ($i=1; $i < $d; $i++) { 
 			# code...
 			$fecha = new \DateTime($anio."-".$mes."-".$i);
-			echo ($fecha->format('N')-1 )."  |   Fecha entrada " . $anio."-".$mes."-".$i. " " .  $array[0][($fecha->format('N')-1 ).'e']."<br>";
-			echo ($fecha->format('N')-1 )."  |   Fecha salida" . $anio."-".$mes."-".$i. " " .  $array[0][($fecha->format('N')-1 ).'s']."<br>";
+			
+			if(strlen($array[0][($fecha->format('N')-1 ).'e'])>0){
+				// sI TRABAJA 
+				$ultimoMovimiento = \App\asistencia::where('turnoExtra', null)
+							 ->where('id_trabajador', $id)
+							 ->where('mes',  $mes)
+							 ->where('anio',  $anio)
+							 ->where('dia',  $i)
+							 ->where('tipo_movimiento',  'salida');
+
+				if($ultimoMovimiento->count() == 0) $faltas++;
+
+			}else{
+			  echo ($fecha->format('N')-1 )."  |  NO TRABAJA Fecha entrada " . $anio."-".$mes."-".$i. " " .  $array[0][($fecha->format('N')-1 ).'e']."<br>";
+			}
+			
+			//echo ($fecha->format('N')-1 )."  |   Fecha salida" . $anio."-".$mes."-".$i. " " .  $array[0][($fecha->format('N')-1 ).'s']."<br>";
 		}
+
+
+
+		echo "FALTAS: " . $faltas;
+
+
+
+
+
+
+
+
         echo "Lunes Entrada " . $array[0]['0e'];
         echo "Lunes Salida " . $array[0]['0s'];
         echo "Martes Entrada " . $array[0]['1e'];
