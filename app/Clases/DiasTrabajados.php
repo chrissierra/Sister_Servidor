@@ -207,8 +207,8 @@ class DiasTrabajados {
 								 
 								 }else{
 								 		
-								 		$dt_contador = 0;
-								 		
+				                	$dt_contador = 0;
+				                	if(strtolower ($array["tipo_b_".$i]) == 'salida') $faltas++;
 								 		//echo "falto...<br>";
 								 }
 					}
