@@ -68,6 +68,15 @@ class DiasTrabajados {
 
 
 		echo "FALTAS: " . $faltas;
+		if($faltas > 30){
+			$diasLaburados = 0;	
+		}else{
+			$diasLaburados = 30-$faltas;
+		}
+
+		echo json_decode({
+			'diasTrabajados': $diasLaburados
+		});
 
 
 
@@ -75,7 +84,7 @@ class DiasTrabajados {
 
 
 
-
+		/*
         echo "Lunes Entrada " . $array[0]['0e'];
         echo "Lunes Salida " . $array[0]['0s'];
         echo "Martes Entrada " . $array[0]['1e'];
@@ -89,7 +98,7 @@ class DiasTrabajados {
         echo "Sabado Entrada " . $array[0]['5e'];
         echo "Sabado Salida " . $array[0]['5s'];
         echo "Domingo Entrada " . $array[0]['6e'];
-        echo "Domingo Salida " . $array[0]['6s'];
+        echo "Domingo Salida " . $array[0]['6s'];*/
 
 
 
