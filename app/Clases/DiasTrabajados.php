@@ -59,7 +59,7 @@ class DiasTrabajados {
 				if($ultimoMovimiento->count() == 0) $faltas++;
 
 			}else{
-			  echo ($fecha->format('N')-1 )."  |  NO TRABAJA Fecha entrada " . $anio."-".$mes."-".$i. " " .  $array[0][($fecha->format('N')-1 ).'e']."<br>";
+			  //echo ($fecha->format('N')-1 )."  |  NO TRABAJA Fecha entrada " . $anio."-".$mes."-".$i. " " .  $array[0][($fecha->format('N')-1 ).'e']."<br>";
 			}
 			
 			//echo ($fecha->format('N')-1 )."  |   Fecha salida" . $anio."-".$mes."-".$i. " " .  $array[0][($fecha->format('N')-1 ).'s']."<br>";
@@ -67,7 +67,7 @@ class DiasTrabajados {
 
 
 
-		echo "FALTAS: " . $faltas;
+		//echo "FALTAS: " . $faltas;
 		if($faltas > 30){
 			$diasLaburados = 0;	
 		}else{
@@ -174,6 +174,7 @@ class DiasTrabajados {
 			preg_match_all('!\d+!', $str, $matches);
 			//print_r($matches);
 				if(strtolower ($array["tipo_b_".$i]) =='entrada' || strtolower ($array["tipo_b_".$i]) == 'salida'){
+							
 							$ultimoMovimiento = \App\asistencia::where('turnoExtra', null)
 							 ->where('id_trabajador', $id)
 							 ->where('mes',  $mes)
