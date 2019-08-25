@@ -19,7 +19,7 @@ class GeneracionDocumentacionController extends Controller
 
 
     public function ingresarDocumento(Request $request){
-        
+        var_dump($request);
         $GeneracionDocumentacion = new \App\GeneracionDocumentacion;
         $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
         $generacionDocumentacion->empresa_id  = $post['empresa_id'];
