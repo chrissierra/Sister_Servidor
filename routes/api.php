@@ -244,3 +244,8 @@ Route::post('InsertContrasteFotograficoValidacion', 'ContrasteFotograficoValidac
 Route::post('ingresarDocumento', 'GeneracionDocumentacionController@ingresarDocumento');
 
 Route::post('GetDocumento', 'GeneracionDocumentacionController@GetDocumento');
+
+Route::post('ingresarDocumentoPorTrabajador', 'DocumentosGeneradosController@ingresarDocumento');
+
+Route::post('GetDocumentoPorTrabajador', 'DocumentosGeneradosController@GetDocumento');
+
