@@ -46,12 +46,23 @@ class DocumentosGeneradosController extends Controller
 
 
 
-    public function GetDocumento(Request $request){
+    public function GetDocumentoPorTrabajador(Request $request){
+
+
+        $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]       
+        $GeneracionDocumentacion =  \App\DocumentosGenerados::where('trabajador_id', $post['trabajador_id'])->get();;
+        return json_encode(array('response'=> $GeneracionDocumentacion));
+
+
+    }
+
+
+        public function GetDocumentosGeneradorPorEmpresa(Request $request){
 
 
         $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]       
         $GeneracionDocumentacion =  \App\DocumentosGenerados::where('empresa_id', $post['empresa_id'])->get();;
-        return json_encode(array('response'=> $GeneracionDocumentacion, 'image64' => $base64));
+        return json_encode(array('response'=> $GeneracionDocumentacion));
 
 
     }

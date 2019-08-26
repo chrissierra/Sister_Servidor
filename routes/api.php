@@ -247,5 +247,6 @@ Route::post('GetDocumento', 'GeneracionDocumentacionController@GetDocumento');
 
 Route::post('ingresarDocumentoPorTrabajador', 'DocumentosGeneradosController@ingresarDocumento');
 
-Route::post('GetDocumentoPorTrabajador', 'DocumentosGeneradosController@GetDocumento');
+Route::post('GetDocumentoPorTrabajador', 'DocumentosGeneradosController@GetDocumentoPorTrabajador');
 
+Route::post('GetDocumentosGeneradorPorEmpresa', 'DocumentosGeneradosController@GetDocumentosGeneradorPorEmpresa');
