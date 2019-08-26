@@ -38,7 +38,7 @@ class GeneracionDocumentacionController extends Controller
         $generacionDocumentacion->variablesParametrizadas  = $post['variablesParametrizadas'];
         $generacionDocumentacion->titulo  = $post['titulo'];
         $generacionDocumentacion->firmas  = $post['firmas'];
-        
+        $generacionDocumentacion->tipocarta  = $post['tipocarta'];
         $generacionDocumentacion->save();
         return json_encode(array('estado'=> 'ok'));
 
