@@ -17,6 +17,15 @@ class GeneracionDocumentacionController extends Controller
         //
     }
 
+    public function entregar64imagen(Request $request){
+        //let imgData = 'https://sister.cl/clientes_rrhh/12341234/registro/12341234.jpg'
+
+        $path = '/usr/share/nginx/html/clientes_rrhh/myfolder/myimage.png';
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+    }
+
 
     public function ingresarDocumento(Request $request){
         
@@ -36,10 +45,14 @@ class GeneracionDocumentacionController extends Controller
 
 
     public function GetDocumento(Request $request){
+        $path = '/usr/share/nginx/html/clientes_rrhh/'.$post['rut_empresa'].'/registro/'.$post['rut_empresa'] .'jpg';
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
         $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]        
         $GeneracionDocumentacion =  \App\GeneracionDocumentacion::where('empresa_id', $post['empresa_id'])->get();;
-        return json_encode(array('response'=> $GeneracionDocumentacion));
+        return json_encode(array('response'=> $GeneracionDocumentacion, 'image64' => $base64));
 
 
     }
