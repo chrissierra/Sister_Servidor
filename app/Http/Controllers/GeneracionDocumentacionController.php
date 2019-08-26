@@ -48,7 +48,7 @@ class GeneracionDocumentacionController extends Controller
 
 
         $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]       
-        $path = '/usr/share/nginx/html/clientes_rrhh/'.$post['rut_empresa'].'/registro/'.$post['rut_empresa'] .'jpg';
+        $path = '/usr/share/nginx/html/clientes_rrhh/'.$post['rut_empresa'].'/registro/'.$post['rut_empresa'] .'.jpg';
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data); 
