@@ -36,6 +36,9 @@ class DocumentosGeneradosController extends Controller
         $generacionDocumentacion->mes  = $post['mes'];
         $generacionDocumentacion->anio  = $post['anio'];
         $generacionDocumentacion->tipocarta  = $post['tipocarta'];
+        $generacionDocumentacion->nombre  = $post['nombre'];
+        $generacionDocumentacion->apellido  = $post['apellido'];
+        $generacionDocumentacion->rut  = $post['rut'];        
         $generacionDocumentacion->save();
         return json_encode(array('estado'=> 'ok'));
 
