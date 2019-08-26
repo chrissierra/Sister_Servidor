@@ -45,12 +45,13 @@ class GeneracionDocumentacionController extends Controller
 
 
     public function GetDocumento(Request $request){
+
+
+        $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]       
         $path = '/usr/share/nginx/html/clientes_rrhh/'.$post['rut_empresa'].'/registro/'.$post['rut_empresa'] .'jpg';
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
-        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-
-        $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]        
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data); 
         $GeneracionDocumentacion =  \App\GeneracionDocumentacion::where('empresa_id', $post['empresa_id'])->get();;
         return json_encode(array('response'=> $GeneracionDocumentacion, 'image64' => $base64));
 
