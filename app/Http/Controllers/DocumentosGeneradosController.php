@@ -47,11 +47,14 @@ class DocumentosGeneradosController extends Controller
 
 
     public function GetDocumentoPorTrabajador(Request $request){
-
-
-        $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]       
+        $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]  
+        $path = '/usr/share/nginx/html/clientes_rrhh/'.$post['rut_empresa'].'/registro/'.$post['rut_empresa'] .'.jpg';
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data); 
+             
         $GeneracionDocumentacion =  \App\DocumentosGenerados::where('trabajador_id', $post['trabajador_id'])->get();;
-        return json_encode(array('response'=> $GeneracionDocumentacion));
+        return json_encode(array('response'=> $GeneracionDocumentacion, 'image64' => $base64));
 
 
     }
@@ -61,8 +64,12 @@ class DocumentosGeneradosController extends Controller
 
 
         $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]       
+        $path = '/usr/share/nginx/html/clientes_rrhh/'.$post['rut_empresa'].'/registro/'.$post['rut_empresa'] .'.jpg';
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data); 
         $GeneracionDocumentacion =  \App\DocumentosGenerados::where('empresa_id', $post['empresa_id'])->get();;
-        return json_encode(array('response'=> $GeneracionDocumentacion));
+        return json_encode(array('response'=> $GeneracionDocumentacion, 'image64' => $base64));
 
 
     }
