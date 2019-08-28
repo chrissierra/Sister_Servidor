@@ -26,10 +26,10 @@ Route::resource('jj', 'crudController2');
 
 Route::resource('login', 'LoginController');
 
-Route::post('planilla', 'PlanillaController@showIT');
+Route::resource('planilla', 'PlanillaController@showIT');
 
-Route::post('getPostulantes', 'PlanillaController@getPostulantes');
-Route::post('getTodos', 'PlanillaController@getTodos');
+//Route::post('getPostulantes', 'PlanillaController@getPostulantes');
+//Route::post('getTodos', 'PlanillaController@getTodos');
 
 
 Route::resource('TurnosVariables', 'turnosVariables');
