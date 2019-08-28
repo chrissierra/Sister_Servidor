@@ -53,6 +53,7 @@ class PlanillaController extends Controller
         ->orderBy('apellido')->get();
         //echo json_encode($planilla->toarray(),JSON_PARTIAL_OUTPUT_ON_ERROR);
         //echo $planilla->toJson();
+        // asdfsafd
 
         return response()->json($planilla);
 
