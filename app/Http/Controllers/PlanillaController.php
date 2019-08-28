@@ -48,13 +48,44 @@ class PlanillaController extends Controller
     {
         //
 
-        $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $id)->orderBy('apellido')->get();
+        $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $id)
+        ->where('estatus', 'activo')
+        ->orderBy('apellido')->get();
         //echo json_encode($planilla->toarray(),JSON_PARTIAL_OUTPUT_ON_ERROR);
         //echo $planilla->toJson();
 
         return response()->json($planilla);
 
     }   
+
+
+        public function getPostulantes($id)
+    {
+        //
+
+        $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $id)
+        ->where('estatus', 'Postulante')
+        ->orderBy('apellido')->get();
+        //echo json_encode($planilla->toarray(),JSON_PARTIAL_OUTPUT_ON_ERROR);
+        //echo $planilla->toJson();
+
+        return response()->json($planilla);
+
+    }   
+
+
+            public function getTodos($id)
+    {
+        //
+
+        $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $id)
+        ->orderBy('apellido')->get();
+        //echo json_encode($planilla->toarray(),JSON_PARTIAL_OUTPUT_ON_ERROR);
+        //echo $planilla->toJson();
+
+        return response()->json($planilla);
+
+    }
 
     /**
      * Show the form for editing the specified resource.
