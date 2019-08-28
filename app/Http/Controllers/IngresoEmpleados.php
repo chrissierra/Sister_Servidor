@@ -46,11 +46,11 @@ class IngresoEmpleados extends Controller
         $empresa =  \App\clientes_rrhh::where('nombre_empresa', $post['nombre_empresa_usuario_plataforma'])->get();
         // Comprobar que $post['nombre_empresa_usuario_plataforma'] === 
 
-        $planilla = \App\ingreso_empleados::all();
+        $planilla_2 = \App\ingreso_empleados::all();
 
         if($post['id'] == ""){
 
-          $id =  ($planilla->last()->id + 1);
+          $id =  ($planilla_2->last()->id + 1);
         
         }else{
 
