@@ -46,8 +46,17 @@ class IngresoEmpleados extends Controller
         $empresa =  \App\clientes_rrhh::where('nombre_empresa', $post['nombre_empresa_usuario_plataforma'])->get();
         // Comprobar que $post['nombre_empresa_usuario_plataforma'] === 
 
+        $planilla = \App\ingreso_empleados::all();
 
+        if($post['id'] == ""){
 
+          $id =  ($planilla->last()->id + 1);
+        
+        }else{
+
+          $id =  $post['id'];
+
+        }
         \App\ingreso_empleados::updateOrCreate([ 'id' => $post['id'] ], $post);
 
         
