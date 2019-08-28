@@ -57,11 +57,11 @@ class IngresoEmpleados extends Controller
           $id =  $post['id'];
 
         }
-        \App\ingreso_empleados::updateOrCreate([ 'id' => $post['id'] ], $post);
+        \App\ingreso_empleados::updateOrCreate([ 'id' =>  $id ], $post);
 
         
-        \App\contraste_fotografico_validacion::updateOrCreate(['trabajador_id' => $post['id']],
-            ['trabajador_id' => $post['id'], 'empresa_id' =>  $empresa[0]['id'], 'validado'=> 'false']
+        \App\contraste_fotografico_validacion::updateOrCreate(['trabajador_id' =>  $id],
+            ['trabajador_id' =>  $id, 'empresa_id' =>  $empresa[0]['id'], 'validado'=> 'false']
 
         );
 
