@@ -47,12 +47,12 @@ class IngresoEmpleados extends Controller
         // Comprobar que $post['nombre_empresa_usuario_plataforma'] === 
 
         $planilla_2 = \App\ingreso_empleados::all();
-        echo "VER " . $post['id'];
-        echo "COUNT " . strlen($post['id']);
+        //echo "VER " . $post['id'];
+        //echo "COUNT " . strlen($post['id']);
         if(strlen($post['id']) === 0){
 
           $id =  ($planilla_2->last()->id + 1);
-          echo " Valor de $ id " . $id;
+          //echo " Valor de $ id " . $id;
           $post['id'] = $id;
         }else{
 
