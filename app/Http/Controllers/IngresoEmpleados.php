@@ -53,7 +53,7 @@ class IngresoEmpleados extends Controller
 
           $id =  ($planilla_2->last()->id + 1);
           echo " Valor de $ id " . $id;
-        
+          $post['id'] = $id;
         }else{
 
           $id =  $post['id'];
