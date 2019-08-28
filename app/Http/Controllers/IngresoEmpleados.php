@@ -47,7 +47,7 @@ class IngresoEmpleados extends Controller
         // Comprobar que $post['nombre_empresa_usuario_plataforma'] === 
 
         $planilla_2 = \App\ingreso_empleados::all();
-
+        echo "VER " . $post['id'];
         if($post['id'] === ""){
 
           $id =  ($planilla_2->last()->id + 1);
