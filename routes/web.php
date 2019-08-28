@@ -31,7 +31,7 @@ Route::get('/perfil_trabajador/{id}', function ($id) {
 
      $planilla = \App\ingreso_empleados::all();
 
-     echo $planilla->last();
+     echo $planilla->last()->id;
 
 });
 
