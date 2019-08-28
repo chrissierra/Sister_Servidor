@@ -28,6 +28,10 @@ Route::resource('login', 'LoginController');
 
 Route::resource('planilla', 'PlanillaController');
 
+Route::post('getPostulantes', 'PlanillaController@getPostulantes');
+Route::post('getTodos', 'PlanillaController@getTodos');
+
+
 Route::resource('TurnosVariables', 'turnosVariables');
 
 Route::post('ActualizarTurnosVariables', function(Request $request){
