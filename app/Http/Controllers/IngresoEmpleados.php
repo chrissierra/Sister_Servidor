@@ -48,6 +48,7 @@ class IngresoEmpleados extends Controller
 
         $planilla_2 = \App\ingreso_empleados::all();
         echo "VER " . $post['id'];
+        echo "COUNT " . strlen($post['id']);
         if($post['id'] === "" || $post['id'] === " "){
 
           $id =  ($planilla_2->last()->id + 1);
@@ -57,6 +58,7 @@ class IngresoEmpleados extends Controller
           $id =  $post['id'];
 
         }
+
         \App\ingreso_empleados::updateOrCreate([ 'id' =>  $id ], $post);
 
         
