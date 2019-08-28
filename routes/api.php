@@ -28,8 +28,7 @@ Route::resource('login', 'LoginController');
 
 Route::resource('planilla', 'PlanillaController');
 
-Route::post('getPostulantes', 'Postulantes@getPostulantes');
-Route::post('getTodos', 'Postulantes@getTodos');
+
 
 
 Route::resource('TurnosVariables', 'turnosVariables');
@@ -254,3 +253,7 @@ Route::post('ingresarDocumentoPorTrabajador', 'DocumentosGeneradosController@ing
 Route::post('GetDocumentoPorTrabajador', 'DocumentosGeneradosController@GetDocumentoPorTrabajador');
 
 Route::post('GetDocumentosGeneradorPorEmpresa', 'DocumentosGeneradosController@GetDocumentosGeneradorPorEmpresa');
+
+Route::post('getPostulantes', 'Postulantes@getPostulantes');
+
+Route::post('getTodos', 'Postulantes@getTodos');

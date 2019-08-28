@@ -8,12 +8,12 @@ class Postulantes extends Controller
 {
     //
 
-    
-        public function getPostulantes($id)
+
+        public function getPostulantes(Request $request)
     {
         //
-
-        $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $id)
+		$post = $request->json()->all(); 
+        $planilla = \App\ingreso_empleados::where($post['nombre_empresa_usuario_plataforma'], $id)
         ->where('estatus', 'Postulante')
         ->orderBy('apellido')->get();
         //echo json_encode($planilla->toarray(),JSON_PARTIAL_OUTPUT_ON_ERROR);
@@ -24,11 +24,11 @@ class Postulantes extends Controller
     }   
 
 
-            public function getTodos($id)
+            public function getTodos(Request $request)
     {
         //
-
-        $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $id)
+		$post = $request->json()->all(); 
+        $planilla = \App\ingreso_empleados::where($post['nombre_empresa_usuario_plataforma'], $id)
         ->orderBy('apellido')->get();
         //echo json_encode($planilla->toarray(),JSON_PARTIAL_OUTPUT_ON_ERROR);
         //echo $planilla->toJson();
