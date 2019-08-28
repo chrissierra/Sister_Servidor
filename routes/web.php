@@ -29,9 +29,9 @@ Route::get('/test/{id}', function ($id) {
 
 Route::get('/perfil_trabajador/{id}', function ($id) {
 
-     $planilla = \App\ingreso_empleados::where('id', $id);
+     $planilla = \App\ingreso_empleados::all();
 
-     echo $planilla->all()->last();
+     echo $planilla->last();
 
 });
 
