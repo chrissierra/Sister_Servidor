@@ -52,6 +52,7 @@ class IngresoEmpleados extends Controller
         if(strlen($post['id']) === 0){
 
           $id =  ($planilla_2->last()->id + 1);
+          echo " Valor de $ id " . $id;
         
         }else{
 
