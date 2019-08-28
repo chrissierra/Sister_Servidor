@@ -14,7 +14,7 @@ class Postulantes extends Controller
         //
 		$post = $request->json()->all(); 
         $planilla = \App\ingreso_empleados::where('nombre_empresa_usuario_plataforma', $post['nombre_empresa_usuario_plataforma'])
-        ->where('estatus', 'Postulante')
+        ->where('estatus', $post['estatus'])
         ->orderBy('apellido')->get();
         //echo json_encode($planilla->toarray(),JSON_PARTIAL_OUTPUT_ON_ERROR);
         //echo $planilla->toJson();
