@@ -45,7 +45,7 @@ Route::get('/test/{id}/{mes}/{anio}', function ($id, $mes, $anio) {
 });
 
 Route::get('/presta', function () {
-  
+    ob_end_clean();
     Fpdf::AddPage();
     Fpdf::SetFont('Courier', 'B', 18);
     Fpdf::Cell(50, 25, 'Hello World!');
