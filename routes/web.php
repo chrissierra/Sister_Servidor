@@ -50,7 +50,7 @@ Route::get('/presta', function () {
     Fpdf::SetFont('Courier', 'B', 18);
     Fpdf::Cell(50, 25, 'Hello World!');
     
-    return response(Fpdf::Output(), 200)->header('Content-Type', 'text/pdf');
+    return response(Fpdf::Output("I"), 200)->header('Content-Type', 'text/pdf');
 
   // jjj
 });
