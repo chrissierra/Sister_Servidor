@@ -45,11 +45,14 @@ Route::get('/test/{id}/{mes}/{anio}', function ($id, $mes, $anio) {
 });
 
 Route::get('/presta', function () {
-  header('Content-type: application/pdf');
+  
     Fpdf::AddPage();
     Fpdf::SetFont('Courier', 'B', 18);
     Fpdf::Cell(50, 25, 'Hello World!');
-    Fpdf::Output();
+    
+    return response(Fpdf::Output();, 200)
+                  ->header('Content-Type', 'text/pdf');
+
   // jjj
 });
 
