@@ -2673,3 +2673,39 @@
 #43 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\server.php(21): require_once('C:\\\\Users\\\\Chris\\\\...')
 #44 {main}
 "} 
+[2019-08-30 22:04:29] local.ERROR: Class 'Codedge\Fpdf\FpdfServiceProvider' not found {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalThrowableError(code: 0): Class 'Codedge\\Fpdf\\FpdfServiceProvider' not found at C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php:208)
+[stacktrace]
+#0 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(144): Illuminate\\Foundation\\ProviderRepository->createProvider('Codedge\\\\Fpdf\\\\Fp...')
+#1 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(61): Illuminate\\Foundation\\ProviderRepository->compileManifest(Array)
+#2 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(548): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#3 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#4 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(206): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#5 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(297): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#6 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(120): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#7 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 {main}
+"} 
+[2019-08-30 22:05:39] local.ERROR: Class 'Codedge\Fpdf\FpdfServiceProvider' not found {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalThrowableError(code: 0): Class 'Codedge\\Fpdf\\FpdfServiceProvider' not found at C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php:208)
+[stacktrace]
+#0 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(144): Illuminate\\Foundation\\ProviderRepository->createProvider('Codedge\\\\Fpdf\\\\Fp...')
+#1 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(61): Illuminate\\Foundation\\ProviderRepository->compileManifest(Array)
+#2 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(548): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#3 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#4 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(206): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#5 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(297): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#6 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(120): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#7 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 {main}
+"} 
+[2019-08-30 22:06:01] local.ERROR: Class 'Codedge\Fpdf\FpdfServiceProvider' not found {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalThrowableError(code: 0): Class 'Codedge\\Fpdf\\FpdfServiceProvider' not found at C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php:208)
+[stacktrace]
+#0 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(144): Illuminate\\Foundation\\ProviderRepository->createProvider('Codedge\\\\Fpdf\\\\Fp...')
+#1 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(61): Illuminate\\Foundation\\ProviderRepository->compileManifest(Array)
+#2 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(548): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#3 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#4 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(206): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#5 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(297): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#6 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(120): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#7 C:\\Users\\Chris\\Desktop\\CARPETA SISTER\\SisterServidor\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 {main}
+"} 
