@@ -51,7 +51,7 @@ Route::get('/presta', function () {
     Fpdf::Cell(50, 25, 'Hello World!');
     
     return response(Fpdf::Output("I"), 200)->header('Content-Type', 'text/pdf');*/
-    $pathToFile  = '/usr/share/nginx/html/ServidorLaravel/public/peo.pdf';
+    $pathToFile  = '/usr/share/nginx/html/ServidorLaravel/public/peo1.pdf';
     return response()->file($pathToFile);
 
   // jjj
