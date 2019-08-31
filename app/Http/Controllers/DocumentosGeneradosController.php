@@ -22,7 +22,7 @@ class DocumentosGeneradosController extends Controller
             $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
             \Fpdf::AddPage();
             \Fpdf::SetFont('arial', '', 12);
-            \Fpdf::MultiCell(0, 5, $post['cuerpoDocumento']);
+            \Fpdf::MultiCell(0, 5, utf8_decode($post['cuerpoDocumento']));
             \Fpdf::Output('F', "peo.pdf", true);
             //return response(Fpdf::Output("I"), 200)->header('Content-Type', 'text/pdf');
     }
