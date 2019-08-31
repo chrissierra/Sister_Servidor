@@ -26,7 +26,7 @@ class DocumentosGeneradosController extends Controller
             \Fpdf::Output('F', "peo.pdf", true); */
             $pdf = \App::make('dompdf.wrapper');
             $pdf->loadHTML($post['cuerpoDocumento']);
-            $pdf->save("documento_".$post['rutEmpresa'].".pdf", true);
+            //$pdf->save("documento_".$post['rutEmpresa'].".pdf", true);
             $pdf->Output("documento_".$post['rutEmpresa'].".pdf",\Mpdf\Output\Destination::DOWNLOAD);
             return json_encode(array('response'=> 'ok'));
             //return response(Fpdf::Output("I"), 200)->header('Content-Type', 'text/pdf');
