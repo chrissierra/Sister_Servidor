@@ -45,12 +45,14 @@ Route::get('/test/{id}/{mes}/{anio}', function ($id, $mes, $anio) {
 });
 
 Route::get('/presta', function () {
-    ob_end_clean();
+   /* ob_end_clean();
     Fpdf::AddPage();
     Fpdf::SetFont('Courier', 'B', 18);
     Fpdf::Cell(50, 25, 'Hello World!');
     
-    return response(Fpdf::Output("I"), 200)->header('Content-Type', 'text/pdf');
+    return response(Fpdf::Output("I"), 200)->header('Content-Type', 'text/pdf');*/
+    $pathToFile  = '/usr/share/nginx/html/ServidorLaravel/public/peo.pdf';
+    return response()->file($pathToFile);
 
   // jjj
 });
