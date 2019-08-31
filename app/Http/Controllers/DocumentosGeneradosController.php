@@ -20,10 +20,10 @@ class DocumentosGeneradosController extends Controller
     public function armarDocumento(Request $request){
             ob_end_clean();
             $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
-            Fpdf::AddPage();
-            Fpdf::SetFont('arial', '', 12);
-            Fpdf::MultiCell(0, 5, $post['cuerpoDocumento']);
-            Fpdf::Output('F', $filename, true);
+            \Fpdf::AddPage();
+            \Fpdf::SetFont('arial', '', 12);
+            \Fpdf::MultiCell(0, 5, $post['cuerpoDocumento']);
+            \Fpdf::Output('F', $filename, true);
             //return response(Fpdf::Output("I"), 200)->header('Content-Type', 'text/pdf');
     }
 
