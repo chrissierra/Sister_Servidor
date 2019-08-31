@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DocumentosGenerados;
 use Illuminate\Http\Request;
-
+use Mpdf\Mpdf;
 class DocumentosGeneradosController extends Controller
 {
     /**
@@ -20,10 +20,13 @@ class DocumentosGeneradosController extends Controller
     public function armarDocumento(Request $request){
             ob_end_clean();
             $post = $request->json()->all(); // Se ingresa como array EJ: $post["algo"]
-            \Fpdf::AddPage();
+           /* \Fpdf::AddPage();
             \Fpdf::SetFont('arial', '', 12);
-            \Fpdf::MultiCell(0, 5, utf8_decode($post['cuerpoDocumento']));
-            \Fpdf::Output('F', "peo.pdf", true);
+            \Fpdf::WriteHTML(utf8_decode($post['cuerpoDocumento']));
+            \Fpdf::Output('F', "peo.pdf", true); */
+            $mpdf = new mPDF(«es», «A4», «15»);
+            $mpdf->WriteHTML("<p>Hola MUndo</p>");
+            $mpdf->Output('F', "peito.pdf", true);
             //return response(Fpdf::Output("I"), 200)->header('Content-Type', 'text/pdf');
     }
 
