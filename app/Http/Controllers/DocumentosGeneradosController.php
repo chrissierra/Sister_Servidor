@@ -24,7 +24,7 @@ class DocumentosGeneradosController extends Controller
             \Fpdf::SetFont('arial', '', 12);
             \Fpdf::WriteHTML(utf8_decode($post['cuerpoDocumento']));
             \Fpdf::Output('F', "peo.pdf", true); */
-            $mpdf = new mPDF(«es», «A4», «15»);
+            $mpdf = App::make('dompdf.wrapper');
             $mpdf->WriteHTML("<p>Hola MUndo</p>");
             $mpdf->Output('F', "peito.pdf", true);
             //return response(Fpdf::Output("I"), 200)->header('Content-Type', 'text/pdf');
