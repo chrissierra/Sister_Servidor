@@ -27,6 +27,7 @@ class DocumentosGeneradosController extends Controller
             $pdf = \App::make('dompdf.wrapper');
             $pdf->loadHTML($post['cuerpoDocumento']);
             $pdf->save("documento_".$post['rutEmpresa'].".pdf", true);
+            $pdf->Output('D');
             return json_encode(array('response'=> 'ok'));
             //return response(Fpdf::Output("I"), 200)->header('Content-Type', 'text/pdf');
     }
