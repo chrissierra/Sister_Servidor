@@ -257,3 +257,5 @@ Route::post('GetDocumentosGeneradorPorEmpresa', 'DocumentosGeneradosController@G
 Route::post('getPostulantes', 'Postulantes@getPostulantes');
 
 Route::post('getTodos', 'Postulantes@getTodos');
+
+Route::post('armarDocumento', 'DocumentosGeneradosController@armarDocumento');
