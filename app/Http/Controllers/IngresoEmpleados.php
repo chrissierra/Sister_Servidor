@@ -29,6 +29,8 @@ class IngresoEmpleados extends Controller
         $planilla->jefatura = $jefatura[0]['nombre'];
         $planilla->cargo_nombre = $cargos[0]['cargo'];
         $planilla->sucursal_nombre = $sucursal_nombre[0]['nombre'];
+        
+        $empresa =  \App\clientes_rrhh::where('nombre_empresa', $post['nombre_empresa_usuario_plataforma'])->get();
 
        \App\contraste_fotografico_validacion::updateOrCreate(['trabajador_id' => $planilla->id],
             ['trabajador_id' =>  $planilla->id, 'empresa_id' =>  $empresa[0]['id'], 'validado'=> 'false']
