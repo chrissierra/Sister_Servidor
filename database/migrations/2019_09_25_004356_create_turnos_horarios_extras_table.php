@@ -13,7 +13,7 @@ class CreateTurnosHorariosExtrasTable extends Migration
      */
     public function up()
     {
-        Schema::create('res_extras', function (Blueprint $table) {
+        Schema::create('res_extra', function (Blueprint $table) {
             
             $table->increments('id');
 
