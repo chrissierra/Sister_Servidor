@@ -20,10 +20,10 @@ class CreateTurnosHorariosExtrasTable extends Migration
             $table->unsignedInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('clientes_rrhh');
 
-            $table->unsignedInteger('trabajador_id');
+            $table->unsignedBigInteger('trabajador_id');
             $table->foreign('trabajador_id')->references('id')->on('ingreso_empleados');
 
-            $table->unsignedInteger('supervisor_id');
+            $table->unsignedBigInteger('supervisor_id');
             $table->foreign('supervisor_id')->references('id')->on('ingreso_empleados');
 
             $table->unsignedInteger('instalacion_id');            
