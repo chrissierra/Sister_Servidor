@@ -13,20 +13,20 @@ class CreateTurnosHorariosExtrasTable extends Migration
      */
     public function up()
     {
-        Schema::create('resumen_extras', function (Blueprint $table) {
+        Schema::create('res_extras', function (Blueprint $table) {
             
             $table->increments('id');
 
             $table->unsignedInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('clientes_rrhh');
 
-            $table->unsignedInteger('sucursal_id');            
+            $table->unsignedInteger('sucursal_id')->index();            
             $table->foreign('sucursal_id')->references('id')->on('sucursales');
 
-            $table->unsignedInteger('trabajador_id');
+            $table->unsignedInteger('trabajador_id')->index();
             $table->foreign('trabajador_id')->references('id')->on('ingreso_empleados');
 
-            $table->unsignedInteger('supervisor_id');
+            $table->unsignedInteger('supervisor_id')->index();
             $table->foreign('supervisor_id')->references('id')->on('ingreso_empleados');
 
 
