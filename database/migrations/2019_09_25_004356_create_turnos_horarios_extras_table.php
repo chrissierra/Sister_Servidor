@@ -15,10 +15,10 @@ class CreateTurnosHorariosExtrasTable extends Migration
     {
         Schema::create('turnos_horarios_extras', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('empresa_id');
-            $table->unsignedBigInteger('trabajador_id');
-            $table->unsignedBigInteger('supervisor_id');
-            $table->unsignedBigInteger('instalacion_id');            
+            $table->unsignedInteger('empresa_id');
+            $table->unsignedInteger('trabajador_id');
+            $table->unsignedInteger('supervisor_id');
+            $table->unsignedInteger('instalacion_id');            
             $table->foreign('empresa_id')->references('id')->on('clientes_rrhh');
             $table->foreign('trabajador_id')->references('id')->on('ingresos_empleados');
             $table->foreign('supervisor_id')->references('id')->on('ingresos_empleados');
