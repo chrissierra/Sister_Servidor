@@ -262,3 +262,4 @@ Route::post('armarDocumento', 'DocumentosGeneradosController@armarDocumento');
 
 Route::post('ingresarResExtra', 'ResExtraController@ingresarResExtra');
 
+Route::post('GetResExtra_unico', 'ResExtraController@GetResExtra_unico');

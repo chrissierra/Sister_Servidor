@@ -30,7 +30,8 @@ class ResExtraController extends Controller
     {
         //
 		$post = $request->json()->all(); 
-       
+        $response = \App\res_extra::where('id', $post['id'])->get();         
+        return json_encode(array('response'=>  $response, 'ok' => true));
 
     } 
 
