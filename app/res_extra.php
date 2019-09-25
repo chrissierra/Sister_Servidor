@@ -22,17 +22,17 @@ class res_extra extends Model
 
         public function sucursal()
     {
-        return $this->hasOne('App\sucursales', 'sucursal_id');
+        return $this->hasOne('App\sucursales', 'id');
     }
 
         public function trabajador()
     {
-        return $this->hasOne('App\ingreso_empleados', 'trabajador_id');
+        return $this->hasOne('App\ingreso_empleados', 'id');
     }
 
         public function supervisor()
     {
-        return $this->hasOne('App\ingreso_empleados', 'supervisor_id');
+        return $this->hasOne('App\ingreso_empleados', 'id');
     }            
 
 }
