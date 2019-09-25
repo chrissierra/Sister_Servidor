@@ -17,7 +17,7 @@ class res_extra extends Model
 	*/
         public function empresa()
     {
-        return $this->hasOne('App\clientes_rrhh', 'empresa_id');
+        return $this->hasOne('App\clientes_rrhh', 'id');
     }
 
         public function sucursal()
