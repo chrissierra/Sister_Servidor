@@ -8,6 +8,7 @@ class res_extra extends Model
 {
     //
     protected $table = 'res_extra';
+    protected $guarded = [];
     /*
     empresa_id
 	sucursal_id

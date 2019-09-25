@@ -259,3 +259,6 @@ Route::post('getPostulantes', 'Postulantes@getPostulantes');
 Route::post('getTodos', 'Postulantes@getTodos');
 
 Route::post('armarDocumento', 'DocumentosGeneradosController@armarDocumento');
+
+Route::post('ingresarResExtra', 'ResExtraController@ingresarResExtra');
+
