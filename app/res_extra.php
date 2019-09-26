@@ -27,12 +27,12 @@ class res_extra extends Model
 
         public function trabajador()
     {
-        return $this->hasOne('App\ingreso_empleados', 'id');
+        return $this->hasOne('App\ingreso_empleados', 'id', 'trabajador_id');
     }
 
         public function supervisor()
     {
-        return $this->hasOne('App\ingreso_empleados', 'id');
+        return $this->hasOne('App\ingreso_empleados', 'id', 'supervisor_id');
     }            
 
 }
