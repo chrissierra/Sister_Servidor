@@ -265,3 +265,11 @@ Route::post('ingresarResExtra', 'ResExtraController@ingresarResExtra');
 Route::post('GetResExtra_unico', 'ResExtraController@GetResExtra_unico');
 
 Route::post('GetResExtra_porSucursal', 'ResExtraController@GetResExtra_porSucursal');
+
+Route::post('GetResExtra_porTrabajador', 'ResExtraController@GetResExtra_porTrabajador');
+
+Route::post('GetResExtra_porSupervisor', 'ResExtraController@GetResExtra_porSupervisor');
+
+Route::post('GetResExtra_porMes', 'ResExtraController@GetResExtra_porMes');
+
+Route::post('GetResExtra_porDia', 'ResExtraController@GetResExtra_porDia');

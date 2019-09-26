@@ -41,7 +41,7 @@ class ResExtraController extends Controller
 		$post = $request->json()->all(); 
         $response = \App\res_extra::with('sucursal')->with('trabajador')->with('supervisor')->where('sucursal_id', $post['id']);  
 
-        return json_encode(array('response' =>  $response->paginate(1), 'ok' => true, 'empresa'=> $response->get()  )); 
+        return json_encode(array('response' =>  $response->paginate(5), 'ok' => true )); 
 
 
     } 
@@ -49,7 +49,10 @@ class ResExtraController extends Controller
     public function GetResExtra_porTrabajador(Request $request)
     {
         //
-		$post = $request->json()->all(); 
+        $post = $request->json()->all(); 
+        $response = \App\res_extra::with('sucursal')->with('trabajador')->with('supervisor')->where('trabajador_id', $post['id']);  
+
+        return json_encode(array('response' =>  $response->paginate(5), 'ok' => true  )); 
        
 
     } 
@@ -57,7 +60,10 @@ class ResExtraController extends Controller
         public function GetResExtra_porSupervisor(Request $request)
     {
         //
-		$post = $request->json()->all(); 
+        $post = $request->json()->all(); 
+        $response = \App\res_extra::with('sucursal')->with('trabajador')->with('supervisor')->where('supervisor_id', $post['id']);  
+
+        return json_encode(array('response' =>  $response->paginate(5), 'ok' => true  )); 
        
 
     }
@@ -67,7 +73,10 @@ class ResExtraController extends Controller
     public function GetResExtra_porMes(Request $request)
     {
         //
-		$post = $request->json()->all(); 
+        $post = $request->json()->all(); 
+        $response = \App\res_extra::with('sucursal')->with('trabajador')->with('supervisor')->where('mes', $post['mes']);  
+
+        return json_encode(array('response' =>  $response->paginate(5), 'ok' => true  ));  
        
 
     } 
@@ -75,7 +84,13 @@ class ResExtraController extends Controller
         public function GetResExtra_porDia(Request $request)
     {
         //
-		$post = $request->json()->all(); 
+        $post = $request->json()->all(); 
+        $response = \App\res_extra::with('sucursal')->with('trabajador')->with('supervisor')
+        ->where('anio', $post['anio'])  
+        ->where('mes', $post['mes'])  
+        ->where('dia', $post['dia']);  
+
+        return json_encode(array('response' =>  $response->paginate(5), 'ok' => true  ));  
        
 
     } 
