@@ -12,6 +12,11 @@ class cargosController extends Controller
     	$post = $request->json()->all();
     	$cargos = new \App\cargos;
     	
+
+        
+
+
+
     	for ($i=0; $i < count($post); $i++) { 
     		if( strlen($post[$i]['value']) < 1) abort(403, 'Unauthorized action.');
     	}

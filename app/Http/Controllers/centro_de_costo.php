@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class centro_de_costo extends Controller
 {
     //
+        
         public function ingresar_centro_de_costo(Request $request){
     	$post = $request->json()->all();
     	$centro_de_costo = new \App\centro_de_costo;
