@@ -11,7 +11,7 @@ class ResExtraController extends Controller
     {
         //
 		$post = $request->json()->all(); 
-		var_dump($post);
+		//var_dump($post);
        	\App\res_extra::create($post);
 
     } 
