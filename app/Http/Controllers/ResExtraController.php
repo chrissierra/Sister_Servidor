@@ -39,7 +39,10 @@ class ResExtraController extends Controller
     {
         //
 		$post = $request->json()->all(); 
-        $response = \App\res_extra::with('sucursal')->with('trabajador')->with('supervisor')->where('sucursal_id', $post['id']);  
+        $response = \App\res_extra::with('sucursal')->with('trabajador')->with('supervisor')
+        ->where('sucursal_id', $post['id'])
+        ->where('mes', $post['mes'])
+        ->where('anio', $post['anio']);  
 
         return json_encode(array('response' =>  $response->paginate(5), 'ok' => true )); 
 
