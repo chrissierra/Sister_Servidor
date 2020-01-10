@@ -34,6 +34,53 @@ class loginTrabajador extends Controller
     } // Fin loginTrabajadorDashboard
 
 
+    
+
+
+
+
+
+
+
+
+    public function loginTrabajadorDashboardCliente(Request $request){
+         $post = $request->json()->all();
+
+         $logueos = \App\ingreso_empleados::where('rut', $post["rut"])
+         ->where('rut_empresa', $post["rutEmpresa"]);
+
+        
+       
+        if($logueos->count() === 0){
+        
+        
+         abort(403, 'Unauthorized action.');
+        
+        }else{
+
+           // if (password_verify($post["clave"], $logueos->get()[0]['password'] )) {
+
+         if ($post["claveTrabajador"]  === $logueos->get()[0]['claveTrabajador'] ) {
+            echo json_encode($logueos->get()[0]);
+        } else {
+            $this->LogueoDefault($logueos->get()[0]['nombre_empresa_usuario_plataforma'], $post["claveTrabajador"], $logueos->get()[0]);
+            //echo json_encode(array("error"=>'Contraseña Errónea'));
+        }
+        
+        }
+    } // Fin loginTrabajadorDashboard
+
+
+
+
+
+
+
+
+
+
+
+
      public function LogueoDefault($nombre_empresa_usuario_plataforma, $clave, $datosTrabajador){
          
 

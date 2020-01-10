@@ -70,6 +70,10 @@ class crudController2 extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $peo = "hola";
+
+
     }
 
     /**

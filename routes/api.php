@@ -273,3 +273,6 @@ Route::post('GetResExtra_porSupervisor', 'ResExtraController@GetResExtra_porSupe
 Route::post('GetResExtra_porMes', 'ResExtraController@GetResExtra_porMes');
 
 Route::post('GetResExtra_porDia', 'ResExtraController@GetResExtra_porDia');
+
+
+Route::post('loginTrabajador', 'loginTrabajador@loginTrabajadorDashboardCliente');
